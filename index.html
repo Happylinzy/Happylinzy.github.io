@@ -157,6 +157,156 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Matlab" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/15/Matlab/">Matlab</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/15/Matlab/" class="archive-article-date">
+  	<time datetime="2019-12-15T11:29:45.710Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h3><p>本文旨在复习本学期<strong>MATLAB</strong>所学内容</p>
+<h4 id="什么是MATLAB"><a href="#什么是MATLAB" class="headerlink" title="什么是MATLAB"></a>什么是MATLAB</h4><p>MATLAB是一种数学软件，使用MATLAB进行图形计算，算法开发，数据处理十分便捷。数据在MATLAB中大多以数组的形式进行处理。关于MATLAB的详细文档可以在官方网站<a href="https://ww2.mathworks.cn/help/matlab/找到" target="_blank" rel="noopener">https://ww2.mathworks.cn/help/matlab/找到</a></p>
+<h4 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h4><p>打开<strong>MATLAB</strong>，最中间的<strong>command window</strong>是命令台，输入在这里的命令再按回车后会直接运行。<strong>如果想不运行换行，使用shift+Enter</strong>。命令台的右侧是<strong>workspace</strong>，这个地方会显示出程序运行时变量的变化，如果在程序中没有断点（程序不会中途停下），此处会显示程序结束时的各变量的值。</p>
+<h4 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h4><p>通常来说<strong>MATLAB</strong>的程序是写在脚本中，这样便于储存以及整体运行和调试。点击左上角的<strong>new script</strong>即可自动新建一个脚本，在脚本中可进行代码的书写，<strong>Enter</strong>键可换行，不会运行。若要运行脚本，首先要保存所写的脚本，然后点击上方的绿色箭头<strong>Run</strong>。</p>
+<h4 id="基本控制语句"><a href="#基本控制语句" class="headerlink" title="基本控制语句"></a>基本控制语句</h4><p><strong>clc</strong>–清空命令台</p>
+<p>使用此命令后，之前命令台的所有内容将会被清空，无法再被获取。</p>
+<p><strong>home</strong>–将命令台的所有内容推到可显示的区域的上方。</p>
+<p>使用此命令后，使用命令台右侧的滑轮仍可以看到之前命令台的内容。</p>
+<p><strong>clear</strong>–清空workspace</p>
+<p>将此时workspace显示的数据删除，此后不可调用。</p>
+<p><strong>help</strong>–显示简单的教程</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help <span class="function"><span class="keyword">function</span></span></span><br></pre></td></tr></table></figure>
+
+<p>此处function应替换为使用者所需函数的名称。此命令会显示一个简单的关于function的教程。</p>
+<p><strong>doc</strong>–显示详细的教程</p>
+<p>使用doc前请保证本地documentation已经安装。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doc <span class="function"><span class="keyword">function</span></span></span><br></pre></td></tr></table></figure>
+
+<p>此处function应替换为使用者所需函数的名称。此命令会显示一个简单的关于function的教程。</p>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>在MATLAB中不需要专门声明数据类型，整数和浮点数没有</p>
+<h4 id="基本运算符"><a href="#基本运算符" class="headerlink" title="基本运算符"></a>基本运算符</h4><h5 id="数学运算符"><a href="#数学运算符" class="headerlink" title="数学运算符"></a>数学运算符</h5><p><strong>+ - * / ^</strong> </p>
+<p>对应的数学功能都</p>
+<p><strong>\</strong></p>
+<p>表示右侧除以左侧。</p>
+<p>*<em>+ *</em> </p>
+<p>用来将字符串连接在一起。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A=<span class="string">"I am"</span>;</span><br><span class="line">B=<span class="string">"MATLAB"</span>;</span><br><span class="line">C=A+B;</span><br></pre></td></tr></table></figure>
+
+<p>C将为 I am MATLAB</p>
+<p><strong>‘</strong>  </p>
+<p>将数组围绕对角线旋转并且改变其中复数的符号。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">A'</span><br></pre></td></tr></table></figure>
+
+<p>结果将会输出</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>在MATLAB中竖着的123写作[1;2;3]。</p>
+<p><strong>若为.’则仅旋转数组</strong></p>
+<h5 id="短路符"><a href="#短路符" class="headerlink" title="短路符"></a>短路符</h5><p><strong>&amp;&amp;</strong> </p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A&amp;&amp;B</span><br></pre></td></tr></table></figure>
+
+<p>若A为真才会判断B是否为真。</p>
+<p><strong>||</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A||B</span><br></pre></td></tr></table></figure>
+
+<p>若A为否才会判断B是否为真。</p>
+<h5 id="其他符号"><a href="#其他符号" class="headerlink" title="其他符号"></a>其他符号</h5><p><strong>%</strong>  </p>
+<p>添加注释。</p>
+<p>*<em>%% *</em> </p>
+<p>将接下来的代码视为一个section，使得同一个脚本中的代码可以分section运行。</p>
+<p>*<em>. *</em> </p>
+<p>表示接下来的运算是对数组中的每个元素分别进行的</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">B=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">C=A.*B;</span><br></pre></td></tr></table></figure>
+
+<p>上述代码的运行结果C=[1,4,9]。</p>
+<p><strong>,</strong></p>
+<p>可以在一行（一个；前）写多个语句</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">A+<span class="number">2</span>,A*<span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>；</strong></p>
+<ul>
+<li>用在矩阵的赋值中来使值换行。</li>
+<li>运行此符号前的语句，但结果不会输出在命令台上。</li>
+</ul>
+<p><strong>…</strong></p>
+<p>表示此行语句并未结束，与下一行为同一语句。用在一行语句过长的时候换行用。</p>
+<p><strong>:</strong></p>
+<p>得到一组连续的数，使用方法如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A=<span class="number">3</span>:<span class="number">7</span></span><br></pre></td></tr></table></figure>
+
+<p>结果将会输出3 4 5 6 7。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A=3:2:7</span><br></pre></td></tr></table></figure>
+
+<p>结果将会输出3 5 7。</p>
+<p><strong>[]</strong></p>
+<p>用于矩阵的赋值，以及对矩阵值的若干修改。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">B=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>;<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>;];</span><br><span class="line">C=[B;A]</span><br></pre></td></tr></table></figure>
+
+<p>A是一个一维矩阵，B是一个二维矩阵，C是B和A的合并。</p>
+<h5 id="数学符号"><a href="#数学符号" class="headerlink" title="数学符号"></a>数学符号</h5><p><strong>Inf</strong>–无穷大，<strong>NaN</strong>–非数字，<strong>pi</strong>–$\pi$，<strong>i</strong>–复数。</p>
+<p>未完待续</p>
+<h4 id="数据处理的函数"><a href="#数据处理的函数" class="headerlink" title="数据处理的函数"></a>数据处理的函数</h4><p>这里的函数仅提到相关功能，具体用法请到本文开始的网址查看。</p>
+<h5 id="构造矩阵"><a href="#构造矩阵" class="headerlink" title="构造矩阵"></a>构造矩阵</h5><p>zeros–生成全0矩阵</p>
+<p>ones–生成全1矩阵</p>
+<p>rand–生成均匀随机矩阵</p>
+<p>randn–生成正态分布矩阵</p>
+<p>magic–生成幻方矩阵</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/15/Matlab/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-TOEFL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
