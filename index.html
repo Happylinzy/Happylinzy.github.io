@@ -178,94 +178,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h3><p>本文旨在复习本学期<strong>MATLAB</strong>所学内容</p>
-<h4 id="什么是MATLAB"><a href="#什么是MATLAB" class="headerlink" title="什么是MATLAB"></a>什么是MATLAB</h4><p>MATLAB是一种数学软件，使用MATLAB进行图形计算，算法开发，数据处理十分便捷。数据在MATLAB中大多以数组的形式进行处理。关于MATLAB的详细文档可以在官方网站<a href="https://ww2.mathworks.cn/help/matlab/" target="_blank" rel="noopener">https://ww2.mathworks.cn/help/matlab/</a>  找到</p>
-<h4 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h4><p>打开<strong>MATLAB</strong>，最中间的<strong>command window</strong>是命令台，输入在这里的命令再按回车后会直接运行。<strong>如果想不运行换行，使用shift+Enter</strong>。命令台的右侧是<strong>workspace</strong>，这个地方会显示出程序运行时变量的变化，如果在程序中没有断点（程序不会中途停下），此处会显示程序结束时的各变量的值。</p>
-<h4 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h4><p>通常来说<strong>MATLAB</strong>的程序是写在脚本中，这样便于储存以及整体运行和调试。点击左上角的<strong>new script</strong>即可自动新建一个脚本，在脚本中可进行代码的书写，<strong>Enter</strong>键可换行，不会运行。若要运行脚本，首先要保存所写的脚本，然后点击上方的绿色箭头<strong>Run</strong>。</p>
-<h4 id="基本控制语句"><a href="#基本控制语句" class="headerlink" title="基本控制语句"></a>基本控制语句</h4><p><strong>clc</strong>–清空命令台</p>
-<p>使用此命令后，之前命令台的所有内容将会被清空，无法再被获取。</p>
-<p><strong>home</strong>–将命令台的所有内容推到可显示的区域的上方。</p>
-<p>使用此命令后，使用命令台右侧的滑轮仍可以看到之前命令台的内容。</p>
-<p><strong>clear</strong>–清空workspace</p>
-<p>将此时workspace显示的数据删除，此后不可调用。</p>
-<p><strong>help</strong>–显示简单的教程</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help <span class="function"><span class="keyword">function</span></span></span><br></pre></td></tr></table></figure>
-
-<p>此处function应替换为使用者所需函数的名称。此命令会显示一个简单的关于function的教程。</p>
-<p><strong>doc</strong>–显示详细的教程</p>
-<p>使用doc前请保证本地documentation已经安装。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doc <span class="function"><span class="keyword">function</span></span></span><br></pre></td></tr></table></figure>
-
-<p>此处function应替换为使用者所需函数的名称。此命令会显示一个简单的关于function的教程。</p>
-<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>在MATLAB中不需要专门声明数据类型，整数和浮点数没有</p>
-<h4 id="基本运算符"><a href="#基本运算符" class="headerlink" title="基本运算符"></a>基本运算符</h4><h5 id="数学运算符"><a href="#数学运算符" class="headerlink" title="数学运算符"></a>数学运算符</h5><p><strong>+ - * / ^</strong> </p>
-<p>对应的数学功能都</p>
-<p><strong>\</strong></p>
-<p>表示右侧除以左侧。</p>
-<p><strong>+</strong> </p>
-<p>用来将字符串连接在一起。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A=<span class="string">"I am"</span>;</span><br><span class="line">B=<span class="string">"MATLAB"</span>;</span><br><span class="line">C=A+B;</span><br></pre></td></tr></table></figure>
-
-<p>C将为 I am MATLAB</p>
-<p><strong>‘</strong></p>
-<p>将数组围绕对角线旋转并且改变其中复数的符号。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">A'</span><br></pre></td></tr></table></figure>
-
-<p>结果将会输出</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>在MATLAB中竖着的123写作[1;2;3]。</p>
-<p><strong>若为.’则仅旋转数组</strong></p>
-<h5 id="短路符"><a href="#短路符" class="headerlink" title="短路符"></a>短路符</h5><p><strong>&amp;&amp;</strong> </p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A&amp;&amp;B</span><br></pre></td></tr></table></figure>
-
-<p>若A为真才会判断B是否为真。</p>
-<p><strong>||</strong></p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A||B</span><br></pre></td></tr></table></figure>
-
-<p>若A为否才会判断B是否为真。</p>
-<h5 id="其他符号"><a href="#其他符号" class="headerlink" title="其他符号"></a>其他符号</h5><p><strong>%</strong>  </p>
-<p>添加注释。</p>
-<p><strong>%%</strong> </p>
-<p>将接下来的代码视为一个section，使得同一个脚本中的代码可以分section运行。</p>
-<p><strong>.</strong> </p>
-<p>表示接下来的运算是对数组中的每个元素分别进行的</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">B=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">C=A.*B;</span><br></pre></td></tr></table></figure>
-
-<p>上述代码的运行结果C=[1,4,9]。</p>
-<p><strong>,</strong></p>
-<p>可以在一行（一个；前）写多个语句</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">A+<span class="number">2</span>,A*<span class="number">5</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>;</strong></p>
-<ul>
-<li>用在矩阵的赋值中来使值换行。</li>
-<li>运行此符号前的语句，但结果不会输出在命令台上。</li>
-</ul>
-<p><strong>…</strong></p>
-<p>表示此行语句并未结束，与下一行为同一语句。用在一行语句过长的时候换行用。</p>
-<p><strong>:</strong></p>
-<p>得到一组连续的数，使用方法如下：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A=<span class="number">3</span>:<span class="number">7</span></span><br></pre></td></tr></table></figure>
-
-<p>结果将会输出3 4 5 6 7。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A=3:2:7</span><br></pre></td></tr></table></figure>
-
-<p>结果将会输出3 5 7。</p>
-<p><strong>[]</strong></p>
-<p>用于矩阵的赋值，以及对矩阵值的若干修改。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">B=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>;<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>;];</span><br><span class="line">C=[B;A]</span><br></pre></td></tr></table></figure>
-
-<p>A是一个一维矩阵，B是一个二维矩阵，C是B和A的合并。</p>
-<h5 id="数学符号"><a href="#数学符号" class="headerlink" title="数学符号"></a>数学符号</h5><p><strong>Inf</strong>–无穷大，<strong>NaN</strong>–非数字，<strong>pi</strong>–$\pi$，<strong>i</strong>–复数。</p>
-<p>未完待续</p>
-<h4 id="数据处理的函数"><a href="#数据处理的函数" class="headerlink" title="数据处理的函数"></a>数据处理的函数</h4><p>这里的函数仅提到相关功能，具体用法请到本文开始的网址查看。</p>
-<h5 id="构造矩阵"><a href="#构造矩阵" class="headerlink" title="构造矩阵"></a>构造矩阵</h5><p>zeros–生成全0矩阵</p>
-<p>ones–生成全1矩阵</p>
-<p>rand–生成均匀随机矩阵</p>
-<p>randn–生成正态分布矩阵</p>
-<p>magic–生成幻方矩阵</p>
-
+        
       
 
       
@@ -327,16 +240,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="TOEFL"><a href="#TOEFL" class="headerlink" title="TOEFL"></a>TOEFL</h1><h3 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h3><h5 id="建议："><a href="#建议：" class="headerlink" title="建议："></a>建议：</h5><p>建议做TPO的题，可以从老托福的阅读题做起。做题时计时，每做一次，把所做的阅读的类型分类，然后对相应的陌生词汇进行总结。因为尽管每次的TPO的阅读篇目不同，但是相同主题出现相同词汇的概率相对较大。因此，多做阅读练习是一个很好的增加词汇量的办法。</p>
-<h5 id="做题策略："><a href="#做题策略：" class="headerlink" title="做题策略："></a>做题策略：</h5><p>每次做题先看题再到对应的段落里去找答案，需要保证速度。通过文章中的名词间的逻辑顺序来判断题目选项的正确性。</p>
-<h3 id="听力"><a href="#听力" class="headerlink" title="听力"></a>听力</h3><h5 id="建议：-1"><a href="#建议：-1" class="headerlink" title="建议："></a>建议：</h5><p>需要大量的听力练习，进入大学后是英文授课。在之前没进入大学时备考就是练习精听。精听练习方法就是选择TPO听力中的conversation（因为难度适中）。第一遍听全，大概了解内容。第二遍逐句听，需要自己控制暂停，每听一句都默写一句，尽量每句只听一遍，不会的单词尽力去拼写。第三遍再次全听，对照之前所写，把没听清的进行补充。最后对照自己所写和原文内容。发现自己有哪些连读或者变音没有听清。</p>
-<h5 id="做题策略：-1"><a href="#做题策略：-1" class="headerlink" title="做题策略："></a>做题策略：</h5><p>在听conversation时做笔记重点放在中部，最开始的寒暄主要用来了解人的目的。做笔记时 名词&gt;形容词&gt;动词，就是要了解事情的来龙去脉以及发生了什么变故，有什么应对措施，最后采用了什么措施。</p>
-<p>听lecture时，做笔记要有结构，听不懂或者跟不上没关系，主要是要记录文章中出现的关键词，次序同conversation。其中尤其注意在听力中的人出现叹气，停顿，卡壳，反问等等的时候，这标示着接下来会出现重点。当一开始听不全时可以不太在乎逻辑关系，关键是要在笔记上记录关键词。</p>
-<h3 id="口语"><a href="#口语" class="headerlink" title="口语"></a>口语</h3><h5 id="建议：-2"><a href="#建议：-2" class="headerlink" title="建议："></a>建议：</h5><p>多练。。。这个东西如果没氛围练起来很尬。主要是注意一下连读，还有就是发音尽量偏向一种音，选择英音或者美音就ok。可以在b站或者YouTube上找教程看看，基本看一遍平常多注意就ok。平时大家看美剧（如果看的话），把注意力放在语言上，学习一些很地道的说法。记录下来！另外很重要的一点是要对一些万金油一样的主题要准备好相应的段落背下来。比如money，time之类的。</p>
-<h5 id="做题策略：-2"><a href="#做题策略：-2" class="headerlink" title="做题策略："></a>做题策略：</h5><p>大胆说。相关的题型需要大家自己去练去摸索一下策略，在这里就略了</p>
-<h3 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h3><h5 id="建议：-3"><a href="#建议：-3" class="headerlink" title="建议："></a>建议：</h5><p>看厉害的人写的文章，学习绕口的逻辑句式和高端的词汇。这些词汇和句式需要积累，建议大家使用电子笔记。这样既可以练习打字也可以提高速度。如果大家练的比较多很有可能在考试时会碰见自己写过的主题。而且这个part大家都练的比较少。我也练的比较少，尤其是进入大学以后就耽搁了。所以考试也扑了</p>
-<h5 id="做题策略：-3"><a href="#做题策略：-3" class="headerlink" title="做题策略："></a>做题策略：</h5><p>题目特点是具有争议性的题目，需要你去选择论点。大忌就是快速下笔，这样很有可能自己写到一半发现另一个观点更有说服力orz。。。因为托福是机考，需要大家打字水平足够！如果写不完没有关系（这里的写不完指的是字数够了但是时间不够没有完整的结束），只要你写的足够好，在有限的字数里已经可以显示出你的水平了。</p>
-
+        <h1 id="TOEFL"><a href="#TOEFL" class="headerlink" title="TOEFL"></a>TOEFL</h1>
+        
       
 
       
