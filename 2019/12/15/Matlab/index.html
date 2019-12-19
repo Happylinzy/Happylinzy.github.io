@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="YilinBlog">
 <meta property="og:description" content="总述本文旨在复习本学期MATLAB所学内容">
 <meta property="og:locale" content="en zh-CN">
-<meta property="og:updated_time" content="2019-12-15T11:52:53.159Z">
+<meta property="og:updated_time" content="2019-12-19T14:06:38.147Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="YilinBlog" type="application/atom+xml">
@@ -182,6 +182,8 @@
 <h4 id="什么是MATLAB"><a href="#什么是MATLAB" class="headerlink" title="什么是MATLAB"></a>什么是MATLAB</h4><p>MATLAB是一种数学软件，使用MATLAB进行图形计算，算法开发，数据处理十分便捷。数据在MATLAB中大多以数组的形式进行处理。关于MATLAB的详细文档可以在官方网站<a href="https://ww2.mathworks.cn/help/matlab/" target="_blank" rel="noopener">https://ww2.mathworks.cn/help/matlab/</a>  找到</p>
 <h4 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h4><p>打开<strong>MATLAB</strong>，最中间的<strong>command window</strong>是命令台，输入在这里的命令再按回车后会直接运行。<strong>如果想不运行换行，使用shift+Enter</strong>。命令台的右侧是<strong>workspace</strong>，这个地方会显示出程序运行时变量的变化，如果在程序中没有断点（程序不会中途停下），此处会显示程序结束时的各变量的值。</p>
 <h4 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h4><p>通常来说<strong>MATLAB</strong>的程序是写在脚本中，这样便于储存以及整体运行和调试。点击左上角的<strong>new script</strong>即可自动新建一个脚本，在脚本中可进行代码的书写，<strong>Enter</strong>键可换行，不会运行。若要运行脚本，首先要保存所写的脚本，然后点击上方的绿色箭头<strong>Run</strong>。</p>
+<h4 id="常用功能"><a href="#常用功能" class="headerlink" title="常用功能"></a>常用功能</h4><p>ctrl+c将程序终止</p>
+<p>选中所有代码右键smart indent–自动缩排</p>
 <h4 id="基本控制语句"><a href="#基本控制语句" class="headerlink" title="基本控制语句"></a>基本控制语句</h4><p><strong>clc</strong>–清空命令台</p>
 <p>使用此命令后，之前命令台的所有内容将会被清空，无法再被获取。</p>
 <p><strong>home</strong>–将命令台的所有内容推到可显示的区域的上方。</p>
@@ -197,9 +199,39 @@
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doc <span class="function"><span class="keyword">function</span></span></span><br></pre></td></tr></table></figure>
 
 <p>此处function应替换为使用者所需函数的名称。此命令会显示一个简单的关于function的教程。</p>
-<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>在MATLAB中不需要专门声明数据类型，整数和浮点数没有</p>
+<p>return</p>
+<p>return control to invoking script or while loop</p>
+<p>break</p>
+<p>terminate execution of for or while loop</p>
+<p>continue</p>
+<p>pass control to next iteration of for or while loop</p>
+<p>tic toc–程序计时</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tic</span><br><span class="line"><span class="built_in">disp</span>(A);</span><br><span class="line">toc</span><br></pre></td></tr></table></figure>
+
+<p>以上程序将会记录将A数字打印在命令台需要多长时间</p>
+<h4 id="输入与输出"><a href="#输入与输出" class="headerlink" title="输入与输出"></a>输入与输出</h4><h5 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h5><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A=input(<span class="string">'Please input your data'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>A将会自动转化为所输入的数据类型</p>
+<p>fopen–打开指定文件</p>
+<p>fscanf–从Text文件中读取数据</p>
+<p>fclose–关闭文件</p>
+<h5 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h5><p>disp–将数据打印在命令台上</p>
+<p>sprintf–将数据打如string</p>
+<p>fprintf–将数据打入文件</p>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>Array—————-function handles</p>
+<p>​           —————-java class</p>
+<p>​           —————-cell  元胞数组</p>
+<p>​           —————-char 字符和字符串</p>
+<p>​           —————-logical  逻辑数组</p>
+<p>​           —————-structure——under class</p>
+<p>​           —————-numeric——int</p>
+<p>​                                                    ——-uint</p>
+<p>​                                                    ——-single</p>
+<p>​                                                    ——-double</p>
+<h5 id="有关函数"><a href="#有关函数" class="headerlink" title="有关函数"></a>有关函数</h5><p>whos–显示变量大小</p>
+<p>num2str–将数字转化为字符数组</p>
 <h4 id="基本运算符"><a href="#基本运算符" class="headerlink" title="基本运算符"></a>基本运算符</h4><h5 id="数学运算符"><a href="#数学运算符" class="headerlink" title="数学运算符"></a>数学运算符</h5><p><strong>+ - * / ^</strong> </p>
-<p>对应的数学功能都</p>
+<p>对应的数学功能加、减、乘、除、次方。</p>
 <p><strong>\</strong></p>
 <p>表示右侧除以左侧。</p>
 <p><strong>+</strong> </p>
@@ -266,6 +298,43 @@
 <p>rand–生成均匀随机矩阵</p>
 <p>randn–生成正态分布矩阵</p>
 <p>magic–生成幻方矩阵</p>
+<p>diag–生成对角矩阵或获得矩阵对角线元素</p>
+<p>eye–生成单位矩阵</p>
+<h5 id="矩阵操作"><a href="#矩阵操作" class="headerlink" title="矩阵操作"></a>矩阵操作</h5><p>max–获取矩阵中的最大值（甚至可以获得最大的多个值）</p>
+<p>min–与max相对</p>
+<p>det–算行列式，inv–矩阵求逆</p>
+<p>cat–用于串联数组（一、二、三维都可）</p>
+<p>reshape–将数组重构为指定大小</p>
+<p>permute–置换数组维度</p>
+<p>按照指定顺序排列数组的维度</p>
+<p>squeeze–删除长度为1的维度（元素不变）</p>
+<p>sum–获取矩阵的和</p>
+<p>size–获取数组大小</p>
+<p>sort–对数组进行排序</p>
+<p>fliplr–将数组左右反转（fliplr作用于第一和第二个维度构成的平面）</p>
+<p>flipud–将数组上下翻转</p>
+<p>find–在数组中找到所要找的元素并且返回该元素的索引</p>
+<p>将数组中的所有元素排成一列：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A(:);</span><br></pre></td></tr></table></figure>
+
+<p>删除矩阵中的列：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x=A;</span><br><span class="line">x(;,<span class="number">2</span>)=[];</span><br></pre></td></tr></table></figure>
+
+<p>则x的第二列将会被删除</p>
+<p>串联矩阵：上文已提及</p>
+<p>为矩阵中的某个索引赋值：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A(<span class="number">2</span>,<span class="number">3</span>)=<span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>标量拓展可使范围中所有索引分配一个指定标量</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B(<span class="number">1</span>:<span class="number">2</span>,<span class="number">2</span>:<span class="number">3</span>)=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>B的1、2列的2、3行将会变为0</p>
+<h5 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h5><p>strlength–显示变量字符串的长度</p>
+<p>strsplit–将字符串分割</p>
+<p>find–找到字符串中的某字符并返回索引</p>
+<h4 id="画图函数"><a href="#画图函数" class="headerlink" title="画图函数"></a>画图函数</h4><h5 id="静态"><a href="#静态" class="headerlink" title="静态"></a>静态</h5><p>plot–最基本的画图，通过输入坐标来进行画线<br>hold on 保持已画图像</p>
+<p>rectangle–画矩形（可添加四角曲率）</p>
+<h5 id="动态"><a href="#动态" class="headerlink" title="动态"></a>动态</h5><p>pause–将程序暂停指定秒数<br>delete–删除指定已画对象<br>timer–启动与其他程序无关的计时器</p>
 
       
 
