@@ -28,7 +28,7 @@
 <meta property="og:description" content="This file records SQL usage I encountered(mainly from LeetCode).Notation outside of code block: keywords in SQL will be in bold, variables will be in Italic. SELECTSELECT basic structure: 123SELECT so">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-01-30T04:36:57.000Z">
-<meta property="article:modified_time" content="2023-01-30T05:47:32.527Z">
+<meta property="article:modified_time" content="2023-01-30T06:04:13.157Z">
 <meta property="article:author" content="Yilin Zhang">
 <meta name="twitter:card" content="summary">
 
@@ -184,7 +184,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-01-29 20:36:57 / Modified: 21:47:32" itemprop="dateCreated datePublished" datetime="2023-01-29T20:36:57-08:00">2023-01-29</time>
+              <time title="Created: 2023-01-29 20:36:57 / Modified: 22:04:13" itemprop="dateCreated datePublished" datetime="2023-01-29T20:36:57-08:00">2023-01-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -234,6 +234,9 @@
 
 <h3 id="GROUP-CONCAT"><a href="#GROUP-CONCAT" class="headerlink" title="GROUP_CONCAT"></a>GROUP_CONCAT</h3><p><strong>GROUP_CONCAT</strong> is an aggregate_function used to concat all items with in the same group specified in <strong>group by</strong>.<br><strong>DISTINCT</strong> is used to delete repeated entities given a colomn number.</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sell_date, <span class="built_in">COUNT</span>( <span class="keyword">DISTINCT</span> product) <span class="keyword">as</span> num_sold, GROUP_CONCAT(<span class="keyword">DISTINCT</span> product <span class="keyword">ORDER</span> <span class="keyword">BY</span> product) <span class="keyword">as</span> products</span><br><span class="line"><span class="keyword">from</span> activities</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> sell_date</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> sell_date</span><br></pre></td></tr></table></figure>
+
+<h3 id="LIKE"><a href="#LIKE" class="headerlink" title="LIKE"></a>LIKE</h3><p><strong>LIKE</strong> is used to match strings. It supports ‘%’ or ‘_’ etc.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> patient_id, patient_name, conditions</span><br><span class="line"><span class="keyword">from</span> Patients</span><br><span class="line"><span class="keyword">where</span> conditions <span class="keyword">like</span> <span class="string">&#x27;DIAB1%&#x27;</span> <span class="keyword">or</span> conditions <span class="keyword">like</span> <span class="string">&#x27;% DIAB1%&#x27;</span></span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -310,7 +313,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SELECT"><span class="nav-number">1.</span> <span class="nav-text">SELECT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Union"><span class="nav-number">2.</span> <span class="nav-text">Union</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update"><span class="nav-number">3.</span> <span class="nav-text">Update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DELETE"><span class="nav-number">4.</span> <span class="nav-text">DELETE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GROUP-CONCAT"><span class="nav-number">5.</span> <span class="nav-text">GROUP_CONCAT</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SELECT"><span class="nav-number">1.</span> <span class="nav-text">SELECT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Union"><span class="nav-number">2.</span> <span class="nav-text">Union</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update"><span class="nav-number">3.</span> <span class="nav-text">Update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DELETE"><span class="nav-number">4.</span> <span class="nav-text">DELETE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GROUP-CONCAT"><span class="nav-number">5.</span> <span class="nav-text">GROUP_CONCAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LIKE"><span class="nav-number">6.</span> <span class="nav-text">LIKE</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
