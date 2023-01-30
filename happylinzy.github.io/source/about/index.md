@@ -5,18 +5,18 @@ type: about
 ---
 
 ### Education
-**SJTU**: UM-JI ECE 23', CS 23', SJTU-Math 23', , [IWINS-LAB](https://iwin-fins.com/)
+**SJTU**: UM-JI ECE 23', CS 23', SJTU-Math 23', [IWINS-LAB](https://iwin-fins.com/)
 **USC**: CE 24'
 
 **Course TA**: Honor Calculus, Differential Equation
 
 
 ### Research Interest
-I am curious about:
+> What I am curious about:
 - Unified framework for gradient methods to explain BP network convergence.
 - Accelration of executing on heterogenuous integration chips.
 
-I am learning about:
+> What I am learning about:
 - Dynamics of accelerated gradient methods unified as stationary solution of a particularly defined Lagrangian on tangent bundle of properly choosen Riemannian manifold.
 - Numerical discretization of differential equations defined on connected graph for distributed consensus and optimization.
 - Resilience of algorithms in distributed network under Byzantine or malicious attacks based on sensitivity analysis.
@@ -24,6 +24,11 @@ I am learning about:
 #### Application of Research:
 Surface Smoothing, Image Processing, Optimization Solver, Statistical Analysis of Code.
 
+
+### Books 
+- <font face="Times New Roman" >Class One</font>: *Modern Operating Systems: Principle and Implementation*, *Computer Systems: A Programmer's Perspective*, *Designing Data-Intensive Applications*
+
+- <font face="Times New Roman" >Class Two</font>: *The Selfish Gene*, *The Discovery of Society*
 
 ### Publication
 Y. Zhang, Z. He and J. He, "Resilient Approximation-Based Distributed Nonconvex Optimization," 2022 American Control Conference (ACC), Atlanta, GA, USA, 2022, pp. 2773-2778, [doi: 10.23919/ACC53348.2022.9867716](https://iwin-fins.com/wp-content/uploads/2022/03/zhang22acc.pdf).
