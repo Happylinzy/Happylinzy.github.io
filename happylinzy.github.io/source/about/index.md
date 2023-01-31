@@ -10,6 +10,8 @@ type: about
 
 **Course TA**: Honor Calculus, Differential Equation
 
+### Experience
+[Naive Systems](https://naivesystems.com/) **Software Developer Intern** 2022/2 - 2022/5 
 
 ### Research Interest
 > What I am curious about:

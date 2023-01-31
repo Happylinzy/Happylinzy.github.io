@@ -2,6 +2,7 @@
 title: SQL Notes
 date: 2023-01-29 20:36:57
 categories: SQL
+tags: Programing Language
 ---
 This file records SQL usage I encountered(mainly from LeetCode).
 Notation outside of code block: keywords in SQL will be in **bold**, variables will be in *Italic*.
