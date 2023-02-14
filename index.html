@@ -160,6 +160,82 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://happylinzy.github.io/2023/02/13/gd3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yilin Zhang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yilin Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/02/13/gd3/" class="post-title-link" itemprop="url">Optimization III - Statistical Manifold and Natural Gradient Descent</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-02-13 21:21:08 / Modified: 22:17:19" itemprop="dateCreated datePublished" datetime="2023-02-13T21:21:08-08:00">2023-02-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/math/" itemprop="url" rel="index"><span itemprop="name">math</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="perspectives-on-natural-gradient-descent">Perspectives on Natural Gradient Descent</h1>
+<p>In our article <a href="https://happylinzy.github.io/2023/02/04/gd1/#more">Optimization I - Gradient Descent</a>, we talk about how to view the gradient descent as the approximation of Riemannian gradient descent. However, is there a descent method more loylal to the Riemannian gradient descent? Or in other word, better than gradient descent in some cases. In this artile, we will start our journey to the beautiful and attracting information geometry world. In that abstract and fancy world, the secrete equivalence between several gradient descent methods are discovered.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/13/gd3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://happylinzy.github.io/2023/02/06/gd2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -174,7 +250,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/02/06/gd2/" class="post-title-link" itemprop="url">Optimization - Acceleration in Gradient Descent</a>
+            <a href="/2023/02/06/gd2/" class="post-title-link" itemprop="url">Optimization II - Acceleration in Gradient Descent</a>
         </h2>
 
         <div class="post-meta">
@@ -191,7 +267,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-02-07 00:38:29" itemprop="dateModified" datetime="2023-02-07T00:38:29-08:00">2023-02-07</time>
+                <time title="Modified: 2023-02-13 21:59:16" itemprop="dateModified" datetime="2023-02-13T21:59:16-08:00">2023-02-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -214,7 +290,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="perspective-on-accelerated-gradient-descents">Perspective on Accelerated Gradient Descents</h1>
+          <h1 id="perspectives-on-accelerated-gradient-descents">Perspectives on Accelerated Gradient Descents</h1>
 <p>Last post we talk about several different perspectives on gradient descent. It seems that gradient descent(GD) is a fairly useful algorithm to numerically solve optimization problem. However, things may become impractical when it comes to reality. One major problem is the convergence rate.</p>
           <!--noindex-->
             <div class="post-button">
@@ -256,7 +332,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/02/04/gd1/" class="post-title-link" itemprop="url">Optimization - Gradient Descent</a>
+            <a href="/2023/02/04/gd1/" class="post-title-link" itemprop="url">Optimization I - Gradient Descent</a>
         </h2>
 
         <div class="post-meta">
@@ -273,7 +349,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-02-07 00:42:57" itemprop="dateModified" datetime="2023-02-07T00:42:57-08:00">2023-02-07</time>
+                <time title="Modified: 2023-02-13 21:59:10" itemprop="dateModified" datetime="2023-02-13T21:59:10-08:00">2023-02-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -618,7 +694,7 @@ x_{k+1} = x_{k} - \alpha \nabla f(x_k)
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -631,7 +707,7 @@ x_{k+1} = x_{k} - \alpha \nabla f(x_k)
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
