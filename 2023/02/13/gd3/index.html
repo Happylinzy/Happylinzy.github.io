@@ -28,7 +28,7 @@
 <meta property="og:description" content="Perspectives on Natural Gradient Descent In our article Optimization I - Gradient Descent, we talk about how to view the gradient descent as the approximation of Riemannian gradient descent. However,">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-02-14T05:21:08.000Z">
-<meta property="article:modified_time" content="2023-02-14T06:17:19.587Z">
+<meta property="article:modified_time" content="2023-02-19T05:00:55.301Z">
 <meta property="article:author" content="Yilin Zhang">
 <meta property="article:tag" content="optimization, gradient methods, information geometry">
 <meta name="twitter:card" content="summary">
@@ -188,10 +188,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-02-13 21:21:08 / Modified: 22:17:19" itemprop="dateCreated datePublished" datetime="2023-02-13T21:21:08-08:00">2023-02-13</time>
+              <time title="Created: 2023-02-13 21:21:08" itemprop="dateCreated datePublished" datetime="2023-02-13T21:21:08-08:00">2023-02-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-02-18 21:00:55" itemprop="dateModified" datetime="2023-02-18T21:00:55-08:00">2023-02-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -216,10 +222,17 @@
         <h1 id="perspectives-on-natural-gradient-descent">Perspectives on Natural Gradient Descent</h1>
 <p>In our article <a href="https://happylinzy.github.io/2023/02/04/gd1/#more">Optimization I - Gradient Descent</a>, we talk about how to view the gradient descent as the approximation of Riemannian gradient descent. However, is there a descent method more loylal to the Riemannian gradient descent? Or in other word, better than gradient descent in some cases. In this artile, we will start our journey to the beautiful and attracting information geometry world. In that abstract and fancy world, the secrete equivalence between several gradient descent methods are discovered.</p>
 <span id="more"></span>
-<h2 id="statistical-view">Statistical View</h2>
-<p>The iteration formula for natural gradient descent is <span class="math display">\[
-x_{k+1} = x_k  - \nabla^2 F(x_k)^{-1}f(x_k).
-\]</span> Here the function <span class="math inline">\(F\)</span> is fisher matrix.</p>
+<h2 id="kl-divergence">KL-Divergence</h2>
+<p>Given two distributions <span class="math inline">\(p( y \mid x), p(y \mid x&#39;)\)</span>, the KL divergence measures the dsitance between these two distrbutions. <span class="math display">\[\begin{align*}
+KL(p( y \mid x), p(y \mid x&#39;)) &amp;= \mathbb{E}[\log (p(y \mid x))] - \mathbb{E}[\log (p(y \mid x&#39;))]
+\\
+&amp;= \sum_{y} p(y \mid x) \log (\frac{p( y \mid x)}{p(y \mid x&#39;)})
+\end{align*}\]</span> There have been multiple extra information about KL divergence, one can refer to <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">wiki</a> or <a target="_blank" rel="noopener" href="https://jaketae.github.io/study/natural-gradient/#:~:text=Due%20to%20the%20definition%20of%20entropy%2C%20KL%20divergence,likelihood%20is%20the%20fundamental%20bridge%20connecting%20the%20two.">Jake Tae's Blog</a> for more information.</p>
+<p>From the formulation of KL divergence we can conclude that <span class="math display">\[
+\nabla_{x&#39;} ^2 KL(p( y \mid x), p(y \mid x&#39;)) = -\mathbb{E}[\nabla ^2 \log (p(y \mid x&#39;))] = F.
+\]</span> Here <span class="math inline">\(F\)</span> is the Fisher matrix. The connection between <span class="math inline">\(F\)</span> and <span class="math inline">\(KL\)</span> also exists in the following equation: <span class="math display">\[
+KL(p( y \mid x), p(y \mid x+\epsilon)) \approx \frac{1}{2} \epsilon^T F \epsilon.
+\]</span> Actually this equation tells us that in a manifold where we measure the distance using KL-divergemce, the Riemanian metric is <span class="math inline">\(F\)</span>.</p>
 <h2 id="proximal-view-with-generalized-distance----divergence">Proximal View with Generalized Distance -- "Divergence"</h2>
 <p><span class="math display">\[\begin{align*}
 \min \ &amp;f(x_k) + \langle \nabla f(x_k), (x - x_k) \rangle
@@ -233,8 +246,16 @@ s.t. \ \ &amp;x \in \mathcal{M}
 B_h(x, y) = h(y) - h(x) - \langle \nabla h(x), y-x \rangle.
 \]</span> Intuitively, you can understand the Bragman divergence as the distance between <span class="math inline">\(h(y)\)</span> and the <span class="math inline">\(L_x(y)\)</span>, where <span class="math inline">\(L_x(y)\)</span> is the linear approximatio of <span class="math inline">\(h(x)\)</span> at point <span class="math inline">\(x\)</span>. Click <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bregman_divergence#/media/File:Bregman_divergence_diagram_used_in_proof_of_squared_generalized_Euclidean_distances.png">wikipedia</a> to see the picture.</p>
 <p>To save our time, I will not repeat the procedure to derive the formula. Here I simply provide the result <span class="math display">\[
-x_{k+1} = x_k - \nabla^2 h(x)^{-1} f(x_k)
+x_{k+1} = x_k - \nabla^2 h(x_k)^{-1} f(x_k)
 \]</span></p>
+<p>Further, if we consider the manifold of point as a statistical manifold where each point represents a parameter distribution, then we can use <strong>KL divergence</strong> as an instance of Bregman divergence by taking <span class="math inline">\(h(x) = \sum_{i}x_i\log x_i\)</span>. Now the equation is <span class="math display">\[
+x_{k+1} = x_k  - F(x_k)^{-1}f(x_k).
+\]</span> Here the function <span class="math inline">\(F\)</span> is fisher matrix.</p>
+<h2 id="whats-more">What's More?</h2>
+<p>Recommend to read</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://jaketae.github.io/study/natural-gradient/#:~:text=Due%20to%20the%20definition%20of%20entropy%2C%20KL%20divergence,likelihood%20is%20the%20fundamental%20bridge%20connecting%20the%20two.">Jake Tae's Blog</a></p>
+</blockquote>
 
     </div>
 
@@ -315,7 +336,7 @@ x_{k+1} = x_k - \nabla^2 h(x)^{-1} f(x_k)
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#perspectives-on-natural-gradient-descent"><span class="nav-number">1.</span> <span class="nav-text">Perspectives on Natural Gradient Descent</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#statistical-view"><span class="nav-number">1.1.</span> <span class="nav-text">Statistical View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#proximal-view-with-generalized-distance----divergence"><span class="nav-number">1.2.</span> <span class="nav-text">Proximal View with Generalized Distance -- &quot;Divergence&quot;</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#perspectives-on-natural-gradient-descent"><span class="nav-number">1.</span> <span class="nav-text">Perspectives on Natural Gradient Descent</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#kl-divergence"><span class="nav-number">1.1.</span> <span class="nav-text">KL-Divergence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#proximal-view-with-generalized-distance----divergence"><span class="nav-number">1.2.</span> <span class="nav-text">Proximal View with Generalized Distance -- &quot;Divergence&quot;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#whats-more"><span class="nav-number">1.3.</span> <span class="nav-text">What&#39;s More?</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
