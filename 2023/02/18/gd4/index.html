@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"happylinzy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="On Dynamics of Acceleration, Einstein, Rao and Nesterov If someone asks what&#39;s the most beautiful theory in physic, nobody would refuse The Theory of everything. Of course, this post can not establish">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optimization IV - On Dynamics of Acceleration, Einstein, Rao and Nesterov">
+<meta property="og:url" content="https://happylinzy.github.io/2023/02/18/gd4/index.html">
+<meta property="og:site_name" content="Yilin Blog">
+<meta property="og:description" content="On Dynamics of Acceleration, Einstein, Rao and Nesterov If someone asks what&#39;s the most beautiful theory in physic, nobody would refuse The Theory of everything. Of course, this post can not establish">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-02-19T05:17:09.000Z">
+<meta property="article:modified_time" content="2023-02-22T05:29:27.311Z">
+<meta property="article:author" content="Yilin Zhang">
+<meta property="article:tag" content="math, physic, information geometry, general relativity">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://happylinzy.github.io/2023/02/18/gd4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Optimization IV - On Dynamics of Acceleration, Einstein, Rao and Nesterov | Yilin Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yilin Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://happylinzy.github.io/2023/02/18/gd4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yilin Zhang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yilin Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Optimization IV - On Dynamics of Acceleration, Einstein, Rao and Nesterov
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-02-18 21:17:09" itemprop="dateCreated datePublished" datetime="2023-02-18T21:17:09-08:00">2023-02-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-02-21 21:29:27" itemprop="dateModified" datetime="2023-02-21T21:29:27-08:00">2023-02-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/math/" itemprop="url" rel="index"><span itemprop="name">math</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="on-dynamics-of-acceleration-einstein-rao-and-nesterov">On Dynamics of Acceleration, Einstein, Rao and Nesterov</h1>
+<p>If someone asks what's the most beautiful theory in physic, nobody would refuse <strong>The Theory</strong> of everything. Of course, this post can not establish a theory to explain everything. What I am trying to do here is to use general relaxivity to explain the dynamics of gradient methods.</p>
+<span id="more"></span>
+<p>Methods that can be interpreted in this framework includes gradient descent(GD), heavy-ball mehthod (HVB), Nesterov acceleration (NAG-sc, NAG-c), natural gradient descent(NGD), bregman mirror descent(BMD) and Newton's method(NM). Wow! It sounds like a BIG work. But actually just some calculation. Where should we start? Let's start with geodesic.</p>
+<h2 id="geodesic-equation-on-manifold">Geodesic Equation on Manifold</h2>
+<p>Given a Riemannian manifold <span class="math inline">\(\mathcal{M}\)</span> with a metric tensor <span class="math inline">\(g\)</span>, the length of a curve <span class="math inline">\(\gamma : [a, b] \rightarrow \mathcal{M}\)</span> is explicitly calculated as <span class="math display">\[
+l = \int_a^b \sqrt{g_{\gamma (\tau)}(\dot{\gamma}(\tau), \dot{\gamma}(\tau))} d\tau.
+\]</span> The geodesic between two points <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> on manifold is defined as the infimum of all distance. Consider a curve with <span class="math inline">\(\gamma(a) = x, \gamma(b) = y\)</span>. Then the geodesic between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> satisfy the equation <span class="math display">\[
+\delta l = 0 \Leftrightarrow \delta \int_a^b \sqrt{g_{\gamma (\tau)}(\dot{\gamma}(\tau), \dot{\gamma}(\tau))} d\tau = 0.
+\]</span> By solving the variational equation we can get the geodesic equation on manifold as <span class="math display">\[
+\frac{d^2 x^{\mu}}{d \tau^2} + \Gamma^{\mu}_{v\lambda}\frac{d x^v}{d \tau} \frac{d x^\lambda}{d \tau} = 0.
+\]</span> Here the <span class="math inline">\(\Gamma^{\mu}_{v\lambda}\)</span> is <span class="math inline">\(\textit{Christoffel symbols of the second kind}\)</span>. Now we have the geodesic function defined on a Riemannian manifold. We put this aside and see why general relativity relates to Newton's equation.</p>
+<h2 id="newtons-limit-of-geodesic-equation">Newton's Limit of Geodesic Equation</h2>
+<p>In a four dimensional space, <span class="math inline">\(\mathbb{R}^3\)</span> spatial and <span class="math inline">\(\mathbb{R}\)</span> temporal, the motion of a particle under only gravity is described by geodesic equation. In the Newtonian limit, we have three assumptions: slow, static, weak.</p>
+<blockquote>
+<p>"slow" means the 0-th component <span class="math inline">\(x^0\)</span> dominates other components. The <span class="math inline">\(x^0\)</span> here is just time <span class="math inline">\(t\)</span>.</p>
+<p>"static" means that field does not change with time. Then <span class="math inline">\(g\)</span> is invariant to <span class="math inline">\(t\)</span>.</p>
+<p>"weak" means the field is weak. It can be approximated by minkowski metric <span class="math inline">\(\eta\)</span>.</p>
+</blockquote>
+<p>Then here we show how to derive the Newton equation from geodesic equatin. First, we consider slow motion, which means that the time scale is significant, <span class="math inline">\(|\frac{d x^i}{d \tau}| \ll \frac{d t}{d \tau}\)</span>. The geodesic function turns to be <span class="math display">\[
+\frac{d^2 x^{\mu}}{d \tau^2} + \Gamma^{\mu}_{00}\frac{d x^0}{d \tau} \frac{d x^0}{d \tau} = 0
+\]</span> The possible values of <span class="math inline">\(\mu\)</span> are <span class="math inline">\(\mu = 0,1,2,3\)</span>. The Christoffel symbols <span class="math inline">\(\Gamma^{\mu}_{00}\)</span> is <span class="math display">\[
+\Gamma^{\mu}_{00} = \frac{1}{2} g^{\mu v}(\frac{\partial g_{v 0}}{\partial x^0} + \frac{\partial g_{0v}}{\partial x^0} - \frac{\partial g_{00}}{\partial x^v}).
+\]</span> As the metric <span class="math inline">\(g\)</span> is invariant to time <span class="math inline">\(t\)</span>, the first two items <span class="math inline">\(\frac{\partial g_{v 0}}{\partial x^0}\)</span> and <span class="math inline">\(\frac{\partial g_{0 v}}{\partial x^0}\)</span> are all 0. Therefore, the geodesic function is <span class="math display">\[
+\frac{d^2 x^{\mu}}{d \tau^2} - \frac{1}{2} g^{\mu v}(\frac{\partial g_{00}}{\partial x^v})(\frac{d x^0}{d \tau} )^2= 0.
+\]</span> Since the gravity is weak, <span class="math inline">\(g = \eta\)</span>, when <span class="math inline">\(\mu = 0\)</span>, we have <span class="math inline">\(g^{\mu v}(\frac{\partial g_{00}}{\partial x^v}) = 0\)</span>. When <span class="math inline">\(\mu = 0\)</span> we get <span class="math display">\[
+\frac{d^2 x^0}{d \tau^2} =0 \Rightarrow x^0 = c \tau + d.
+\]</span> Take <span class="math inline">\(c = 1, d = 0\)</span> we have <span class="math inline">\(t = x^0 = \tau\)</span>. Then the geodesic equation turns to be <span class="math display">\[
+\frac{d^2 x^{\mu}}{d t^2} - \frac{1}{2} \eta^{\mu v}(\frac{\partial g_{00}}{\partial x^v})= 0.
+\]</span> Next when <span class="math inline">\(\mu = 1, 2, 3\)</span>, the geodesic equation is formulated as <span class="math display">\[
+\frac{d^2 x^{\mu}}{d t^2} = \frac{1}{2} \frac{\partial g_{00}}{\partial x^{\mu}}.
+\]</span> We can pile three equations together by leting <span class="math inline">\(X = [x^1, x^2, x^3]^T\)</span>: <span class="math display">\[
+\frac{d^2 X}{d t^2} = \frac{1}{2} \nabla g_{00}
+\]</span> With proper choice of <span class="math inline">\(X\)</span>, this form is identical to motion of a particle under potential <span class="math display">\[
+m \frac{d^2 X}{d t^2} = -\nabla f(X).
+\]</span> Where <span class="math inline">\(X\)</span> represents position and <span class="math inline">\(f\)</span> is potential function.</p>
+<h2 id="dully-flat-structure-of-bregman-statistical-manifold">Dully Flat Structure of Bregman Statistical Manifold</h2>
+<p>Given a strictly convex function <span class="math inline">\(h \in C^3\)</span>, the Bregman divergence <span class="math inline">\(B_h\)</span> is defined as <span class="math display">\[
+    B_h(x, y) = h(x) - h(y) - \langle \nabla h (y), x - y  \rangle
+\]</span></p>
+<p>Then if we consider that <span class="math inline">\(x \in \mathcal{M}\)</span>, and the distance between two points <span class="math inline">\(x, y\)</span> as <span class="math inline">\(B_h(y,x)\)</span>. Then the Riemannian metric and Levi-Civita connection generated by <span class="math inline">\(B_h\)</span> is <span class="math display">\[
+g = \nabla^2 h(x)
+\\
+\Gamma^{\mu}_{\gamma \lambda} = \frac{1}{2} g^{\mu v}(\frac{\partial g_{v \lambda}}{\partial x^\gamma} + \frac{\partial g_{v \gamma}}{\partial x^\lambda} - \frac{\partial g_{\gamma \lambda}}{\partial x^v}).
+\]</span></p>
+<p>The convex conjugate of <span class="math inline">\(h\)</span> is defined as <span class="math display">\[
+h^*(\theta) = \underset{x \in \mathcal{M}}{\sup} \{ \langle x, \theta \rangle - h(x) \}.
+\]</span> This yeilds a dual coordinate system as <span class="math display">\[
+    \theta = \nabla h(x), x = \nabla h^*(\theta), \nabla^2 h(x) \nabla^2h^*(\theta) = I.
+\]</span> The a dual Bregman divergence is defined as <span class="math inline">\(B_{h^*}(\theta, \eta) = h^*(\theta) - h^*(\eta) - \langle \nabla h^*(\eta), \theta - \eta \rangle\)</span>. The connection between <span class="math inline">\(B_h\)</span> and <span class="math inline">\(B_{h^*}\)</span> is <span class="math display">\[
+    B_h(x, y) = B_{h^*}(\eta, \theta), \theta = \nabla h(x), \eta = \nabla h(y).
+\]</span> In this case, the <span class="math inline">\(B_{h^*}\)</span> also generate a geometric structure on <span class="math inline">\(\mathcal{M}\)</span>. It can be proved that the information manifold <span class="math inline">\(\mathcal{M}\)</span> is dually flat.</p>
+<h2 id="geodesic-equation-on-bregman-statistical-manifold">Geodesic Equation on Bregman Statistical Manifold</h2>
+<p>In differential geometry, the geodesic is defined by affine connection <span class="math inline">\(\nabla\)</span>. Similarly, for the information manifold with geometry structure generated by Bregman divergence <span class="math inline">\(B_{h}\)</span>, there exist two dual affine connections <span class="math inline">\(\nabla, \nabla^*\)</span>. This means that there exists two geodesic connecting two points between <span class="math inline">\(P,Q\)</span> on manifold. One geodesic is straight in <span class="math inline">\(x\)</span> coordinate, the other is straight in <span class="math inline">\(\theta\)</span> coordinate.</p>
+<p>Next we consider a manifold <span class="math inline">\(\mathcal{M}&#39; = \mathbb{R} \times \mathcal{M}\)</span> as <span class="math inline">\(X = [t, x], x \in \mathcal{M}\)</span>. In this <span class="math inline">\(\mathcal{M}&#39;\)</span> we have the Riemannian metric defined as <span class="math display">\[
+g = \left[
+        \begin{array}{cc}
+            g_{00} &amp; 0 \\ 
+            0 &amp; \nabla^2 h(x)
+        \end{array}
+    \right]
+\quad
+g^{-1} = 
+\left[
+        \begin{array}{cc}
+            1/g_{00} &amp; 0 \\ 
+            0 &amp; \nabla^2 h(x)^{-1}
+        \end{array}
+    \right]
+\]</span></p>
+<p>Now consider the geodesic equation in <span class="math inline">\(\mathcal{M}&#39;\)</span> coordinate: <span class="math display">\[
+\frac{d^2 X^{\mu}}{d \tau^2} + \Gamma^{\mu}_{\gamma \lambda}\frac{d X^\gamma}{d \tau} \frac{d X^\lambda}{d \tau} = 0.
+\]</span> We repeat the procedure by considering "slow" motion of particle under "static" field. By "slow" we have <span class="math inline">\(|\frac{dX^i}{d \tau}| \ll \frac{dX^0}{d \tau}\)</span>. By "static" we have <span class="math inline">\(\frac{\partial g}{\partial X^0} = 0\)</span> This leads to <span class="math display">\[
+\frac{d^2 X^{\mu}}{d \tau^2} +\Gamma^{\mu}_{00} (\frac{d X^0}{d \tau})^2 = 0
+\\
+\frac{d^2 X^{\mu}}{d \tau^2} - \frac{1}{2} g^{\mu v}(\frac{\partial g_{00}}{\partial X^v})(\frac{d X^0}{d \tau} )^2= 0.
+\]</span> When <span class="math inline">\(\mu = 0\)</span>, since <span class="math inline">\(\frac{\partial g_{00}}{\partial X^0} = 0\)</span>, we get <span class="math display">\[
+\frac{d^2 X^{0}}{d \tau^2} = 0
+\]</span> Solve it gives <span class="math inline">\(t = c_1 \tau + c_2\)</span>. With out loss of generality, we select <span class="math inline">\(c_1 = 1, c_2 = 0\)</span> and the <span class="math inline">\(t = \tau\)</span>.</p>
+<p>Now we consider <span class="math inline">\(\mu = 1, ..., n\)</span>. With <span class="math inline">\(t = \tau\)</span> we have <span class="math display">\[
+\frac{d^2 X^{\mu}}{d t^2} - \frac{1}{2} g^{\mu v}(\frac{\partial g_{00}}{\partial X^v})= 0
+\\
+\frac{d^2 X^{\mu}}{d t^2} - \sum_{v = 1}^{n}\frac{1}{2} g^{\mu v}(\frac{\partial g_{00}}{\partial X^v})= 0
+\]</span> Pile <span class="math inline">\(n\)</span> equations we get <span class="math display">\[
+ \frac{d^2}{d t^2}
+ \left[
+    \begin{array}{c}
+        X^1\\
+        \vdots \\
+        X^n
+    \end{array}
+ \right]
+ = \frac{1}{2}
+  \left[
+    \begin{array}{ccc}
+        g^{11} &amp; \cdots &amp; g^{1n}\\
+        \vdots &amp; \ddots &amp; \vdots \\
+        g^{n1} &amp; \cdots &amp; g^{nn}
+    \end{array}
+ \right]
+ \left[
+    \begin{array}{c}
+        \frac{\partial g_{00}}{\partial X^1}\\
+        \vdots \\
+        \frac{\partial g_{00}}{\partial X^n}
+    \end{array}
+ \right]
+\\
+\Leftrightarrow \ddot{x} = \frac{1}{2}\nabla^2 h(x)^{-1} \nabla g_{00}
+\]</span> By taking <span class="math inline">\(g_{00} = -2f(x)\)</span> we get that <span class="math display">\[
+\ddot{x} = -\nabla^2 h(x)^{-1} \nabla f(x)
+\]</span></p>
+<h2 id="flows-of-gradient-methods">Flows of Gradient Methods</h2>
+<p>With the above konwledge, now we know the approximation of geodesic equation under the slow, static assumption. The equation <span class="math inline">\(\ddot{x} = \nabla^2 h(x)^{-1} \nabla f(x)\)</span> describes the physic law that particle must follow. Now consider a geodesic between point <span class="math inline">\(x_0\)</span> and <span class="math inline">\(x^*\)</span>. We assume that there exists a particle <span class="math inline">\(p\)</span> with mass <span class="math inline">\(m=1\)</span> moving along the geodesic from <span class="math inline">\(t\)</span> to <span class="math inline">\(t + \Delta t\)</span> where <span class="math inline">\(x(t) = x_0, \dot{x}(t) = 0\)</span>.</p>
+<p>Then we have the following equation to calculate the velocity of <span class="math inline">\(p\)</span> at <span class="math inline">\(t + \Delta t\)</span>: <span class="math display">\[
+\frac{d}{dt}x(t + \Delta t) = -\nabla^2 h(x)^{-1} \int_t^{\Delta t} \nabla f(x) dt
+\]</span> where <span class="math inline">\(\nabla^2 h(x)^{-1}\)</span> is not related to time because static assumption. From mean value theorem we know that <span class="math inline">\(\exists \Delta t&#39; \in (0, \Delta t)\)</span> such that <span class="math display">\[
+\int_t^{t + \Delta t} \nabla f(x) dt = \Delta t\nabla f(x(t+\Delta t&#39;))
+\]</span></p>
+<p>The Taylor series approximation of LHS and RHS is that <span class="math display">\[
+        \dot{x}(t + \Delta t) = \dot{x}(t) + \Delta t \ddot{x}(t) + O((\Delta t)^2)
+\\
+        \nabla f(x(t+\Delta t&#39;)) = \nabla f(x(t)) + \Delta t&#39; \nabla^2 f(x(t))\dot{x}(t) + O((\Delta t&#39;)^2).
+\]</span> Then we get the approximation equation of the motion as below: <span class="math display">\[
+\dot{x}(t) + \Delta t \ddot{x}(t) + O((\Delta t)^2) = -\Delta t\nabla^2 h(x)^{-1}(\nabla f(x(t)) + \Delta t&#39; \nabla^2 f(x(t))\dot{x}(t) + O((\Delta t&#39;)^2))
+\]</span> This equation describes the flows of gradient based methods.</p>
+<p>If we take <span class="math inline">\(O((\Delta t)^2)\)</span> and <span class="math inline">\(O((\Delta t&#39;)^2)\)</span> accuracy we get <span class="math display">\[
+\Rightarrow
+\frac{d}{dt}(x + \Delta t \dot{x}) = -\Delta t \nabla^2 h(x)^{-1}(\nabla f(x) + \Delta t&#39; \nabla^2 f(x)\dot{x}).
+\]</span></p>
+<p>If we take <span class="math inline">\(O((\Delta t)^2)\)</span> and <span class="math inline">\(O(\Delta t&#39;)\)</span> accuracy we get <span class="math display">\[
+\Rightarrow
+\frac{d}{dt}(x + \Delta t \dot{x}) = -\Delta t \nabla^2 h(x)^{-1}\nabla f(x).
+\]</span></p>
+<p>If we take <span class="math inline">\(O(\Delta t)\)</span> and <span class="math inline">\(O(\Delta t&#39;)\)</span> accuracy we get <span class="math display">\[
+\Rightarrow
+\frac{d}{dt}x = -\Delta t \nabla^2 h(x)^{-1}\nabla f(x)
+\]</span></p>
+<h2 id="approximation-and-discretizaiton">Approximation and Discretizaiton</h2>
+<p>Finally after some calculation we get some differential equations. Next I would like to show how to connect these equations with gradient methods. With proper choice of <span class="math inline">\(h\)</span>, the term <span class="math inline">\(\nabla^2 h(x)\)</span> turns to be Fisher matrix, scalar or <span class="math inline">\(\nabla^2 f\)</span>.</p>
+<h3 id="gradient-based-methods">Gradient Based Methods</h3>
+<h4 id="gradient-descent">Gradient Descent</h4>
+<p><span class="math display">\[\begin{equation}
+   \fbox{
+    $x_{k+1} = x_{k} - \alpha \nabla f(x_k)$
+    }
+\end{equation}\]</span></p>
+<h4 id="newtons-descent">Newton's Descent</h4>
+<p><span class="math display">\[\begin{equation}
+    \fbox{
+    $x_{k+1} = x_k - \alpha \nabla^2 f(x_k)^{-1} \nabla f(x_k)$
+    }
+\end{equation}\]</span></p>
+<h4 id="natural-gradient-descent">Natural Gradient Descent</h4>
+<p><span class="math display">\[ \begin{equation}
+   \fbox{
+    $    x_{k+1} = x_{k}  - \alpha F(x_k)^{-1}\nabla f(x_k).$
+    }
+\end{equation}\]</span></p>
+<h4 id="heavy-ball-method">Heavy-Ball Method</h4>
+<p><span class="math display">\[
+\begin{equation}
+   \fbox{
+    $x_{k+1} = x_{k} -  s \nabla f(x_k) + \alpha (x_k - x_{t-1})$
+    }
+\end{equation}
+\]</span></p>
+<h4 id="nesterov-gradient-methods">Nesterov Gradient Methods</h4>
+<p>the Nesterov gradient methods (NAG-sc) is defined as <span class="math display">\[\begin{equation}
+    \begin{aligned}
+        y_{k+1} &amp; = x_k - s\nabla f(x_k),
+\\
+        x_{k+1} &amp; = y_{k+1} + \frac{1-\sqrt{\mu s}}{1+\sqrt{\mu s}}(y_{k+1} - y_{k})
+    \end{aligned}
+\end{equation}\]</span></p>
+<p>For a weakly convex function, we have (NAG-c) as: <span class="math display">\[\begin{equation}
+    \begin{aligned}
+        y_{k+1} &amp;= x_{k} - \alpha\nabla f(x_{k}), 
+        \\ 
+        x_{k+1} &amp;= y_{k+1} + \frac{k}{k+3}(y_{k+1} - y_{k}).
+    \end{aligned}
+\end{equation}\]</span></p>
+<h3 id="flow-derivation">Flow Derivation</h3>
+<p>Here are some basic notations for flow derivation. First, we take <span class="math inline">\(x_k = X_{\delta k} = X_t\)</span>, where <span class="math inline">\(\delta\)</span> is the step size. This means that <span class="math inline">\(x_k\)</span> is sampled from flow of <span class="math inline">\(X_t\)</span> with step size <span class="math inline">\(\delta\)</span>.</p>
+<p>Then we have the following Talyor series: <span class="math display">\[\begin{equation*}
+    \begin{aligned}
+        x_{k+1} &amp;= X_{k\delta + \delta} = X_{t+\delta} = X_t + \dot{X_t}\delta + \frac{\ddot{X_t}}{2}\delta^2 + O(\delta^3)
+        \\
+        x_{k-1} &amp;= X_{k\delta - \delta} = X_{t-\delta} = X_t - \dot{X_t}\delta + \frac{\ddot{X_t}}{2}\delta^2 + O(\delta^3)
+        \\
+        \nabla f(x_{k-1}) &amp;= \nabla f(X_{k\delta - \delta}) = \nabla f(X_{t - \delta}) = \nabla f(X_t) - \delta \nabla^2f(X_t)\dot{X_t} + O(\delta^2)
+    \end{aligned}
+\end{equation*}\]</span></p>
+<h4 id="gradient-flow">Gradient Flow</h4>
+<p>From the discretization <span class="math inline">\(x_{k+1} = x_k - \alpha \nabla f(x_k)\)</span> we have that <span class="math display">\[\begin{equation*}
+    \begin{aligned}
+       &amp; x_{k+1} - x_k  = - \alpha \nabla f(x_k)
+\\ 
+\Leftrightarrow &amp; \dot{X_t}\delta  + O(\delta^2) = -\alpha \nabla f(X_t)
+\\
+\Leftrightarrow &amp;   \dot{X_t}\delta + \alpha \nabla f(X_t) = 0
+    \end{aligned}
+\end{equation*}\]</span> Take <span class="math inline">\(\delta\)</span> as scale <span class="math inline">\(\delta = \alpha\)</span>. <span class="math display">\[\begin{equation*}
+    \begin{aligned}
+\Rightarrow \frac{d}{dt}X_t = -\nabla f(X_t)
+    \end{aligned}
+\end{equation*}\]</span></p>
+<h4 id="newtons-flow">Newton's Flow</h4>
+<p><span class="math display">\[
+\frac{d}{dt}X_t = - \nabla^2 f(X_t) \nabla f(X_t)
+\]</span></p>
+<h4 id="natural-gradient-flow">Natural Gradient Flow</h4>
+<p><span class="math display">\[
+\frac{d}{dt}X_t = - F(X_t)^{-1} \nabla f(X_t)
+\]</span></p>
+<h4 id="heavy-ball-flow">Heavy Ball Flow</h4>
+<p>From the discretization <span class="math inline">\(x_{k+1} = x_{k} - s \nabla f(x_k) + \alpha (x_k - x_{k-1})\)</span> we have that <span class="math display">\[\begin{equation*}
+    \begin{aligned}
+                &amp;x_{k+1} -  x_{k} =\alpha (x_k - x_{k-1}) - s \nabla f(x_k)
+\\
+\Leftrightarrow \ &amp; \dot{X_t}\delta + \frac{\ddot{X_t}}{2}\delta^2 + O(\delta^3) = \alpha(\dot{X_t}\delta - \frac{\ddot{X_t}}{2}\delta^2 + O(\delta^3)) -s\nabla f(X_t) + O(\delta^3)
+\\
+\Leftrightarrow \ &amp; \frac{\delta^2(1+\alpha)}{2}\ddot{X_t} + (1-\alpha)\delta\dot{X_t} + s \nabla f(X_t) + O(\delta^3) = 0
+\\
+\Leftrightarrow \ &amp; \delta^2\ddot{X_t} + \frac{2(1-\alpha)}{1+\alpha}\delta\dot{X_t} + \frac{2s}{1+\alpha} \nabla f(X_t) + O(\delta^3) = 0
+    \end{aligned}
+\end{equation*}\]</span> Now we can derive that the scale of <span class="math inline">\(\delta\)</span> is the same as <span class="math inline">\(\sqrt{s}\)</span>, which leads to <span class="math display">\[\begin{equation*}
+    \begin{aligned}
+                &amp; \ddot{X_t} + \frac{2(1-\alpha)}{\sqrt{s}(1+\alpha)}\dot{X_t} + \frac{2}{1+\alpha} \nabla f(X_t) = 0
+\\
+\Leftrightarrow \ &amp; \ddot{X_t} + 2\sqrt{\mu}\dot{X_t} + (1 + \sqrt{\mu s}) \nabla f(X_t) = 0, \alpha = \frac{1-\sqrt{\mu s}}{1+\sqrt{\mu s}}.
+    \end{aligned}
+\end{equation*}\]</span></p>
+<p>If we take <span class="math inline">\(\delta = \sqrt{\frac{2s}{1+\alpha}}\)</span>, the equation turns to be <span class="math display">\[\begin{equation*}
+    \begin{aligned}
+        \ddot{X_t} + \frac{2(1-\alpha)}{(1+\alpha)}\sqrt{\frac{1+\alpha}{2s}}\dot{X_t} +  \nabla f(X_t) = 0
+\\
+\Rightarrow \frac{d}{dt}(X + \frac{(1+\alpha)}{2(1-\alpha)} \sqrt{\frac{2s}{1+\alpha}}\dot{X}) = - \frac{(1+\alpha)}{2(1-\alpha)} \sqrt{\frac{2s}{1+\alpha}}\nabla f(X_t)
+    \end{aligned}
+\end{equation*}\]</span></p>
+<h4 id="nag-sc-flow">NAG-sc Flow</h4>
+<p>From the discretization that <span class="math inline">\(y_{k+1} = x_k - s\nabla f(x_k), x_{k+1} = y_{k+1} + \frac{1-\sqrt{\mu s}}{1+\sqrt{\mu s}}(y_{k+1} - y_{k}).\)</span> we have that <span class="math display">\[\begin{equation*}
+    \begin{aligned}
+                &amp; x_{k+1} = x_{k} - s\nabla f(x_k) + \frac{1-\sqrt{\mu s}}{1+\sqrt{\mu s}} (x_k - s\nabla f(x_k) - x_{k-1} + s\nabla f(x_{k-1})) = 0
+\\
+\Leftrightarrow \ &amp; x_{k+1} + x_{k-1} - 2x_{k} + \sqrt{\mu s}(x_{k+1} - x_{k-1}) = -(s - \sqrt{\mu} s^{\frac{3}{2}})(\nabla f(x_k) - \nabla f(x_{k-1})) - s(1+\sqrt{\mu s})\nabla f(x_k)
+\\
+\Leftrightarrow \ &amp; \delta^2\ddot{X_t} + O(\delta^3) + \sqrt{\mu s}(2\delta\dot{X_t} + O(\delta^3)) = -(s - \sqrt{\mu} s^{\frac{3}{2}})(\delta \nabla^2 f(X_t)\dot{X_t} + O(\delta^2)) + s(1+\sqrt{\mu s})\nabla f(X_t)
+\\
+\Leftrightarrow \ &amp; \delta^2\ddot{X_t} + 2\sqrt{\mu s}\delta\dot{X_t} + (s - \sqrt{\mu} s^{\frac{3}{2}})\delta \nabla^2 f(X_t)\dot{X_t} + s(1+\sqrt{\mu s})\nabla f(X_t) = 0
+\\
+\Leftrightarrow \ &amp; \ddot{X_t} + 2\sqrt{\mu}\dot{X_t} + \sqrt{s} \nabla^2 f(X_t)\dot{X_t} + (1+\sqrt{\mu s})\nabla f(X_t) = 0
+    \end{aligned}
+\end{equation*}\]</span> If we take <span class="math inline">\(\delta = \sqrt{s(1+\sqrt{\mu s})}\)</span>, then we get <span class="math display">\[\begin{equation*}
+    \begin{aligned}
+        \ddot{X_t} + 2\sqrt{\frac{\mu}{1+\sqrt{\mu s}}}\dot{X_t} + \sqrt{\frac{s}{1+\sqrt{\mu s}}} \nabla^2 f(X_t)\dot{X_t} + \nabla f(X_t) = 0
+\\
+\Rightarrow \frac{d}{dt} \left (X + \frac{1}{2}\sqrt{\frac{1+\sqrt{\mu s}}{\mu}}\dot{X} \right ) = - \frac{1}{2}\sqrt{\frac{1+\sqrt{\mu s}}{\mu}} \left (\nabla f(X_t) + \frac{s(1-\sqrt{\mu s})}{\sqrt{s(1+\sqrt{\mu s})}} \nabla^2 f(X)\dot{X} \right )
+    \end{aligned}
+\end{equation*}\]</span></p>
+<h4 id="nag-c-flow">NAG-c Flow</h4>
+<p>From the discretization that <span class="math inline">\(y_{k+1} = x_{k} - \alpha\nabla f(x_{k}), x_{k+1} = y_{k+1} + \frac{k}{k+3}(y_{k+1} - y_{k})\)</span> we have that <span class="math display">\[\begin{equation*}
+    \begin{aligned}
+        &amp;k(x_{k+1}+x_{k-1} - 2x_k) + 3(x_{k+1} - x_k) = -ks(\nabla f(x_k) - \nabla f(x_{k-1})) - s(k+3)\nabla f(x_k)
+\\
+\Rightarrow &amp;k\delta^2\ddot{X_t} + 3(\delta \dot{X_t} + \frac{\delta^2}{2}\ddot{X_t}) = -ks\nabla^2 f(x)\dot{X_t} + s(k+3)\nabla f(X_t)
+\\
+\Rightarrow &amp;(k\delta^2 + \frac{3\delta^2}{2})\ddot{X_t} + 3\delta\dot{X_t} + ks\nabla^2 f(x)\dot{X_t} + s(k+3)\nabla f(X_t) = 0
+    \end{aligned}
+\end{equation*}\]</span> Let <span class="math inline">\(k\delta^2 + \frac{3\delta^2}{2} = s(k+3)\)</span> we have <span class="math display">\[\begin{equation*}
+    \begin{aligned}
+\Rightarrow  &amp;\ddot{X} + \frac{3}{\sqrt{s(k+3)(k+\frac{3}{2})}}\dot{X} + \frac{k\sqrt{s}}{\sqrt{(k+3)(k+\frac{3}{2})}}\nabla^2 f(X)\dot{X} + \nabla f(X) = 0
+\\
+\Rightarrow  &amp;\frac{d}{dt}\left( X + \frac{\sqrt{s(k+3)(k+\frac{3}{2})}}{3}\dot{X} \right) = - \frac{\sqrt{s(k+3)(k+\frac{3}{2})}}{3}\left (\nabla f(X) + \frac{k\sqrt{s}}{\sqrt{(k+3)(k+\frac{3}{2})}} \nabla^2 f(X) \dot{X}\right )
+    \end{aligned}
+\end{equation*}\]</span></p>
+<p>The above equations show how we derive different gradient methods from statistical manifold using general relativity.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/math-physic-information-geometry-general-relativity/" rel="tag"># math, physic, information geometry, general relativity</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/02/13/gd3/" rel="prev" title="Optimization III - Statistical Manifold and Natural Gradient Descent">
+      <i class="fa fa-chevron-left"></i> Optimization III - Statistical Manifold and Natural Gradient Descent
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#on-dynamics-of-acceleration-einstein-rao-and-nesterov"><span class="nav-number">1.</span> <span class="nav-text">On Dynamics of Acceleration, Einstein, Rao and Nesterov</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#geodesic-equation-on-manifold"><span class="nav-number">1.1.</span> <span class="nav-text">Geodesic Equation on Manifold</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#newtons-limit-of-geodesic-equation"><span class="nav-number">1.2.</span> <span class="nav-text">Newton&#39;s Limit of Geodesic Equation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dully-flat-structure-of-bregman-statistical-manifold"><span class="nav-number">1.3.</span> <span class="nav-text">Dully Flat Structure of Bregman Statistical Manifold</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#geodesic-equation-on-bregman-statistical-manifold"><span class="nav-number">1.4.</span> <span class="nav-text">Geodesic Equation on Bregman Statistical Manifold</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flows-of-gradient-methods"><span class="nav-number">1.5.</span> <span class="nav-text">Flows of Gradient Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#approximation-and-discretizaiton"><span class="nav-number">1.6.</span> <span class="nav-text">Approximation and Discretizaiton</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gradient-based-methods"><span class="nav-number">1.6.1.</span> <span class="nav-text">Gradient Based Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#gradient-descent"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">Gradient Descent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#newtons-descent"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">Newton&#39;s Descent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#natural-gradient-descent"><span class="nav-number">1.6.1.3.</span> <span class="nav-text">Natural Gradient Descent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#heavy-ball-method"><span class="nav-number">1.6.1.4.</span> <span class="nav-text">Heavy-Ball Method</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nesterov-gradient-methods"><span class="nav-number">1.6.1.5.</span> <span class="nav-text">Nesterov Gradient Methods</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flow-derivation"><span class="nav-number">1.6.2.</span> <span class="nav-text">Flow Derivation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#gradient-flow"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">Gradient Flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#newtons-flow"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">Newton&#39;s Flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#natural-gradient-flow"><span class="nav-number">1.6.2.3.</span> <span class="nav-text">Natural Gradient Flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#heavy-ball-flow"><span class="nav-number">1.6.2.4.</span> <span class="nav-text">Heavy Ball Flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nag-sc-flow"><span class="nav-number">1.6.2.5.</span> <span class="nav-text">NAG-sc Flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nag-c-flow"><span class="nav-number">1.6.2.6.</span> <span class="nav-text">NAG-c Flow</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yilin Zhang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Happylinzy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Happylinzy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode.com/yilin7616/" title="LeetCode → https:&#x2F;&#x2F;leetcode.com&#x2F;yilin7616&#x2F;" rel="noopener" target="_blank"><i class="fa fa-code fa-fw"></i>LeetCode</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yilin7616@gmail.com" title="E-Mail → yilin7616@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/yilin-zhang-813854261/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;yilin-zhang-813854261&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yilin Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
