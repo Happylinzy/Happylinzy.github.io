@@ -1,5 +1,5 @@
 ---
-title: SQL Notes
+title: SQL Notes I
 date: 2023-01-29 20:36:57
 categories: SQL
 tags: Programing Language
@@ -10,7 +10,6 @@ Notation outside of code block: keywords in SQL will be in **bold**, variables w
 <!-- more -->
 
 ### SELECT
-
 **SELECT** basic structure:
 
 ```SQL
@@ -42,7 +41,6 @@ where id not in
 ```
 
 ### Union
-
 **Union** will allow us to pile two tables with the same colomn together.
 
 Example:
@@ -65,7 +63,6 @@ order by employee_id;
 Inside this query, we use **order by**, which will sort the result based on *employee_id*.
 
 ### Update
-
 **UPDATE** is used to update entities inside a table.
 
 ```SQL
@@ -79,7 +76,6 @@ SET
 In this example, **CASE** is used to update the value of *sex* bases on its original value.
 
 ### DELETE
-
 ```SQL
 DELETE p1 FROM Person p1, Person p2
 WHERE p1.Email = p2.Email AND p1.Id > p2.Id
@@ -93,7 +89,6 @@ DELETE FROM Person WHERE Id NOT IN
 ```
 
 ### GROUP_CONCAT
-
 **GROUP_CONCAT** is an aggregate_function used to concat all items with in the same group specified in **group by**.
 **DISTINCT** is used to delete repeated entities given a colomn number.
 
@@ -104,6 +99,17 @@ group by sell_date
 order by sell_date
 ```
 
+
+### GROUP BY, HAVING
+**GROUP BY** is used to clasify the table based on attributes. **HAVING** is then used to specify the filter to **GROUP BY**. Usually, **HAVING** is used with aggregate function **SUM()**, **COUNT**, etc.
+
+```SQL
+SELECT Department, sum(Salary) as Salary
+FROM employee
+GROUP BY department
+HAVING SUM(Salary) >= 50000; 
+```
+
 ### LIKE
 **LIKE** is used to match strings. It supports '%' or '_' etc.
 ```SQL
@@ -111,3 +117,59 @@ select patient_id, patient_name, conditions
 from Patients
 where conditions like 'DIAB1%' or conditions like '% DIAB1%'
 ```
+
+
+### WITH
+**WITH** is used to decleare a subquery used later
+```SQL
+WITH xxx as (subquery)
+```
+Then in later queries one can use this xxx as reference.
+**WITH** is usually used with **partition by, rank(), dense_rank(), rownumber()**.
+
+### JOIN, ON
+**JOIN** is used to include two tabls in one query and **ON** is used to specify the constraints. There are several **JOIN** methods: LEFT JOIN, RIGHT JOIN, FULL JOIN, INNER JOIN.
+
+The example below shows useage of **WITH**, **JOIN** and **ON**. Write an SQL query to find the employees who are high earners in each of the departments.
+```SQL
+with maxsalary as(
+    select *, dense_rank() over(
+        partition by departmentId order by salary desc
+    )as R from Employee
+)
+select D.name as 'Department', E.name as 'Employee', E.salary as 'Salary'
+from Employee as E join Department as D
+on E.departmentId = D.id
+where
+E.id in (select id from maxsalary as M where M.R <= 3)
+```
+
+### LIMIT, OFFSET
+**LIMIT** tells DBSM how much results you finally want. **OFFSET** tells DBSM where you want to start to search.
+This is generally used when you are trying to query a range of data within a sorted table.
+
+### CASE
+**CASE** is used to dynamic deal with cases. For example, **CASE** can be used to switch attributes between different rows in a table. Also, it can be used to deal with different cases.
+
+```SQL
+select id, 
+    case
+        when T.p_id is null then 'Root'
+        when T.id in (select p_id from Tree) then 'Inner'
+        else 'Leaf'
+    end as type
+from Tree as T
+```
+
+## Execution Order
+FROM ->
+ON ->
+JOIN ->
+WHERE ->
+GROUP BY ->
+WITH CUBE or WITH ROLLUP ->
+HAVING ->
+SELECT ->
+DISTINCT ->
+ORDER BY ->
+TOP
