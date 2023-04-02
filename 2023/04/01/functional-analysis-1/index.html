@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"happylinzy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Perspectives on Gradient Descent When talking about numerical solution to optimization problems, nobody can avoid the gradient descent method created by Cauchy in 1847. In this blog, we try to underst">
+  <meta name="description" content="This is course note from Siran Li-Shanghai Jiao Tong University.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Optimization I - Gradient Descent">
-<meta property="og:url" content="https://happylinzy.github.io/2023/02/04/gd1/index.html">
+<meta property="og:title" content="Functional Analysis 1">
+<meta property="og:url" content="https://happylinzy.github.io/2023/04/01/functional-analysis-1/index.html">
 <meta property="og:site_name" content="Yilin Blog">
-<meta property="og:description" content="Perspectives on Gradient Descent When talking about numerical solution to optimization problems, nobody can avoid the gradient descent method created by Cauchy in 1847. In this blog, we try to underst">
+<meta property="og:description" content="This is course note from Siran Li-Shanghai Jiao Tong University.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-02-04T20:30:36.000Z">
-<meta property="article:modified_time" content="2023-02-19T05:00:41.751Z">
+<meta property="article:published_time" content="2023-04-02T01:47:47.000Z">
+<meta property="article:modified_time" content="2023-04-02T01:48:38.720Z">
 <meta property="article:author" content="Yilin Zhang">
-<meta property="article:tag" content="optimization, gradient methods">
+<meta property="article:tag" content="functional analysis">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://happylinzy.github.io/2023/02/04/gd1/">
+<link rel="canonical" href="https://happylinzy.github.io/2023/04/01/functional-analysis-1/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Optimization I - Gradient Descent | Yilin Blog</title>
+  <title>Functional Analysis 1 | Yilin Blog</title>
   
 
 
@@ -166,7 +166,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://happylinzy.github.io/2023/02/04/gd1/">
+    <link itemprop="mainEntityOfPage" href="https://happylinzy.github.io/2023/04/01/functional-analysis-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,7 +179,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Optimization I - Gradient Descent
+          Functional Analysis 1
         </h1>
 
         <div class="post-meta">
@@ -188,16 +188,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2023-02-04 12:30:36" itemprop="dateCreated datePublished" datetime="2023-02-04T12:30:36-08:00">2023-02-04</time>
+              <time title="Created: 2023-04-01 18:47:47 / Modified: 18:48:38" itemprop="dateCreated datePublished" datetime="2023-04-01T18:47:47-07:00">2023-04-01</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-02-18 21:00:41" itemprop="dateModified" datetime="2023-02-18T21:00:41-08:00">2023-02-18</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -219,75 +213,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="perspectives-on-gradient-descent">Perspectives on Gradient Descent</h1>
-<p>When talking about numerical solution to optimization problems, nobody can avoid the gradient descent method created by Cauchy in 1847. In this blog, we try to understand this first order algorithm through different perspectives. <span class="math display">\[
-x_{k+1} = x_{k} - \alpha \nabla f(x_k)
-\]</span></p>
+        <p>This is course note from Siran Li-Shanghai Jiao Tong University.</p>
 <span id="more"></span>
-<h2 id="problem-formulation">Problem Formulation</h2>
-<p>An optimization problem is trying to find the minimum value of a given function under constraints. <span class="math display">\[\begin{align*}
-\min f(x)
-\\
-s.t. \ \ x \in \mathcal{M}
-\end{align*}\]</span></p>
-<p>Assumptions on <span class="math inline">\(f\)</span>:</p>
-<p><span class="math inline">\(f\)</span> is convex</p>
-<p><span class="math inline">\(f\)</span> is differentiable, <span class="math inline">\(f \in C^1\)</span></p>
-<p><span class="math inline">\(f\)</span> is Lipschitz gradient continuous</p>
-<h2 id="proximal-view">Proximal View</h2>
-<p>Given an initial value <span class="math inline">\(x_0\)</span>, it is almost impossible to explictly express optimal <span class="math inline">\(x^*\)</span> as formula of <span class="math inline">\(x_0\)</span>, which means globally we don't know the relatino between <span class="math inline">\(x^*\)</span> and <span class="math inline">\(x_0\)</span>. But we can find a local optimal point which is better than <span class="math inline">\(x_0\)</span>. Then hopefully we can keep this process until we reach the <span class="math inline">\(x^*\)</span>.</p>
-<p>For point <span class="math inline">\(x_k\)</span>, we have local approximation of <span class="math inline">\(f(x)\)</span> near <span class="math inline">\(x_k\)</span> according to Taylor series. <span class="math display">\[
-f(x) = f(x_k) + \langle \nabla f(x_k), (x - x_k) \rangle + \frac{1}{2} \nabla^2 (x - x_k)^Tf(x_k)(x - x_k) + O(x^3)
-\]</span></p>
-<p>Here we take first order approximation of <span class="math inline">\(f(x)\)</span> since our assumption only guarantees that <span class="math inline">\(f(x)\)</span> is differentiable. Then we have local optimization problem as</p>
-<p><span class="math display">\[\begin{align*}
-\min \ &amp;f(x_k) + \langle \nabla f(x_k), (x - x_k) \rangle
-\\
-s.t. \ \ &amp;x \in \mathcal{M}
-\\
-&amp;x \in B_\epsilon(x_k)
-\end{align*}\]</span></p>
-<p>The constraint <span class="math inline">\(x \in B_\epsilon(x_k)\)</span> gurantees that our local optimal <span class="math inline">\(x\)</span> is local. Naturally we consider the point <span class="math inline">\(x\)</span> in Euclidean space with norm <span class="math inline">\(\frac{1}{2}||\cdot||^2\)</span>. This means the <span class="math inline">\(x \in B_\epsilon(x_k)\)</span> is <span class="math inline">\(||x - x_k||^2 = \epsilon\)</span></p>
-<p>Then the Lagrangian of above local optimization is <span class="math display">\[
-\mathcal{L} = f(x_k) + \langle \nabla f(x_k), (x - x_k) \rangle - \beta ||x - x_k||^2 + \beta \cdot \epsilon
-\]</span> Let <span class="math inline">\(\frac{\partial \mathcal{L}}{\partial x} = 0\)</span> we get</p>
-<p><span class="math display">\[\begin{align*}
-&amp; \nabla f(x_k) = -2\beta (x - x_k)
-\\
-\Rightarrow &amp; x = x_k - \frac{1}{2\beta}\nabla f(x_k)
-\end{align*}\]</span></p>
-<p>We choose <span class="math inline">\(\beta = \frac{1}{2\alpha}\)</span> we can get local explict optimal solution as <span class="math inline">\(x_{k+1}\)</span>.</p>
-<p>In local proximal view, gradient descent is derived as local optimal solution in <span class="math inline">\(l_2\)</span> norm space with first order Taylor approximation.</p>
-<h2 id="geometry-view">Geometry View</h2>
-<p>Suppose that readers are familiar with differential geometry, we can see some hidden facts in gradient descent. Rewrite the formula as <span class="math display">\[
-x_{k+1} - x_k = -\alpha \nabla f(x_k)
-\]</span> The left hand side of above equation is cotravariant and right hand side is covariant (under a change of coordinate system). If we change the parametrization of <span class="math inline">\(f\)</span> from <span class="math inline">\(x\)</span> to <span class="math inline">\(\eta\)</span>, the gradient descent may lead to a different optimal value. Fortunately, this problem will not happen in <span class="math inline">\(l_2\)</span> norm Euclidean space. To state the reason, we need help of differential geometry.</p>
-<p>Consider the Riemannian manifold <span class="math inline">\(\mathcal{M}\)</span> of point <span class="math inline">\(x\)</span>, the tangent space at <span class="math inline">\(x\)</span> is denoted as <span class="math inline">\(T_xM\)</span>. Then a natural idea is find the steepest direction in <span class="math inline">\(T_xM\)</span> and decent <span class="math inline">\(x\)</span> along the geodesic on that direction. With the help of Riemannian gradient we have <span class="math display">\[
-    x_{k+1} = exp_{x_k}(-\alpha \cdot grad \ f(x_k))
-\]</span> Generaly, the exponential map is hard to calculate, where we use retraction map to approximate it. <span class="math display">\[
-    x_{k+1} = R_{x_k}(-\alpha \cdot grad \ f(x_k))
-\]</span> One of the retraction choice is local first order approximation <span class="math inline">\(R_{x_k}(v) = x_k + v\)</span>. Therefore, we have <span class="math display">\[
-    x_{k+1} = x_k -\alpha \cdot grad \ f(x_k)
-\]</span> Here the Riemannian gradient is different with normal gradient. It operates on function value with a Riemannian metric <span class="math inline">\(g\)</span>. <span class="math display">\[
-    x_{k+1} = x_k -\alpha g^{-1} \nabla f(x_k)
-\]</span> In Euclidean space with norm <span class="math inline">\(l_2\)</span>, the Riemannian metric is identity matrix <span class="math inline">\(g = I\)</span>. From a geometric view, gradient descent is a special case of Riemanniam descent in Euclidean space where Riemannan matric is identity.</p>
-<h2 id="dynamic-view">Dynamic View</h2>
-<p>In dynamic view, we try to understand gradient descent as a physical system. Consider the <span class="math inline">\(x_k\)</span> as a sample of a curve at time <span class="math inline">\(t\)</span> with step size <span class="math inline">\(\delta\)</span>, which means <span class="math inline">\(t = \delta k\)</span>. Then we get <span class="math inline">\(X_t = X_{\delta k} = x_k\)</span>.</p>
-<p>Then we have the Talyor series to connect <span class="math inline">\(x_k\)</span> and <span class="math inline">\(x_{k+1}\)</span>. <span class="math display">\[
-x_{k+1} = X_{\delta k + \delta} = X_{t + \delta} = X_t + \dot{X_t} \delta + \ddot{X_t}\frac{\delta^2}{2} + O(\delta^3)
-\]</span></p>
-<p>Plug in the form of gradient descent we have <span class="math display">\[
- \dot{X_t} \delta + \ddot{X_t}\frac{\delta^2}{2} + O(\delta^3) = - \alpha \nabla f(X_t)
-\]</span> Omit <span class="math inline">\(O(\delta^2)\)</span> item, let <span class="math inline">\(\delta = \alpha\)</span> scale, we have <span class="math display">\[\begin{align*}
-    &amp; \dot{X} = - \nabla f(X)
-\\
-\Leftrightarrow &amp;\lim_{m \rightarrow 0}  m \ddot{X} + \dot{X} + \nabla f(X) = 0
-\end{align*}\]</span> which accounts to a massless particle damping equation. The equation can be viewed as the Euler-Lagrange equation of Lagrangian <span class="math inline">\(\mathcal{L} = e^{\frac{t}{m}}(\frac{m}{2}||\dot{X}||^2 - f(X))\)</span></p>
-<h2 id="whats-more">What's More?</h2>
-<p>Recommend to read:</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://agustinus.kristia.de/techblog/2019/02/22/optimization-riemannian-manifolds/">Kristiadi's Blog</a></p>
-</blockquote>
+<p><strong>Definition: Banach Spaces</strong> &gt; Let <span class="math inline">\(X\)</span> be a vector space over <span class="math inline">\(\mathbb{R}\)</span> or <span class="math inline">\(\mathbb{C}\)</span>. A <strong>norm</strong> on <span class="math inline">\(X\)</span> is a function <span class="math inline">\(||\cdot||:X\rightarrow [0,\infty[\)</span> such that: &gt; (1) <span class="math inline">\(||x|| = 0 \Rightarrow x = 0\)</span>. &gt; (2) <span class="math inline">\(||\lambda x|| = |\lambda| ||x||, \forall x \in X, \lambda \in \mathbb{K}\)</span>. &gt; (3) <span class="math inline">\(||x+y|| \le ||x|| + ||y||, \forall x,y \in X\)</span>.</p>
+<p>A norm on <span class="math inline">\(X\)</span> gives rise to a metric(distance).</p>
+<p><strong>Definition: Metric</strong> &gt; Let <span class="math inline">\(X\)</span> be a topological space. A function <span class="math inline">\(d: X \times X \rightarrow [0,\infty[\)</span> is a <strong>metric</strong> if &gt; (1) <span class="math inline">\(d(x,y) = 0 \Rightarrow x = y\)</span>. &gt; (2) <span class="math inline">\(d(x,y) = d(y,x)\)</span> &gt; (3) <span class="math inline">\(d(x,y) \le d(x,z)+d(z,y)\)</span></p>
+<p>Let <span class="math inline">\((X, ||\cdot||)\)</span> be a normed vector space(NVS), then <span class="math inline">\(d(x,y) := ||x-y||\)</span> defines a metric on <span class="math inline">\(X\)</span>.</p>
+<p><em>Remark: <span class="math inline">\((X, ||\cdot||)\)</span> is a metric space <span class="math inline">\(\neq\)</span> the metric is from the norm</em>.</p>
+<p>Let <span class="math inline">\((X, ||\cdot||)\)</span> be a NVS with <span class="math inline">\(d(x,y) = ||x-y||\)</span>. It satisfies the following <strong>geometric properties</strong>: &gt; (p1) Translation Invariance: <span class="math inline">\(d(x+z, y+z) = d(x, y)\)</span>. &gt; (p2) One-Homogeneity: <span class="math inline">\(\quad\)</span> <span class="math inline">\(d(\lambda x, \lambda y) = |\lambda| d(x,y)\)</span>. &gt; (p3) Open balls are convex: <span class="math inline">\(B^{\circ}(x_0, \rho) := \{x \in X: d(x, x_0) &lt; \rho\}\)</span></p>
+<p>The topology on NVS that arises from <span class="math inline">\(d(x,y) = ||x-y||\)</span> is referenced to as the <strong>norm topology</strong>.</p>
+<p><strong>Definition: Cauthy</strong> &gt; Let <span class="math inline">\((X, ||\cdot||)\)</span> be a NVS. A sequence <span class="math inline">\(\{x_n\} \subset X\)</span> is Cauthy iff. <span class="math inline">\(||x_n - x_l|| \rightarrow 0\)</span> as <span class="math inline">\(n,l \rightarrow \infty\)</span>.</p>
+<p>Example: <span class="math inline">\(\{\frac{1}{n}\}\)</span> is Cauthy in <span class="math inline">\(\mathbb{R} \backslash \{0\}\)</span> but not convergent in <span class="math inline">\(\mathbb{R} \backslash \{0\}\)</span>.</p>
+<p><strong>Definition: Complete</strong> &gt; Let <span class="math inline">\((X, ||\cdot||)\)</span> be a NVS. The norm is complete iff every Cauthy sequence is convergent in X.</p>
+<p><strong>Definition: Banach Space</strong> &gt; A complete NVS is called a Banach space.</p>
+<p>Examples: 1. <span class="math inline">\((\mathbb{R}, ||\cdot||_p)\)</span> for <span class="math inline">\(1 \le p \le \infty\)</span>. 2. <span class="math inline">\(l^p(\mathbb{K}) = \{ \{a_n\}_{n \in \mathbb{N}}: (\sum_{n=1}^{\infty} |a_n|^p)^{1/p} &lt; \infty\}\)</span>. 3. <span class="math inline">\(l^{\infty}(\mathbb{K}) = \{ \{a_n\}_{n \in \mathbb{N}}: \underset{n\in \mathbb{N}}{max} |a_n| &lt; \infty\}\)</span>.</p>
+<p><em>Remark: Differentiability of <span class="math inline">\(||\cdot|| \leftrightarrow\)</span> Uniform convexity of unit ball</em>. <strong>Definition: Unit Ball</strong> &gt; Let <span class="math inline">\(\mathbb{S}^d_p = \{x \in \mathbb{R}^d: ||x||_p = 1\}\)</span>. It represents unit ball in <span class="math inline">\(d\)</span> dimension space with <span class="math inline">\(l_p\)</span> norm.</p>
+<p>Then we have the following properties for <span class="math inline">\(\mathbb{S}^d_p\)</span>: 1. <span class="math inline">\(\mathbb{S}^d_p \rightarrow \mathbb{S}^d_1\)</span> as <span class="math inline">\(p \rightarrow 1\)</span>. 2. <span class="math inline">\(\mathbb{S}^d_p \rightarrow \mathbb{S}^d_{\infty}\)</span> as <span class="math inline">\(p \rightarrow \infty\)</span>.</p>
 
     </div>
 
@@ -297,7 +238,7 @@ x_{k+1} = X_{\delta k + \delta} = X_{t + \delta} = X_t + \dot{X_t} \delta + \ddo
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/optimization-gradient-methods/" rel="tag"># optimization, gradient methods</a>
+              <a href="/tags/functional-analysis/" rel="tag"># functional analysis</a>
           </div>
 
         
@@ -306,13 +247,10 @@ x_{k+1} = X_{\delta k + \delta} = X_{t + \delta} = X_t + \dot{X_t} \delta + \ddo
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/01/30/Rust-Notes/" rel="prev" title="Rust Notes">
-      <i class="fa fa-chevron-left"></i> Rust Notes
+    <a href="/2023/02/23/lcdp/" rel="prev" title="Leetcode - DP">
+      <i class="fa fa-chevron-left"></i> Leetcode - DP
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/02/06/gd2/" rel="next" title="Optimization II - Acceleration in Gradient Descent">
-      Optimization II - Acceleration in Gradient Descent <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -371,7 +309,6 @@ x_{k+1} = X_{\delta k + \delta} = X_{t + \delta} = X_t + \dot{X_t} \delta + \ddo
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#perspectives-on-gradient-descent"><span class="nav-number">1.</span> <span class="nav-text">Perspectives on Gradient Descent</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-formulation"><span class="nav-number">1.1.</span> <span class="nav-text">Problem Formulation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#proximal-view"><span class="nav-number">1.2.</span> <span class="nav-text">Proximal View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#geometry-view"><span class="nav-number">1.3.</span> <span class="nav-text">Geometry View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dynamic-view"><span class="nav-number">1.4.</span> <span class="nav-text">Dynamic View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#whats-more"><span class="nav-number">1.5.</span> <span class="nav-text">What&#39;s More?</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
