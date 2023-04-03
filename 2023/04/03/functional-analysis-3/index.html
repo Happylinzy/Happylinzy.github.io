@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"happylinzy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Perspectives on Natural Gradient Descent In our article Optimization I - Gradient Descent, we talk about how to view the gradient descent as the approximation of Riemannian gradient descent. However,">
+  <meta name="description" content="Functional Analysis 3 -- Continuous Functions Proposition 3.1:  Let \(E\) be a metric space. Then \(C_b(E) &#x3D; \{f: E \rightarrow \mathbb{K} : f \text{ is continuous and bounded}\}\) is a Banach space u">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Optimization III - Statistical Manifold and Natural Gradient Descent">
-<meta property="og:url" content="https://happylinzy.github.io/2023/02/13/gd3/index.html">
+<meta property="og:title" content="Functional Analysis 3 -- Continuous Functions">
+<meta property="og:url" content="https://happylinzy.github.io/2023/04/03/functional-analysis-3/index.html">
 <meta property="og:site_name" content="Yilin Blog">
-<meta property="og:description" content="Perspectives on Natural Gradient Descent In our article Optimization I - Gradient Descent, we talk about how to view the gradient descent as the approximation of Riemannian gradient descent. However,">
+<meta property="og:description" content="Functional Analysis 3 -- Continuous Functions Proposition 3.1:  Let \(E\) be a metric space. Then \(C_b(E) &#x3D; \{f: E \rightarrow \mathbb{K} : f \text{ is continuous and bounded}\}\) is a Banach space u">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-02-14T05:21:08.000Z">
-<meta property="article:modified_time" content="2023-02-19T05:00:55.301Z">
+<meta property="article:published_time" content="2023-04-03T07:14:39.000Z">
+<meta property="article:modified_time" content="2023-04-03T07:15:27.561Z">
 <meta property="article:author" content="Yilin Zhang">
-<meta property="article:tag" content="optimization, gradient methods, information geometry">
+<meta property="article:tag" content="functional analysis">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://happylinzy.github.io/2023/02/13/gd3/">
+<link rel="canonical" href="https://happylinzy.github.io/2023/04/03/functional-analysis-3/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Optimization III - Statistical Manifold and Natural Gradient Descent | Yilin Blog</title>
+  <title>Functional Analysis 3 -- Continuous Functions | Yilin Blog</title>
   
 
 
@@ -166,7 +166,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://happylinzy.github.io/2023/02/13/gd3/">
+    <link itemprop="mainEntityOfPage" href="https://happylinzy.github.io/2023/04/03/functional-analysis-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,7 +179,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Optimization III - Statistical Manifold and Natural Gradient Descent
+          Functional Analysis 3 -- Continuous Functions
         </h1>
 
         <div class="post-meta">
@@ -188,16 +188,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2023-02-13 21:21:08" itemprop="dateCreated datePublished" datetime="2023-02-13T21:21:08-08:00">2023-02-13</time>
+              <time title="Created: 2023-04-03 00:14:39 / Modified: 00:15:27" itemprop="dateCreated datePublished" datetime="2023-04-03T00:14:39-07:00">2023-04-03</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-02-18 21:00:55" itemprop="dateModified" datetime="2023-02-18T21:00:55-08:00">2023-02-18</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -219,42 +213,77 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="perspectives-on-natural-gradient-descent">Perspectives on Natural Gradient Descent</h1>
-<p>In our article <a href="https://happylinzy.github.io/2023/02/04/gd1/#more">Optimization I - Gradient Descent</a>, we talk about how to view the gradient descent as the approximation of Riemannian gradient descent. However, is there a descent method more loylal to the Riemannian gradient descent? Or in other word, better than gradient descent in some cases. In this artile, we will start our journey to the beautiful and attracting information geometry world. In that abstract and fancy world, the secrete equivalence between several gradient descent methods are discovered.</p>
-<span id="more"></span>
-<h2 id="kl-divergence">KL-Divergence</h2>
-<p>Given two distributions <span class="math inline">\(p( y \mid x), p(y \mid x&#39;)\)</span>, the KL divergence measures the dsitance between these two distrbutions. <span class="math display">\[\begin{align*}
-KL(p( y \mid x), p(y \mid x&#39;)) &amp;= \mathbb{E}[\log (p(y \mid x))] - \mathbb{E}[\log (p(y \mid x&#39;))]
-\\
-&amp;= \sum_{y} p(y \mid x) \log (\frac{p( y \mid x)}{p(y \mid x&#39;)})
-\end{align*}\]</span> There have been multiple extra information about KL divergence, one can refer to <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">wiki</a> or <a target="_blank" rel="noopener" href="https://jaketae.github.io/study/natural-gradient/#:~:text=Due%20to%20the%20definition%20of%20entropy%2C%20KL%20divergence,likelihood%20is%20the%20fundamental%20bridge%20connecting%20the%20two.">Jake Tae's Blog</a> for more information.</p>
-<p>From the formulation of KL divergence we can conclude that <span class="math display">\[
-\nabla_{x&#39;} ^2 KL(p( y \mid x), p(y \mid x&#39;)) = -\mathbb{E}[\nabla ^2 \log (p(y \mid x&#39;))] = F.
-\]</span> Here <span class="math inline">\(F\)</span> is the Fisher matrix. The connection between <span class="math inline">\(F\)</span> and <span class="math inline">\(KL\)</span> also exists in the following equation: <span class="math display">\[
-KL(p( y \mid x), p(y \mid x+\epsilon)) \approx \frac{1}{2} \epsilon^T F \epsilon.
-\]</span> Actually this equation tells us that in a manifold where we measure the distance using KL-divergemce, the Riemanian metric is <span class="math inline">\(F\)</span>.</p>
-<h2 id="proximal-view-with-generalized-distance----divergence">Proximal View with Generalized Distance -- "Divergence"</h2>
-<p><span class="math display">\[\begin{align*}
-\min \ &amp;f(x_k) + \langle \nabla f(x_k), (x - x_k) \rangle
-\\
-s.t. \ \ &amp;x \in \mathcal{M}
-\\
-&amp;x \in B_\epsilon(x_k)
-\end{align*}\]</span></p>
-<p>Recall that we used to derive the gradient descent(GD) from above problem. Here how we decide the bbll <span class="math inline">\(B_\epsilon(x_k)\)</span> defined at <span class="math inline">\(x_k\)</span> is concernable. In our <a href="https://happylinzy.github.io/2023/02/04/gd1/#more">first post</a> we use <span class="math inline">\(l_2\)</span> norm to measure the distance. But selecting a norm without considering the real meaning behind points is suspicious. What if the point representing a distribution? In this case, a better way to compare the distance between points is the divergence.</p>
-<p>Divergence is a generalized distance. Particularly here we use the Bregman divergence. Given function convex <span class="math inline">\(h \in C^3\)</span>, Bregman divergence <span class="math inline">\(B_h\)</span> is defined as: <span class="math display">\[
-B_h(x, y) = h(y) - h(x) - \langle \nabla h(x), y-x \rangle.
-\]</span> Intuitively, you can understand the Bragman divergence as the distance between <span class="math inline">\(h(y)\)</span> and the <span class="math inline">\(L_x(y)\)</span>, where <span class="math inline">\(L_x(y)\)</span> is the linear approximatio of <span class="math inline">\(h(x)\)</span> at point <span class="math inline">\(x\)</span>. Click <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bregman_divergence#/media/File:Bregman_divergence_diagram_used_in_proof_of_squared_generalized_Euclidean_distances.png">wikipedia</a> to see the picture.</p>
-<p>To save our time, I will not repeat the procedure to derive the formula. Here I simply provide the result <span class="math display">\[
-x_{k+1} = x_k - \nabla^2 h(x_k)^{-1} f(x_k)
-\]</span></p>
-<p>Further, if we consider the manifold of point as a statistical manifold where each point represents a parameter distribution, then we can use <strong>KL divergence</strong> as an instance of Bregman divergence by taking <span class="math inline">\(h(x) = \sum_{i}x_i\log x_i\)</span>. Now the equation is <span class="math display">\[
-x_{k+1} = x_k  - F(x_k)^{-1}f(x_k).
-\]</span> Here the function <span class="math inline">\(F\)</span> is fisher matrix.</p>
-<h2 id="whats-more">What's More?</h2>
-<p>Recommend to read</p>
+        <h1 id="functional-analysis-3----continuous-functions">Functional Analysis 3 -- Continuous Functions</h1>
+<p><strong>Proposition 3.1:</strong></p>
 <blockquote>
-<p><a target="_blank" rel="noopener" href="https://jaketae.github.io/study/natural-gradient/#:~:text=Due%20to%20the%20definition%20of%20entropy%2C%20KL%20divergence,likelihood%20is%20the%20fundamental%20bridge%20connecting%20the%20two.">Jake Tae's Blog</a></p>
+<p>Let <span class="math inline">\(E\)</span> be a metric space. Then <span class="math inline">\(C_b(E) = \{f: E \rightarrow \mathbb{K} : f \text{ is continuous and bounded}\}\)</span> is a Banach space under supremum norm <span class="math inline">\(||\cdot||.\)</span></p>
+</blockquote>
+<p><em>Observation: <span class="math inline">\(C_b(E)\)</span> is a Banach algebra with <span class="math inline">\((f\cdot g)(x) = f(x)g(x).\)</span></em></p>
+<p><strong>Theorem 3.2:</strong></p>
+<blockquote>
+<p>Let <span class="math inline">\(E \subset \mathbb{R}^d\)</span> be compact. Then <span class="math inline">\(A = \{p \mid p \text{ is a polynomial over } \mathbb{R}^d \}\)</span> is dense in <span class="math inline">\(C(E).\)</span> By definition, dense means that <span class="math inline">\(\bar{A} = C(E) \Leftrightarrow \forall f \in C(E), \exists \{p_n\} \subset A, p_n \rightarrow f\)</span> uniformly.</p>
+</blockquote>
+<p><strong>Lemma 3.3:</strong></p>
+<blockquote>
+<p>If <span class="math inline">\(A \subset C_b(E)\)</span> is a subalgebra, then <span class="math inline">\(\bar{A}\)</span> is a subalgebra.</p>
+</blockquote>
+<p><strong><em>proof:</em></strong></p>
+<p>Let <span class="math inline">\(f,g \in A\)</span>, then <span class="math inline">\(\exists \{f_n\}, \{g_n\} \subset A, s.t. f_n \rightarrow f, g_n \rightarrow g\)</span> uniformly. Then <span class="math inline">\(||f_ng_n - fg|| \le ||f_n - f|| ||g_n|| + ||g_n - g|| ||f|| \rightarrow 0 \sim n \rightarrow \infty.\)</span> <span class="math inline">\(\Box\)</span></p>
+<p><strong>Theorem 3.4:(Stone-Weierstrass)</strong></p>
+<blockquote>
+<p>Let <span class="math inline">\(E\)</span> be compact metric space. Let <span class="math inline">\(A \subset C(E; \mathbb{R})\)</span> be a subalgebra. If <span class="math inline">\(A\)</span> satisfies</p>
+<ol type="1">
+<li>separate points, i.e. <span class="math inline">\(\forall x\neq y \in E, \exists p \in A, s.t. p(x)\neq p(y).\)</span></li>
+<li>contains constant functions, i.e. <span class="math inline">\(\underset{c \in \mathbb{R}}{\cup}\{f \equiv c\} \subset A.\)</span></li>
+</ol>
+<p>then <span class="math inline">\(\bar{A} = C(E).\)</span></p>
+</blockquote>
+<p><em>Example: <span class="math inline">\(A = \{p \mid p \text{ is a polynomial over } \mathbb{R}^d \}.\)</span> <strong>Theorem 3.2</strong> can be derived directly from <strong>Theorem 3.4</strong>.</em></p>
+<p><strong><em>proof:[[TODO]]</em></strong></p>
+<p>The proof requires lattice property of functions in <span class="math inline">\(A.\)</span></p>
+<p>However, Stone-Weierstrass theorem does not apply for complex case.</p>
+<p>A counter example: Let <span class="math inline">\(K \subset \mathbb{C}\)</span> be a compact subset. Consider <span class="math inline">\(K = \{z \in \mathbb{C}\mid \frac{1}{2} \le |z| \le 1 \}.\)</span> Then <span class="math display">\[
+\int_K \frac{1}{z} dz = 2\pi i
+\]</span> but <span class="math inline">\(\int_K p dz = 0, \forall p\)</span> as polynomial. The problem here is that <em>area specified by <span class="math inline">\(K\)</span> is not a simply connected space.</em></p>
+<p>With simply connected condition added, we get the following theorem from <strong>Theorem 3.2</strong>.</p>
+<p><strong>Theorem 3.5: Runge's Approximation Theorem</strong></p>
+<blockquote>
+<p>Let <span class="math inline">\(K \subset \mathbb{C}\)</span> be compact and simply-connected. Then <span class="math inline">\(\forall f \in C^0(K, \mathbb{C}), \exists \{p_n\} s.t. p_n \rightarrow f\)</span> uniformly on <span class="math inline">\(K.\)</span></p>
+</blockquote>
+<p>Similarly, Stone-Weierstrass theorem can also be expanded to the following theorem.</p>
+<p><strong>Theorem 3.6</strong></p>
+<blockquote>
+<p>Let <span class="math inline">\(E\)</span> be a compact metric space. Let <span class="math inline">\(A\)</span> be a subalgebra. <span class="math inline">\(A \subset C(E, \mathbb{C})\)</span> which separates points and contains constant functions. Assume that <span class="math inline">\(A\)</span> is closed under complex conjugation. Then <span class="math inline">\(A\)</span> is dense in <span class="math inline">\(C(E,\mathbb{C}).\)</span></p>
+</blockquote>
+<p><em>Observation: here complex conjugation is not a holomorphic function.</em></p>
+<p>Example: Let <span class="math inline">\(E = \mathbb{S}^1 = \{z \in \mathbb{C} \mid |z| = 1\}, z = e^{i\theta}, \theta \in [0, 2\pi].\)</span> Let <span class="math inline">\(A\)</span> be the algebra of trigonometric polynomials. <span class="math inline">\(A = \{\sum_{n=-N}^N c_ne^{in\theta} \mid c_n \in \mathbb{C}, N \in \mathbb{N}\} = span\{e_n: n\in \mathbb{Z}\}.\)</span> Then by Theorem 3.6, we have that <span class="math inline">\(A\)</span> is dense in <span class="math inline">\(C(E, \mathbb{C}).\)</span></p>
+<p><strong>Corollary 3.7</strong></p>
+<blockquote>
+<p>Any <span class="math inline">\(2\pi\)</span>-periodic function from <span class="math inline">\(\mathbb{R} \rightarrow \mathbb{R}\)</span> can be uniformly approximated by real trigonometric polynomials <span class="math inline">\(p(x), s.t. p(x) = \sum_{k=0}^N \alpha_k \cos(kx)+\beta_k\sin(kx).\)</span></p>
+</blockquote>
+<p>The above theorem is commonly seen in "Harmonic Analysis" field.</p>
+<p>As we know that in finite dimension space, bounded + closed = compact. But this is not true when we go to infinite dimensional space. One problem is that without the limit of dimension, in infinite dimensional space, the function change may be tooooo rapid!</p>
+<p><strong>Definition: Equicontinuous</strong></p>
+<blockquote>
+<p>Let <span class="math inline">\(E\)</span> be a metric space. <span class="math inline">\(\tilde{f} \subset C(E)\)</span> is equicontinuous iff <span class="math inline">\(\forall \epsilon &gt; 0, \forall x \in E, \exists \delta &gt; 0, s.t. \underset{f \in \tilde{f}}{\sup} |f(x) - f(y)| \le \epsilon\)</span> whenever <span class="math inline">\(d(x, t) \le \delta.\)</span></p>
+</blockquote>
+<p>Remark: here the choice of <span class="math inline">\(\delta\)</span> is independent of <span class="math inline">\(f.\)</span></p>
+<p><strong>Lemma:</strong> If <span class="math inline">\(E\)</span> is compact, we can choose <span class="math inline">\(\delta\)</span> independent of <span class="math inline">\(x.\)</span></p>
+<p><strong><em>proof:[[TODO]]</em></strong></p>
+<p><strong>Theorem: Arzela–Ascoli</strong></p>
+<blockquote>
+<p>Let <span class="math inline">\(E\)</span> be a compact metric space, <span class="math inline">\(\tilde{f} \subset C(E)\)</span>. TFAE:</p>
+<ol type="1">
+<li><p><span class="math inline">\(\tilde{f}\)</span> is equicontinuous and <span class="math inline">\(\underset{f \in \tilde{f}}{\sup} ||f||_{\infty} &lt; \infty.\)</span></p></li>
+<li><p><span class="math inline">\(\tilde{f}\)</span> is precompact(<span class="math inline">\(\bar{\tilde{f}}\)</span> is compact).</p></li>
+<li><p><span class="math inline">\(\forall \{f_n\} \subset \tilde{f}, \exists \text{subsequences} \{f_{n_j}\}\)</span> that converges (uniformly) in <span class="math inline">\(C(E).\)</span></p></li>
+</ol>
+</blockquote>
+<p><strong><em>proof:[[TODO]]</em></strong></p>
+<p>A related result from Arzela-Ascoli theorem is as below.</p>
+<p><strong>Lemma</strong></p>
+<blockquote>
+<p>Let <span class="math inline">\(X, Y, Z\)</span> be Banach spaces, <span class="math inline">\(X \subset Y \subset Z\)</span> and <span class="math inline">\(X\)</span> is compact in <span class="math inline">\(Y\)</span>. Suppose that <span class="math inline">\(\{u_n\} \subset C([0, T], X)\)</span> and is equicontinuous in <span class="math inline">\(C([0, T], Z).\)</span> Then <span class="math inline">\(\{u_n\}\)</span> is precompact in <span class="math inline">\(C([0, T], Y).\)</span></p>
 </blockquote>
 
     </div>
@@ -265,7 +294,7 @@ x_{k+1} = x_k  - F(x_k)^{-1}f(x_k).
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/optimization-gradient-methods-information-geometry/" rel="tag"># optimization, gradient methods, information geometry</a>
+              <a href="/tags/functional-analysis/" rel="tag"># functional analysis</a>
           </div>
 
         
@@ -274,13 +303,10 @@ x_{k+1} = x_k  - F(x_k)^{-1}f(x_k).
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/02/06/gd2/" rel="prev" title="Optimization II - Acceleration in Gradient Descent">
-      <i class="fa fa-chevron-left"></i> Optimization II - Acceleration in Gradient Descent
+    <a href="/2023/04/01/functional-analysis-2/" rel="prev" title="Functional Analysis 2 -- Bounded Linear Operator">
+      <i class="fa fa-chevron-left"></i> Functional Analysis 2 -- Bounded Linear Operator
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/02/23/lcmt/" rel="next" title="Leetcode - Math Operations">
-      Leetcode - Math Operations <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -339,7 +365,7 @@ x_{k+1} = x_k  - F(x_k)^{-1}f(x_k).
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#perspectives-on-natural-gradient-descent"><span class="nav-number">1.</span> <span class="nav-text">Perspectives on Natural Gradient Descent</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#kl-divergence"><span class="nav-number">1.1.</span> <span class="nav-text">KL-Divergence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#proximal-view-with-generalized-distance----divergence"><span class="nav-number">1.2.</span> <span class="nav-text">Proximal View with Generalized Distance -- &quot;Divergence&quot;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#whats-more"><span class="nav-number">1.3.</span> <span class="nav-text">What&#39;s More?</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#functional-analysis-3----continuous-functions"><span class="nav-number">1.</span> <span class="nav-text">Functional Analysis 3 -- Continuous Functions</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
