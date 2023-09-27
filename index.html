@@ -185,7 +185,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-04-03 00:14:39 / Modified: 00:15:27" itemprop="dateCreated datePublished" datetime="2023-04-03T00:14:39-07:00">2023-04-03</time>
+              <time title="Created: 2023-04-03 00:14:39 / Modified: 00:16:08" itemprop="dateCreated datePublished" datetime="2023-04-03T00:14:39-07:00">2023-04-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -209,78 +209,15 @@
 
       
           <h1 id="functional-analysis-3----continuous-functions">Functional Analysis 3 -- Continuous Functions</h1>
-<p><strong>Proposition 3.1:</strong></p>
-<blockquote>
-<p>Let <span class="math inline">\(E\)</span> be a metric space. Then <span class="math inline">\(C_b(E) = \{f: E \rightarrow \mathbb{K} : f \text{ is continuous and bounded}\}\)</span> is a Banach space under supremum norm <span class="math inline">\(||\cdot||.\)</span></p>
-</blockquote>
-<p><em>Observation: <span class="math inline">\(C_b(E)\)</span> is a Banach algebra with <span class="math inline">\((f\cdot g)(x) = f(x)g(x).\)</span></em></p>
-<p><strong>Theorem 3.2:</strong></p>
-<blockquote>
-<p>Let <span class="math inline">\(E \subset \mathbb{R}^d\)</span> be compact. Then <span class="math inline">\(A = \{p \mid p \text{ is a polynomial over } \mathbb{R}^d \}\)</span> is dense in <span class="math inline">\(C(E).\)</span> By definition, dense means that <span class="math inline">\(\bar{A} = C(E) \Leftrightarrow \forall f \in C(E), \exists \{p_n\} \subset A, p_n \rightarrow f\)</span> uniformly.</p>
-</blockquote>
-<p><strong>Lemma 3.3:</strong></p>
-<blockquote>
-<p>If <span class="math inline">\(A \subset C_b(E)\)</span> is a subalgebra, then <span class="math inline">\(\bar{A}\)</span> is a subalgebra.</p>
-</blockquote>
-<p><strong><em>proof:</em></strong></p>
-<p>Let <span class="math inline">\(f,g \in A\)</span>, then <span class="math inline">\(\exists \{f_n\}, \{g_n\} \subset A, s.t. f_n \rightarrow f, g_n \rightarrow g\)</span> uniformly. Then <span class="math inline">\(||f_ng_n - fg|| \le ||f_n - f|| ||g_n|| + ||g_n - g|| ||f|| \rightarrow 0 \sim n \rightarrow \infty.\)</span> <span class="math inline">\(\Box\)</span></p>
-<p><strong>Theorem 3.4:(Stone-Weierstrass)</strong></p>
-<blockquote>
-<p>Let <span class="math inline">\(E\)</span> be compact metric space. Let <span class="math inline">\(A \subset C(E; \mathbb{R})\)</span> be a subalgebra. If <span class="math inline">\(A\)</span> satisfies</p>
-<ol type="1">
-<li>separate points, i.e. <span class="math inline">\(\forall x\neq y \in E, \exists p \in A, s.t. p(x)\neq p(y).\)</span></li>
-<li>contains constant functions, i.e. <span class="math inline">\(\underset{c \in \mathbb{R}}{\cup}\{f \equiv c\} \subset A.\)</span></li>
-</ol>
-<p>then <span class="math inline">\(\bar{A} = C(E).\)</span></p>
-</blockquote>
-<p><em>Example: <span class="math inline">\(A = \{p \mid p \text{ is a polynomial over } \mathbb{R}^d \}.\)</span> <strong>Theorem 3.2</strong> can be derived directly from <strong>Theorem 3.4</strong>.</em></p>
-<p><strong><em>proof:[[TODO]]</em></strong></p>
-<p>The proof requires lattice property of functions in <span class="math inline">\(A.\)</span></p>
-<p>However, Stone-Weierstrass theorem does not apply for complex case.</p>
-<p>A counter example: Let <span class="math inline">\(K \subset \mathbb{C}\)</span> be a compact subset. Consider <span class="math inline">\(K = \{z \in \mathbb{C}\mid \frac{1}{2} \le |z| \le 1 \}.\)</span> Then <span class="math display">\[
-\int_K \frac{1}{z} dz = 2\pi i
-\]</span> but <span class="math inline">\(\int_K p dz = 0, \forall p\)</span> as polynomial. The problem here is that <em>area specified by <span class="math inline">\(K\)</span> is not a simply connected space.</em></p>
-<p>With simply connected condition added, we get the following theorem from <strong>Theorem 3.2</strong>.</p>
-<p><strong>Theorem 3.5: Runge's Approximation Theorem</strong></p>
-<blockquote>
-<p>Let <span class="math inline">\(K \subset \mathbb{C}\)</span> be compact and simply-connected. Then <span class="math inline">\(\forall f \in C^0(K, \mathbb{C}), \exists \{p_n\} s.t. p_n \rightarrow f\)</span> uniformly on <span class="math inline">\(K.\)</span></p>
-</blockquote>
-<p>Similarly, Stone-Weierstrass theorem can also be expanded to the following theorem.</p>
-<p><strong>Theorem 3.6</strong></p>
-<blockquote>
-<p>Let <span class="math inline">\(E\)</span> be a compact metric space. Let <span class="math inline">\(A\)</span> be a subalgebra. <span class="math inline">\(A \subset C(E, \mathbb{C})\)</span> which separates points and contains constant functions. Assume that <span class="math inline">\(A\)</span> is closed under complex conjugation. Then <span class="math inline">\(A\)</span> is dense in <span class="math inline">\(C(E,\mathbb{C}).\)</span></p>
-</blockquote>
-<p><em>Observation: here complex conjugation is not a holomorphic function.</em></p>
-<p>Example: Let <span class="math inline">\(E = \mathbb{S}^1 = \{z \in \mathbb{C} \mid |z| = 1\}, z = e^{i\theta}, \theta \in [0, 2\pi].\)</span> Let <span class="math inline">\(A\)</span> be the algebra of trigonometric polynomials. <span class="math inline">\(A = \{\sum_{n=-N}^N c_ne^{in\theta} \mid c_n \in \mathbb{C}, N \in \mathbb{N}\} = span\{e_n: n\in \mathbb{Z}\}.\)</span> Then by Theorem 3.6, we have that <span class="math inline">\(A\)</span> is dense in <span class="math inline">\(C(E, \mathbb{C}).\)</span></p>
-<p><strong>Corollary 3.7</strong></p>
-<blockquote>
-<p>Any <span class="math inline">\(2\pi\)</span>-periodic function from <span class="math inline">\(\mathbb{R} \rightarrow \mathbb{R}\)</span> can be uniformly approximated by real trigonometric polynomials <span class="math inline">\(p(x), s.t. p(x) = \sum_{k=0}^N \alpha_k \cos(kx)+\beta_k\sin(kx).\)</span></p>
-</blockquote>
-<p>The above theorem is commonly seen in "Harmonic Analysis" field.</p>
-<p>As we know that in finite dimension space, bounded + closed = compact. But this is not true when we go to infinite dimensional space. One problem is that without the limit of dimension, in infinite dimensional space, the function change may be tooooo rapid!</p>
-<p><strong>Definition: Equicontinuous</strong></p>
-<blockquote>
-<p>Let <span class="math inline">\(E\)</span> be a metric space. <span class="math inline">\(\tilde{f} \subset C(E)\)</span> is equicontinuous iff <span class="math inline">\(\forall \epsilon &gt; 0, \forall x \in E, \exists \delta &gt; 0, s.t. \underset{f \in \tilde{f}}{\sup} |f(x) - f(y)| \le \epsilon\)</span> whenever <span class="math inline">\(d(x, t) \le \delta.\)</span></p>
-</blockquote>
-<p>Remark: here the choice of <span class="math inline">\(\delta\)</span> is independent of <span class="math inline">\(f.\)</span></p>
-<p><strong>Lemma:</strong> If <span class="math inline">\(E\)</span> is compact, we can choose <span class="math inline">\(\delta\)</span> independent of <span class="math inline">\(x.\)</span></p>
-<p><strong><em>proof:[[TODO]]</em></strong></p>
-<p><strong>Theorem: Arzela–Ascoli</strong></p>
-<blockquote>
-<p>Let <span class="math inline">\(E\)</span> be a compact metric space, <span class="math inline">\(\tilde{f} \subset C(E)\)</span>. TFAE:</p>
-<ol type="1">
-<li><p><span class="math inline">\(\tilde{f}\)</span> is equicontinuous and <span class="math inline">\(\underset{f \in \tilde{f}}{\sup} ||f||_{\infty} &lt; \infty.\)</span></p></li>
-<li><p><span class="math inline">\(\tilde{f}\)</span> is precompact(<span class="math inline">\(\bar{\tilde{f}}\)</span> is compact).</p></li>
-<li><p><span class="math inline">\(\forall \{f_n\} \subset \tilde{f}, \exists \text{subsequences} \{f_{n_j}\}\)</span> that converges (uniformly) in <span class="math inline">\(C(E).\)</span></p></li>
-</ol>
-</blockquote>
-<p><strong><em>proof:[[TODO]]</em></strong></p>
-<p>A related result from Arzela-Ascoli theorem is as below.</p>
-<p><strong>Lemma</strong></p>
-<blockquote>
-<p>Let <span class="math inline">\(X, Y, Z\)</span> be Banach spaces, <span class="math inline">\(X \subset Y \subset Z\)</span> and <span class="math inline">\(X\)</span> is compact in <span class="math inline">\(Y\)</span>. Suppose that <span class="math inline">\(\{u_n\} \subset C([0, T], X)\)</span> and is equicontinuous in <span class="math inline">\(C([0, T], Z).\)</span> Then <span class="math inline">\(\{u_n\}\)</span> is precompact in <span class="math inline">\(C([0, T], Y).\)</span></p>
-</blockquote>
-
+<p>This is course note from Siran Li-Shanghai Jiao Tong University.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/04/03/functional-analysis-3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
