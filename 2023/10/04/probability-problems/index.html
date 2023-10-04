@@ -28,7 +28,7 @@
 <meta property="og:description" content="Solve all Coin Flipping Problems in One Paper This paper aims at solving all coin flipping problems with probability.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-04T22:28:31.000Z">
-<meta property="article:modified_time" content="2023-10-04T22:32:52.087Z">
+<meta property="article:modified_time" content="2023-10-04T22:39:59.497Z">
 <meta property="article:author" content="Yilin Zhang">
 <meta property="article:tag" content="probability theory">
 <meta name="twitter:card" content="summary">
@@ -190,7 +190,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-10-04 15:28:31 / Modified: 15:32:52" itemprop="dateCreated datePublished" datetime="2023-10-04T15:28:31-07:00">2023-10-04</time>
+              <time title="Created: 2023-10-04 15:28:31 / Modified: 15:39:59" itemprop="dateCreated datePublished" datetime="2023-10-04T15:28:31-07:00">2023-10-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,7 +237,9 @@ P(X &gt; Y) = P(X &gt; N/2)
 = \sum_{n = [N/2]+1}^N C_N^np^n(1-p)^{N-n}
 \]</span> When <span class="math inline">\(p = \frac{1}{2},\)</span> we have the symmetry property of binary coefficients. Therefore, when <span class="math inline">\(N = 2K-1,\)</span> we have <span class="math inline">\(P(X&gt;Y) = \frac{1}{2}.\)</span> When <span class="math inline">\(N = 2K,\)</span> we have <span class="math display">\[
 P(X &gt; Y) = [1 - P(X = K)]/2 = \frac{1}{2} - \frac{C_{2K}^K}{2^{2K+1}}.
-\]</span> ### Q3 Here we set up <span class="math inline">\(M+1\)</span> variables. <span class="math inline">\(s_i, i = 1,...,M.\)</span> Here <span class="math inline">\(s_0\)</span> is starting case or last flip is T. <span class="math inline">\(s_1\)</span> is last flip is H. <span class="math inline">\(s_2\)</span> is last two flips are H. ... <span class="math inline">\(s_{M-1}\)</span> is last <span class="math inline">\(M-1\)</span> flips are H. <span class="math inline">\(s_{M}\)</span> is last <span class="math inline">\(M\)</span> flips are H.</p>
+\]</span></p>
+<h3 id="q3">Q3</h3>
+<p>Here we set up <span class="math inline">\(M+1\)</span> variables. <span class="math inline">\(s_i, i = 1,...,M.\)</span> Here <span class="math inline">\(s_0\)</span> is starting case or last flip is T. <span class="math inline">\(s_1\)</span> is last flip is H. <span class="math inline">\(s_2\)</span> is last two flips are H. ... <span class="math inline">\(s_{M-1}\)</span> is last <span class="math inline">\(M-1\)</span> flips are H. <span class="math inline">\(s_{M}\)</span> is last <span class="math inline">\(M\)</span> flips are H.</p>
 <p>For each <span class="math inline">\(s_i, i \neq M,\)</span> we have <span class="math inline">\(\frac{1}{2}\)</span> probability to reach <span class="math inline">\(s_{i+1}\)</span> and <span class="math inline">\(\frac{1}{2}\)</span> probability to reach <span class="math inline">\(s_{0}.\)</span> For <span class="math inline">\(s_M,\)</span> it has 1 probability reaching itself. The initial state is <span class="math inline">\(s_0.\)</span> We can construct the probability transfer matrix as <span class="math display">\[
 a_{n+1} = Aa_n.
 \]</span> Here <span class="math inline">\(a_0 = [1, 0, ..., 0]^T \in \mathbb{R}^{M+1}, A \in \mathbb{R}^{(M+1) \times (M+1)}.\)</span> <span class="math display">\[
@@ -294,8 +296,6 @@ b_{N+M} = b_{N+M-1} + ... +b_{N}
 <p>cite:</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://bbs.emath.ac.cn/thread-667-1-1.html">抛硬币出现连续正面的概率</a></p>
-</blockquote>
-<blockquote>
 <p><a target="_blank" rel="noopener" href="https://mathworld.wolfram.com/CoinTossing.html">Coin Toss</a></p>
 </blockquote>
 <h2 id="until-series">Until Series</h2>
@@ -322,7 +322,9 @@ E[X] = \sum_{k=1}^{\infty} kP(X = k) = \sum_{k=1}^{\infty} k(1-p)^{k-1}p
 P(X = k) = C_{k-1}^{m-1}p^{m-1}(1-p)^{k-m}p = C_{k-1}^{m-1}p^m(1-p)^{k-m}.
 \]</span> <span class="math display">\[
 E[X] = \sum_{k = m}^{\infty} kP(X = k) = m(1-p)p^{-1}.
-\]</span> ### Q3 A naive approach to solve the expectation. Denote the expectation as <span class="math inline">\(E.\)</span> Then we have <span class="math display">\[
+\]</span></p>
+<h3 id="q3-1">Q3</h3>
+<p>A naive approach to solve the expectation. Denote the expectation as <span class="math inline">\(E.\)</span> Then we have <span class="math display">\[
 E = \frac{1}{2}(E+1) + \frac{1}{4}(E+2) + ... \frac{1}{2^m}(E+m)+\frac{1}{2^m}m
 \]</span> Solve it we get <span class="math inline">\(E = 2^{m+1}-2.\)</span></p>
 <p>Generating Function Approach(for special case when <span class="math inline">\(m = 5\)</span>): Here we have the following basic cases with their probability: T -- 1/2 -- 1/2 <span class="math inline">\(x\)</span> HT -- 1/4 -- 1/4 <span class="math inline">\(x^2\)</span> HHT -- 1/8 -- 1/8 <span class="math inline">\(x^3\)</span> HHHT -- 1/16 -- 1/16 <span class="math inline">\(x^4\)</span> HHHHT -- 1/32 -- 1/32 <span class="math inline">\(x^5\)</span> HHHHH -- 1/32 -- 1/32 <span class="math inline">\(x^5\)</span></p>
@@ -330,7 +332,11 @@ E = \frac{1}{2}(E+1) + \frac{1}{4}(E+2) + ... \frac{1}{2^m}(E+m)+\frac{1}{2^m}m
 f(x) = \sum_{k = 0}^{\infty} (\frac{1}{2}x + \frac{1}{4}x^2 + \frac{1}{8}x^3 + \frac{1}{16}x^4 + \frac{1}{32}x^5)^k\frac{1}{32}x^5
 \]</span> <span class="math display">\[
 = \frac{\frac{1}{32} x^5}{1 - (\frac{1}{2}x + \frac{1}{4}x^2 + \frac{1}{8}x^3 + \frac{1}{16}x^4 + \frac{1}{32}x^5)} = \frac{\frac{1}{32}x^5 - \frac{1}{64}x^6}{1-x+\frac{1}{64}x^6}.
-\]</span> Then the expectation is <span class="math inline">\(f&#39;(1) = 62.\)</span> cite: <a target="_blank" rel="noopener" href="https://math.stackexchange.com/questions/364038/expected-number-of-coin-tosses-to-get-five-consecutive-heads?rq=1">Expected Number of Coin Tosses to Get Five Consecutive Heads</a></p>
+\]</span> Then the expectation is <span class="math inline">\(f&#39;(1) = 62.\)</span></p>
+<p>cite:</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://math.stackexchange.com/questions/364038/expected-number-of-coin-tosses-to-get-five-consecutive-heads?rq=1">Expected Number of Coin Tosses to Get Five Consecutive Heads</a></p>
+</blockquote>
 <h3 id="q4">Q4:</h3>
 <p>Naive approach: Let <span class="math inline">\(E\)</span> be the expectation of having HTH. <span class="math display">\[
 E = \frac{1}{2}(E+1) + \frac{1}{2}(\frac{1}{2}(E) + \frac{1}{2}(\frac{1}{2}3 + \frac{1}{2}(E+3)))
@@ -363,7 +369,11 @@ E_1 = \sum_{k = 1}^{n} f_k \frac{1}{p_1p_2...p_k} - \sum_{k = 1}^{n} g_k \frac{1
 \]</span> <span class="math display">\[
 E_2 = \sum_{k = 1}^{n} h_k \frac{1}{p_1p_2...p_k} - \sum_{k = 1}^{n} r_k \frac{1}{p_1p_2...p_k}.
 \]</span></p>
-<p><span class="math inline">\(f_i = 1\)</span> when pattern 1 first <span class="math inline">\(i\)</span> characters are the same as pattern 1 last <span class="math inline">\(i\)</span> characters. <span class="math inline">\(g_k = 1\)</span> when pattern 2 first <span class="math inline">\(k\)</span> characters are the same as pattern 1 last <span class="math inline">\(k\)</span> characters. <span class="math inline">\(h_i = 1\)</span> when pattern 2 first <span class="math inline">\(i\)</span> characters are the same as pattern 2 last <span class="math inline">\(i\)</span> characters. <span class="math inline">\(r_i = 1\)</span> when pattern 1 first <span class="math inline">\(i\)</span> characters are the same as pattern 2 last <span class="math inline">\(i\)</span> characters. <span class="math inline">\(p_i\)</span> is the probability of <span class="math inline">\(i\)</span>-th character happens.</p>
+<p><span class="math inline">\(f_i = 1\)</span> when pattern 1 first <span class="math inline">\(i\)</span> characters are the same as pattern 1 last <span class="math inline">\(i\)</span> characters.</p>
+<p><span class="math inline">\(g_k = 1\)</span> when pattern 2 first <span class="math inline">\(k\)</span> characters are the same as pattern 1 last <span class="math inline">\(k\)</span> characters.</p>
+<p><span class="math inline">\(h_i = 1\)</span> when pattern 2 first <span class="math inline">\(i\)</span> characters are the same as pattern 2 last <span class="math inline">\(i\)</span> characters.</p>
+<p><span class="math inline">\(r_i = 1\)</span> when pattern 1 first <span class="math inline">\(i\)</span> characters are the same as pattern 2 last <span class="math inline">\(i\)</span> characters.</p>
+<p><span class="math inline">\(p_i\)</span> is the probability of <span class="math inline">\(i\)</span>-th character happens.</p>
 <p>For example: Pattern 1: HTH, Pattern 2: THH</p>
 <p><span class="math inline">\(k =1,\)</span> <span class="math inline">\(f_1 = 1, g_1 = 0, h_1 = 0, r_1 = 1, E_1 = 2, E_2 = -2.\)</span></p>
 <p><span class="math inline">\(k=2, f_2 = 0, g_2 = 1, h_2 = 0, r_2 = 0, E_1 = -2, E_2 = -2.\)</span></p>
@@ -456,7 +466,7 @@ E_2 = \sum_{k = 1}^{n} h_k \frac{1}{p_1p_2...p_k} - \sum_{k = 1}^{n} r_k \frac{1
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#solve-all-coin-flipping-problems-in-one-paper"><span class="nav-number">1.</span> <span class="nav-text">Solve all Coin Flipping Problems in One Paper</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#finite-trials-problems"><span class="nav-number">1.1.</span> <span class="nav-text">Finite Trials Problems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#q1"><span class="nav-number">1.1.1.</span> <span class="nav-text">Q1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q2"><span class="nav-number">1.1.2.</span> <span class="nav-text">Q2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#until-series"><span class="nav-number">1.2.</span> <span class="nav-text">Until Series</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#q1-geometric-distribution"><span class="nav-number">1.2.1.</span> <span class="nav-text">Q1 Geometric Distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q2-negative-binomial-distribution"><span class="nav-number">1.2.2.</span> <span class="nav-text">Q2 Negative Binomial Distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q4"><span class="nav-number">1.2.3.</span> <span class="nav-text">Q4:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gambling-couples"><span class="nav-number">1.3.</span> <span class="nav-text">Gambling Couples</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#q1-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Q1</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#solve-all-coin-flipping-problems-in-one-paper"><span class="nav-number">1.</span> <span class="nav-text">Solve all Coin Flipping Problems in One Paper</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#finite-trials-problems"><span class="nav-number">1.1.</span> <span class="nav-text">Finite Trials Problems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#q1"><span class="nav-number">1.1.1.</span> <span class="nav-text">Q1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q2"><span class="nav-number">1.1.2.</span> <span class="nav-text">Q2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q3"><span class="nav-number">1.1.3.</span> <span class="nav-text">Q3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#until-series"><span class="nav-number">1.2.</span> <span class="nav-text">Until Series</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#q1-geometric-distribution"><span class="nav-number">1.2.1.</span> <span class="nav-text">Q1 Geometric Distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q2-negative-binomial-distribution"><span class="nav-number">1.2.2.</span> <span class="nav-text">Q2 Negative Binomial Distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q3-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">Q3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q4"><span class="nav-number">1.2.4.</span> <span class="nav-text">Q4:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gambling-couples"><span class="nav-number">1.3.</span> <span class="nav-text">Gambling Couples</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#q1-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Q1</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
