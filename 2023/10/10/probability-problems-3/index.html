@@ -20,17 +20,20 @@
     var CONFIG = {"hostname":"happylinzy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Tags">
-<meta property="og:url" content="https://happylinzy.github.io/tags/index.html">
+  <meta name="description" content="Expectation of Stopping Time of Martingale Problems This paper aims at solving &quot;the expected time until a given pattern occurs&quot; problems.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Expectation of Stopping Time of Martingale Problems">
+<meta property="og:url" content="https://happylinzy.github.io/2023/10/10/probability-problems-3/index.html">
 <meta property="og:site_name" content="Yilin Blog">
+<meta property="og:description" content="Expectation of Stopping Time of Martingale Problems This paper aims at solving &quot;the expected time until a given pattern occurs&quot; problems.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-01-31T06:52:20.000Z">
-<meta property="article:modified_time" content="2023-01-31T06:53:37.776Z">
+<meta property="article:published_time" content="2023-10-11T01:32:26.000Z">
+<meta property="article:modified_time" content="2023-10-11T01:42:08.982Z">
 <meta property="article:author" content="Yilin Zhang">
+<meta property="article:tag" content="probability theory">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://happylinzy.github.io/tags/">
+<link rel="canonical" href="https://happylinzy.github.io/2023/10/10/probability-problems-3/">
 
 
 <script id="page-configurations">
@@ -38,13 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Tags | Yilin Blog
-</title>
+  <title>Expectation of Stopping Time of Martingale Problems | Yilin Blog</title>
   
 
 
@@ -156,51 +158,112 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="en">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://happylinzy.github.io/2023/10/10/probability-problems-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yilin Zhang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yilin Blog">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Expectation of Stopping Time of Martingale Problems
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">Tags
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
 
-<div class="post-meta">
+              <time title="Created: 2023-10-10 18:32:26 / Modified: 18:42:08" itemprop="dateCreated datePublished" datetime="2023-10-10T18:32:26-07:00">2023-10-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/math/" itemprop="url" rel="index"><span itemprop="name">math</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="expectation-of-stopping-time-of-martingale-problems">Expectation of Stopping Time of Martingale Problems</h1>
+<p>This paper aims at solving "the expected time until a given pattern occurs" problems.</p>
+<span id="more"></span>
+<p><strong>Problems:</strong></p>
+<blockquote>
+<ol type="1">
+<li>An ant starts at <span class="math inline">\(x=0\)</span> has probability <span class="math inline">\(p\)</span> moving forward and <span class="math inline">\(1-p\)</span> moving backward. Find expected number of steps until the ant reaches position <span class="math inline">\(x = i, i &gt; 0.\)</span></li>
+<li>An ant starts at <span class="math inline">\(x=0\)</span> has probability <span class="math inline">\(p\)</span> moving forward and <span class="math inline">\(1-p\)</span> moving backward. Find expected number of steps until the ant reaches position <span class="math inline">\(x = -a\)</span> or <span class="math inline">\(x = b.\)</span></li>
+<li>Three players <span class="math inline">\(X, Y, Z\)</span> holding <span class="math inline">\(x, y, z\)</span> coins separately. Each time, two players are chosen randomly and the first chosen gives 1 coin to the second chosen. When someone has no coin, the player is kicked off and the other two player continues. Find the expected number of rounds until one player has all <span class="math inline">\(x+y+z\)</span> coins.</li>
+<li>In a party we have <span class="math inline">\(n\)</span> players each having a hat. Their hats are mixed together. Each round, each person selects one hat randomly. If one gets his own hat, he leaves. Otherwise, he stays for next round. Find the expected number of rounds until everyone has his own hat.</li>
+<li><span class="math inline">\(n\)</span> players are passing balls to each other. The <span class="math inline">\(i\)</span>-th person has <span class="math inline">\(a_i\)</span> balls. Every round, a ball is randomly selected. Suppose that <span class="math inline">\(i\)</span>-th player holds this ball. Then he randomly passes the ball to another player. Find the expected number of rounds until one player holds all balls. <a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1349/D">CodeForces 1349D. Slime and Biscuits</a></li>
+<li>There are many balls with <span class="math inline">\(n\)</span> different color. There are <span class="math inline">\(a_i\)</span> number of balls with color <span class="math inline">\(i.\)</span> Every round, an ordered pair of balls <span class="math inline">\(A, B\)</span> is selected randomly. Then ball <span class="math inline">\(B\)</span> is painted with color of ball <span class="math inline">\(A.\)</span> Find the expected number of rounds until all balls are in the same color. <a target="_blank" rel="noopener" href="https://codeforces.com/contest/850/problem/F">CodeForces 850F. Rainbow Balls</a></li>
+<li><span class="math inline">\(n\)</span> people play a leader game. Initially, nobody is leaded by anybody. Every round, an order pair of people not leaded by others <span class="math inline">\(A, B\)</span> is selected randomly. Then <span class="math inline">\(x\)</span> is leaded by <span class="math inline">\(y.\)</span> Find the expected number of rounds until there is only one person not leaded by others. In another sense, there exists someone leads everyone else.</li>
+</ol>
+</blockquote>
+<p><strong>TODO:</strong> Add solutions.</p>
+<p>cite:</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/TinyWong/p/12887591.html">一类概率期望问题的杀器：势函数和鞅的停时定理</a></p>
+<p><a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1bNsgMB_o8Vw1NenXsGBq39HEB3HDo6-X/view">鞅与一类关于停时的概率与期望问题</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.math.uh.edu/~bgb/Courses/Math6397/SP_Hmk2_Sol_2008.pdf">Stochastic Processes - Spring 2008, University of Houston</a></p>
+<p><em>Stochastic Process, Second Edition, Sheldon M. Ross</em></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/probability-theory/" rel="tag"># probability theory</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/10/stochastic-process-3/" rel="prev" title="Stochastic Process 4 -- Martingale">
+      <i class="fa fa-chevron-left"></i> Stochastic Process 4 -- Martingale
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              9 tags in total
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Programing-Language/" style="font-size: 16.5px; color: #9d9d9d">Programing Language</a> <a href="/tags/data-science-cooking/" style="font-size: 12px; color: #ccc">data science, cooking</a> <a href="/tags/dynamic-programming/" style="font-size: 12px; color: #ccc">dynamic programming</a> <a href="/tags/functional-analysis/" style="font-size: 30px; color: #111">functional analysis</a> <a href="/tags/math-operation/" style="font-size: 12px; color: #ccc">math operation</a> <a href="/tags/optimization/" style="font-size: 21px; color: #6f6f6f">optimization</a> <a href="/tags/probability-theory/" style="font-size: 21px; color: #6f6f6f">probability theory</a> <a href="/tags/real-analysis/" style="font-size: 25.5px; color: #404040">real analysis</a> <a href="/tags/stochastic-process/" style="font-size: 21px; color: #6f6f6f">stochastic process</a>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -251,6 +314,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#expectation-of-stopping-time-of-martingale-problems"><span class="nav-number">1.</span> <span class="nav-text">Expectation of Stopping Time of Martingale Problems</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -380,6 +444,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

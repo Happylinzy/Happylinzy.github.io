@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"happylinzy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Functional Analysis 4 -- Frechet Space This is course note from Siran Li-Shanghai Jiao Tong University.">
+  <meta name="description" content="Stochastic Process 4 -- Martingale Definition and Theorem in this chapter mainly comes from Stochastic Processes, Second Edition, Sheldon M. Ross">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Functional Analysis 4 -- Frechet Space">
-<meta property="og:url" content="https://happylinzy.github.io/2023/09/26/functional-analysis-4/index.html">
+<meta property="og:title" content="Stochastic Process 4 -- Martingale">
+<meta property="og:url" content="https://happylinzy.github.io/2023/10/10/stochastic-process-3/index.html">
 <meta property="og:site_name" content="Yilin Blog">
-<meta property="og:description" content="Functional Analysis 4 -- Frechet Space This is course note from Siran Li-Shanghai Jiao Tong University.">
+<meta property="og:description" content="Stochastic Process 4 -- Martingale Definition and Theorem in this chapter mainly comes from Stochastic Processes, Second Edition, Sheldon M. Ross">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-27T04:07:39.000Z">
-<meta property="article:modified_time" content="2023-09-27T04:07:40.231Z">
+<meta property="article:published_time" content="2023-10-11T01:30:18.000Z">
+<meta property="article:modified_time" content="2023-10-11T01:40:33.352Z">
 <meta property="article:author" content="Yilin Zhang">
-<meta property="article:tag" content="functional analysis">
+<meta property="article:tag" content="stochastic process">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://happylinzy.github.io/2023/09/26/functional-analysis-4/">
+<link rel="canonical" href="https://happylinzy.github.io/2023/10/10/stochastic-process-3/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Functional Analysis 4 -- Frechet Space | Yilin Blog</title>
+  <title>Stochastic Process 4 -- Martingale | Yilin Blog</title>
   
 
 
@@ -166,7 +166,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://happylinzy.github.io/2023/09/26/functional-analysis-4/">
+    <link itemprop="mainEntityOfPage" href="https://happylinzy.github.io/2023/10/10/stochastic-process-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,7 +179,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Functional Analysis 4 -- Frechet Space
+          Stochastic Process 4 -- Martingale
         </h1>
 
         <div class="post-meta">
@@ -190,7 +190,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-09-26 21:07:39 / Modified: 21:07:40" itemprop="dateCreated datePublished" datetime="2023-09-26T21:07:39-07:00">2023-09-26</time>
+              <time title="Created: 2023-10-10 18:30:18 / Modified: 18:40:33" itemprop="dateCreated datePublished" datetime="2023-10-10T18:30:18-07:00">2023-10-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -213,41 +213,65 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="functional-analysis-4----frechet-space">Functional Analysis 4 -- Frechet Space</h1>
-<p>This is course note from Siran Li-Shanghai Jiao Tong University. <span id="more"></span></p>
-<p><strong>Let <span class="math inline">\(\Omega\)</span> be an open set. One problem is how can we understand the topology of <span class="math inline">\(C(\Omega).\)</span></strong></p>
-<p>Example:</p>
+        <h1 id="stochastic-process-4----martingale">Stochastic Process 4 -- Martingale</h1>
+<p>Definition and Theorem in this chapter mainly comes from <em>Stochastic Processes, Second Edition, Sheldon M. Ross</em></p>
+<span id="more"></span>
+<p><strong>Definition:</strong></p>
 <blockquote>
-<p>Let <span class="math inline">\(\Omega = ]0,1[\)</span>, then there are a lot of <span class="math inline">\(f \in C(]0,1[) \ s.t. \ \underset{x \in ]0,1[}{\sup} |f(x)| = \infty.\)</span> The problem here is the "open" set.</p>
-<p>Now we consider instead for every <span class="math inline">\(0&lt;a&lt;b&lt;1\)</span>, the "norm" <span class="math inline">\(P_{a,b}(f) := \underset{x \in [a, b]}{\sup} |f(x)|.\)</span> However, this is not a norm on <span class="math inline">\(C(]0,1[)\)</span> because <span class="math inline">\(\forall [a,b] \subset ]0,1[, \exists f \in C(]0,1[)\backslash\{0\}, \ s.t. f(x) = 0 \forall x \in [a,b].\)</span></p>
-<p>One can check that <span class="math inline">\(\forall 0&lt;a&lt;b&lt;1,\)</span> the "norm" <span class="math inline">\(P_{a,b}: C(]0,1[) \rightarrow \mathbb{R}^+\)</span> satisfies all requirements for norm except for <span class="math inline">\(P_{a,b}(f) = 0 \Rightarrow f = 0.\)</span> We call this kind of norm as seminorm.</p>
+<p>A stochastic process <span class="math inline">\(\{Z_n\}_{n\ge 1}\)</span> is said to be a martingale process if <span class="math display">\[
+E[|Z_n|] &lt; \infty, \forall n
+\]</span> and <span class="math display">\[
+E[Z_{n+1} \mid Z_1, Z_2, ..., Z_n] = Z_n.
+\]</span> Martingale can interpret fair game in this way. If we consider <span class="math inline">\(Z_n\)</span> as fortune after <span class="math inline">\(n\)</span>-th game, then we know that the expected fortune after <span class="math inline">\(n+1\)</span>-th game is equal to his fortune after <span class="math inline">\(n\)</span>-th game.</p>
 </blockquote>
-<p><strong>Lemma 4.1</strong></p>
+<p>From definition we immediately get that <span class="math display">\[
+E[Z_n] = E[Z_1], \forall n.
+\]</span></p>
+<p><strong>Definition(Random Time and Stopping Time):</strong></p>
 <blockquote>
-<p>Let <span class="math inline">\((X, || \cdot ||_o)\)</span> be as seminorm vector space. Let <span class="math inline">\(N = \{x \in X, ||x|| = 0\}.\)</span> Then <span class="math inline">\(N\)</span> is a vector subspace. Then <span class="math inline">\((X\backslash N, || \cdot ||)\)</span> defined by <span class="math inline">\(|| x+N|| := ||\tilde{X}||_o, \forall \tilde{x} \in x+N\)</span> is a NVS.</p>
+<p>The positive integer-valued, possibly infinite, random variable <span class="math inline">\(N\)</span> is said to be a random time for the process <span class="math inline">\(\{Z_n, n \ge 1\}\)</span> if event <span class="math inline">\(\{N = n\}\)</span> is determined by random variables <span class="math inline">\(Z_1, ..., Z_n.\)</span></p>
+<p>If further <span class="math inline">\(P(N &lt; \infty) = 1,\)</span> then the random variable <span class="math inline">\(N\)</span> is said to be a stopping time.</p>
 </blockquote>
-<p>The idea here is that we quotient the degenerate part of seminorm vector space to get a norm vector space.</p>
-<p>Remark: It is not enough to only consider one seminorm to describe the properties of <span class="math inline">\(C(]0,1[).\)</span></p>
-<p><strong>Definition: Separating Family of Seminorm [[TODO]]</strong></p>
+<p><strong>Definition(Stopped Process):</strong></p>
 <blockquote>
-<p>For <span class="math inline">\(C(]0,1[),\)</span> consider a family of seminorm <span class="math inline">\(\{P_{a,b}\}_{0&lt;a&lt;b&lt;1, (a,b) \in \mathbb{Q}^2}.\)</span> Then, if <span class="math inline">\(\forall f \in C(]0,1[)\backslash\{0\}, \exists 0&lt;a&lt;b&lt;1, s.t. P_{a,b}(f) \neq 0,\)</span> we say the family of seminorm is seperating.</p>
+<p>Let <span class="math inline">\(N\)</span> be a random time for the process <span class="math inline">\(\{Z_n, n \ge 1\}\)</span> and let <span class="math display">\[
+\bar{Z_n} = \left\{
+\begin{array}{cc}
+Z_n &amp; \text{if} \quad n \le N \\
+Z_N &amp; \text{if} \quad n &gt; N
+\end{array}\right.
+\]</span><span class="math inline">\(\{\bar{Z_n}, n \ge 1\}\)</span> is called a stopped process.</p>
 </blockquote>
-<p>Note: Since the rational number is dense in <span class="math inline">\(\mathbb{R},\)</span> we only need to consider <span class="math inline">\(a, b \in \mathbb{Q}.\)</span> Here <span class="math inline">\((a,b)\)</span> represents a pair of number.</p>
-<p><strong>Proposition 4.2</strong></p>
+<p><strong>Proposition:</strong> If <span class="math inline">\(\{Z_n\}\)</span> is a martingale, then so is <span class="math inline">\(\{\bar{Z_n}\}.\)</span></p>
+<p><strong>Theorem(Optional Stopping Theorem):</strong></p>
 <blockquote>
-<p>Let <span class="math inline">\(X\)</span> be a VS with a countable family <span class="math inline">\(\{p_n\}\)</span> of separating seminorms. Then <span class="math display">\[ d(x,y) = \sum_{n=1}^{\infty} \frac{p_n(x,y)}{1+p_n(x,y)}\]</span> is a metric.</p>
+<p>Let <span class="math inline">\(\{Z_n, n \ge 1\}\)</span> be a martingale and <span class="math inline">\(N\)</span> be a stopping time. If either (i) <span class="math inline">\(\bar{Z_n}\)</span> is uniformly bounded, or (ii) <span class="math inline">\(N\)</span> is bounded, or (iii) <span class="math inline">\(E[N] &lt; \infty,\)</span> and there is an <span class="math inline">\(M &lt; \infty\)</span> such that <span class="math display">\[
+E[|Z_{n+1} - Z_n| Z_1,...,Z_n] &lt; M.
+\]</span>then <span class="math inline">\(E[\bar{Z_n}] \rightarrow E[Z_N]\)</span> as <span class="math inline">\(n \rightarrow \infty.\)</span> Thus, <span class="math display">\[
+E[Z_N] = E[Z_1].
+\]</span></p>
 </blockquote>
-<p><strong>Definition: Frechet Space</strong></p>
+<p><strong>What does this theorem tell us?</strong></p>
+<p>In a fair game, if a gambler uses a stopping time to decide when to quit, then his expected final fortune is equal to his expected initial fortune. For application, please refer to [[Expectation of Stopping Time of Martingale Problems]].</p>
+<p><strong>Definition:</strong></p>
 <blockquote>
-<p>A complete metric space <span class="math inline">\(X\)</span> with metric generated by a countable family of separating seminorms is a Frechet space.</p>
+<p>A stochastic process <span class="math inline">\(\{Z_n\}_{n\ge 1}\)</span> having <span class="math inline">\(E[|Z_n|] &lt; \infty, \forall n\)</span> is said to be a submartingale process if <span class="math display">\[
+E[Z_{n+1} \mid Z_1, Z_2, ..., Z_n] \ge Z_n,
+\]</span>is said to be a supermartingale if <span class="math display">\[
+E[Z_{n+1} \mid Z_1, Z_2, ..., Z_n] \le Z_n.
+\]</span></p>
 </blockquote>
-<p>Examples:</p>
-<ol type="1">
-<li><p><span class="math inline">\(C(]0,1[)\)</span> is a Frechet space.</p></li>
-<li><p><span class="math inline">\(C(\Omega)\)</span> is a Frechet space, <span class="math inline">\(\forall \Omega \subset \mathbb{R}^d, \Omega\)</span> is open.</p></li>
-</ol>
-<p>Note: Actually, one could construct a group of compact exhaustion <span class="math inline">\(K_j := \{x \in \mathbb{R}^d \mid |x| \le 100j, dist(x, \partial \Omega) \le \frac{1}{j}\}.\)</span> That means we can exhaust an open set from inside using compact set.</p>
-<p>Then it is clear to say that {Banach Space} is not a subset of {Frechet Space}.</p>
+<p>From definition we immediately have for submartingale, <span class="math display">\[
+E[Z_{n+1}] \ge E[Z_n],
+\]</span>and for supermartingale, <span class="math display">\[
+E[Z_{n+1}] \le E[Z_n].
+\]</span></p>
+<p><strong>Theorem(Martingale Convergence Theorem):</strong></p>
+<blockquote>
+<p>If <span class="math inline">\(\{Z_n\}_{n\ge 1}\)</span> is a martingale such that for some <span class="math inline">\(M &lt; \infty,\)</span> <span class="math display">\[
+E[|Z_n|] \le M, \forall n
+\]</span> then, with probability 1, <span class="math inline">\(\lim_{n \rightarrow \infty} Z_n\)</span> exists and is finite.</p>
+</blockquote>
 
     </div>
 
@@ -257,7 +281,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/functional-analysis/" rel="tag"># functional analysis</a>
+              <a href="/tags/stochastic-process/" rel="tag"># stochastic process</a>
           </div>
 
         
@@ -266,12 +290,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/04/03/functional-analysis-3/" rel="prev" title="Functional Analysis 3 -- Continuous Functions">
-      <i class="fa fa-chevron-left"></i> Functional Analysis 3 -- Continuous Functions
+    <a href="/2023/10/08/probability-problems-2/" rel="prev" title="Random Walk Problems">
+      <i class="fa fa-chevron-left"></i> Random Walk Problems
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/09/26/functional-analysis-5/" rel="next" title="Functional Analysis 5 -- Hahn-Banach Theorem Extension">
-      Functional Analysis 5 -- Hahn-Banach Theorem Extension <i class="fa fa-chevron-right"></i>
+    <a href="/2023/10/10/probability-problems-3/" rel="next" title="Expectation of Stopping Time of Martingale Problems">
+      Expectation of Stopping Time of Martingale Problems <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -331,7 +355,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#functional-analysis-4----frechet-space"><span class="nav-number">1.</span> <span class="nav-text">Functional Analysis 4 -- Frechet Space</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#stochastic-process-4----martingale"><span class="nav-number">1.</span> <span class="nav-text">Stochastic Process 4 -- Martingale</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
