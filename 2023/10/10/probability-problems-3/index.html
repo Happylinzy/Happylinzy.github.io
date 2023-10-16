@@ -28,7 +28,7 @@
 <meta property="og:description" content="Expectation of Stopping Time of Martingale Problems This paper aims at solving &quot;the expected time until a given pattern occurs&quot; problems.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-11T01:32:26.000Z">
-<meta property="article:modified_time" content="2023-10-11T01:42:08.982Z">
+<meta property="article:modified_time" content="2023-10-16T04:26:44.505Z">
 <meta property="article:author" content="Yilin Zhang">
 <meta property="article:tag" content="probability theory">
 <meta name="twitter:card" content="summary">
@@ -188,10 +188,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-10-10 18:32:26 / Modified: 18:42:08" itemprop="dateCreated datePublished" datetime="2023-10-10T18:32:26-07:00">2023-10-10</time>
+              <time title="Created: 2023-10-10 18:32:26" itemprop="dateCreated datePublished" datetime="2023-10-10T18:32:26-07:00">2023-10-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-10-15 21:26:44" itemprop="dateModified" datetime="2023-10-15T21:26:44-07:00">2023-10-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -209,6 +215,20 @@
               </span>
               <span class="post-meta-item-text">Views: </span>
               <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>7 mins.</span>
             </span>
 
         </div>
@@ -235,7 +255,14 @@
 <li><span class="math inline">\(n\)</span> people play a leader game. Initially, nobody is leaded by anybody. Every round, an order pair of people not leaded by others <span class="math inline">\(A, B\)</span> is selected randomly. Then <span class="math inline">\(x\)</span> is leaded by <span class="math inline">\(y.\)</span> Find the expected number of rounds until there is only one person not leaded by others. In another sense, there exists someone leads everyone else.</li>
 </ol>
 </blockquote>
-<p><strong>TODO:</strong> Add solutions.</p>
+<p>Solutions:</p>
+<ol type="1">
+<li>Let <span class="math inline">\(X_j\)</span> be the random variable at <span class="math inline">\(j\)</span> step. If it takes <span class="math inline">\(N\)</span> steps to reach position <span class="math inline">\(i,\)</span> we have <span class="math display">\[\sum_{j=1}^N X_j = i.\]</span> Since <span class="math inline">\(E(X_j) = 2p-1,\)</span> by Wald's equation [[数学杂记/随机过程/Stochastic Process 4 -- Martingale#^85aa97|Stochastic Process 4 -- Martingale]] we have <span class="math display">\[E(N)E(X_j) = i.\]</span> Then we have <span class="math inline">\(E(N) = \frac{i}{2p-1}.\)</span></li>
+<li>Things are almost the same as problem 1. Now we denote an event as it takes <span class="math inline">\(N\)</span> steps to reach position <span class="math inline">\(-a\)</span> or <span class="math inline">\(b.\)</span> We have<span class="math display">\[\sum_{j=1}^N X_j = -a, b.\]</span>To apply Wald's equation, we need to know <span class="math inline">\(E(\sum_{j=1}^N X_j).\)</span> Here we solve this by finding the probability of reaching <span class="math inline">\(-a\)</span> and <span class="math inline">\(b.\)</span> We need a martingale <span class="math inline">\(Z_n = (\frac{1-p}{p})^{S_n},\)</span> here <span class="math inline">\(S_n = \sum_{j=1}^n X_j.\)</span> By optional stopping theorem, we have <span class="math inline">\(E(Z_N) = E(Z_0) = 1\)</span> as we define <span class="math inline">\(Z_0 = 1.\)</span> Then we get<span class="math display">\[1 = P_a(\frac{1-p}{p})^{-a} + (1 - P_a)(\frac{1-p}{p})^{b}.\]</span>Then <span class="math inline">\(E(N) = \frac{P_a(-a)+(1-P_a)b}{2p-1}.\)</span> Especially, when <span class="math inline">\(p = 1/2, E(N) = ab.\)</span></li>
+<li>We assume that when there are only two players left, they are allowed to have negative coins. Denote <span class="math inline">\(X_n, Y_n, Z_n\)</span> the number of coins that each player have at <span class="math inline">\(n\)</span> round. We have <span class="math inline">\(X_0 = x, Y_0 = y, Z_0 = z.\)</span> Next we show that <span class="math inline">\(M_n = X_nY_n + Y_nZ_n + Z_nX_n + n\)</span> is a martingale. Then by optional stopping theorem we have <span class="math inline">\(E(M_n) = E(M_0) = xy+yz+zx.\)</span> To show it is a martingale, we need to prove that <span class="math inline">\(E(M_{n+1} | X_n, Y_n, Z_n) = M_n.\)</span> We discuss it in two ways. First way the by step <span class="math inline">\(n,\)</span> a player has left(assume <span class="math inline">\(X\)</span> leaves the game). Then <span class="math inline">\(E(Y_{n+1}Z_{n+1} | X_n, Y_n, Z_n) = [(y-1)(z+1) + (y+1)(z-1)]/2 = yz-1.\)</span> Second way, by step <span class="math inline">\(n,\)</span> no player has left. Then <span class="math inline">\(E(Y_{n+1}Z_{n+1} | X_n, Y_n, Z_n) = [y(z+1)+y(z-1)+(y+1)z+(y-1)z + (y-1)(z+1) + (y+1)(z-1)]/6 = yz - 1/3.\)</span></li>
+<li>We denote <span class="math inline">\(R\)</span> the number of rounds until everyone finds a match, <span class="math inline">\(X_i\)</span> the number of matches on <span class="math inline">\(i\)</span> round. We construct a zero mean martingale<span class="math display">\[Z_k = \sum_{i=1}^k (X_i - E(X_i \mid X_{j}, j = 1,..,i-1)) = \sum_{i=1}^k(X_i - 1).\]</span>Here we use the fact that any number of individuals are to randomly choose from among their own hats, the expected number of matched is 1. What we want is to find <span class="math inline">\(E(R)\)</span> such that <span class="math inline">\(\sum_{i=1}^R X_i = n.\)</span> As we have <span class="math inline">\(E(Z_R) = E(Z_0) = 0.\)</span> Now we get<span class="math display">\[0 = E(\sum_{i=1}^R X_i - R) = E(\sum_{i=1}^R X_i) - E(R) = n - E(R).\]</span></li>
+<li>TODO</li>
+</ol>
 <p>cite:</p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/TinyWong/p/12887591.html">一类概率期望问题的杀器：势函数和鞅的停时定理</a></p>
 <p><a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1bNsgMB_o8Vw1NenXsGBq39HEB3HDo6-X/view">鞅与一类关于停时的概率与期望问题</a></p>
@@ -247,6 +274,23 @@
     
     
     
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Yilin Zhang
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://happylinzy.github.io/2023/10/10/probability-problems-3/" title="Expectation of Stopping Time of Martingale Problems">https://happylinzy.github.io/2023/10/10/probability-problems-3/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -262,7 +306,10 @@
     <a href="/2023/10/10/stochastic-process-3/" rel="prev" title="Stochastic Process 4 -- Martingale">
       <i class="fa fa-chevron-left"></i> Stochastic Process 4 -- Martingale
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/10/15/probability-problems-4/" rel="next" title="N Objects Probability Problems">
+      N Objects Probability Problems <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -335,7 +382,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -370,6 +417,9 @@
         <a href="https://www.kaggle.com/ylinzh" title="Kaggle → https:&#x2F;&#x2F;www.kaggle.com&#x2F;ylinzh" rel="noopener" target="_blank"><i class="fab fa-kaggle fa-fw"></i>Kaggle</a>
       </span>
   </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/en" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -397,10 +447,39 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Yilin Zhang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">NaNm</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">NaN:aN</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
 
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/27/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "This site runs safely for "+dnum+" days ";
+        document.getElementById("times").innerHTML = hnum + " hours " + mnum + " minutes " + snum + " seconds.";
+    }
+setInterval("createtime()",250);
+</script>
         
 <div class="busuanzi-count">
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
