@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en,zh-CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"happylinzy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Flip Coin Probelms This paper aims at solving all coin flipping problems with probability.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flip Coin Probelms">
+<meta property="og:url" content="https://happylinzy.github.io/undefined/en/probability-problems-1/index.html">
+<meta property="og:site_name" content="Yilin Blog">
+<meta property="og:description" content="Flip Coin Probelms This paper aims at solving all coin flipping problems with probability.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-04T22:28:31.000Z">
+<meta property="article:modified_time" content="2024-02-15T22:26:13.562Z">
+<meta property="article:author" content="Yilin Zhang">
+<meta property="article:tag" content="probability theory">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://happylinzy.github.io/undefined/en/probability-problems-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Flip Coin Probelms | Yilin Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yilin Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://happylinzy.github.io/undefined/en/probability-problems-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ai_protrait.webp">
+      <meta itemprop="name" content="Yilin Zhang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yilin Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Flip Coin Probelms
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-10-04 15:28:31" itemprop="dateCreated datePublished" datetime="2023-10-04T15:28:31-07:00">2023-10-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-02-15 14:26:13" itemprop="dateModified" datetime="2024-02-15T14:26:13-08:00">2024-02-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Math-Problem-Collection/" itemprop="url" rel="index"><span itemprop="name">Math Problem Collection</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>7.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>14 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="flip-coin-probelms">Flip Coin Probelms</h1>
+<p>This paper aims at solving all coin flipping problems with probability.</p>
+<span id="more"></span>
+<h2 id="finite-trials-problems">Finite Trials Problems</h2>
+<p>In these problems, there will be a clear number of trials.</p>
+<p>For example:</p>
+<blockquote>
+<ol type="1">
+<li>Flip a coin <span class="math inline">\(N\)</span> times, what is the probability of having <span class="math inline">\(M\)</span> heads?</li>
+<li>Flip a coin <span class="math inline">\(N\)</span> times, what is the probability of having more heads than tails?</li>
+<li>Flip a coin <span class="math inline">\(N\)</span> times, what is the probability of having <span class="math inline">\(M\)</span> successive heads?</li>
+</ol>
+</blockquote>
+<h3 id="q1">Q1</h3>
+<p>Let <span class="math inline">\(X\)</span> be number of heads. We have <span class="math inline">\(X\)</span>~<span class="math inline">\(B(N, p)\)</span>. <span class="math display">\[
+P(X = M) = C_N^Mp^M(1-p)^{N-M}.
+\]</span></p>
+<h3 id="q2">Q2</h3>
+<p>Let <span class="math inline">\(X\)</span> be number of heads, <span class="math inline">\(Y = N-X\)</span> be number of tails. We have <span class="math inline">\(X\)</span>~<span class="math inline">\(B(N, p)\)</span>. <span class="math display">\[
+P(X &gt; Y) = P(X &gt; N/2)
+= \sum_{n = [N/2]+1}^N P(X = n)
+= \sum_{n = [N/2]+1}^N C_N^np^n(1-p)^{N-n}
+\]</span> When <span class="math inline">\(p = \frac{1}{2},\)</span> we have the symmetry property of binary coefficients. Therefore, when <span class="math inline">\(N = 2K-1,\)</span> we have <span class="math inline">\(P(X&gt;Y) = \frac{1}{2}.\)</span> When <span class="math inline">\(N = 2K,\)</span> we have <span class="math display">\[
+P(X &gt; Y) = [1 - P(X = K)]/2 = \frac{1}{2} - \frac{C_{2K}^K}{2^{2K+1}}.
+\]</span></p>
+<h3 id="q3">Q3</h3>
+<p>Here we set up <span class="math inline">\(M+1\)</span> variables. <span class="math inline">\(s_i, i = 1,...,M.\)</span> Here <span class="math inline">\(s_0\)</span> is starting case or last flip is T. <span class="math inline">\(s_1\)</span> is last flip is H. <span class="math inline">\(s_2\)</span> is last two flips are H. ... <span class="math inline">\(s_{M-1}\)</span> is last <span class="math inline">\(M-1\)</span> flips are H. <span class="math inline">\(s_{M}\)</span> is last <span class="math inline">\(M\)</span> flips are H.</p>
+<p>For each <span class="math inline">\(s_i, i \neq M,\)</span> we have <span class="math inline">\(\frac{1}{2}\)</span> probability to reach <span class="math inline">\(s_{i+1}\)</span> and <span class="math inline">\(\frac{1}{2}\)</span> probability to reach <span class="math inline">\(s_{0}.\)</span> For <span class="math inline">\(s_M,\)</span> it has 1 probability reaching itself. The initial state is <span class="math inline">\(s_0.\)</span> We can construct the probability transfer matrix as <span class="math display">\[
+a_{n+1} = Aa_n.
+\]</span> Here <span class="math inline">\(a_0 = [1, 0, ..., 0]^T \in \mathbb{R}^{M+1}, A \in \mathbb{R}^{(M+1) \times (M+1)}.\)</span> <span class="math display">\[
+A = \left(\begin{array}{cccccc}
+1/2&amp; 1/2&amp; 1/2&amp; ... &amp; 1/2 &amp; 0\\
+1/2&amp; 0&amp; 0&amp; ... &amp; 0 &amp; 0 \\
+0&amp; 1/2&amp; 0&amp; ... &amp; 0 &amp; 0 \\
+... &amp; ... &amp; ... &amp; ... &amp; ... &amp; ...\\
+0&amp; 0&amp; 0&amp;  ... &amp; 1/2 &amp; 1
+\end{array}\right)
+\]</span></p>
+<p>Then the final state after <span class="math inline">\(N\)</span> steps is <span class="math inline">\(a_N = A^Na_0.\)</span> The final probability of having <span class="math inline">\(M\)</span> successive heads is the <span class="math inline">\(M+1\)</span> dimension item of <span class="math inline">\(a_N.\)</span> The problem turns out to calculate the eigenvalues of <span class="math inline">\(A.\)</span> The characteristic polynomial of A is <span class="math display">\[
+\det \left(\begin{array}{cccccc}
+1/2 - x&amp; 1/2&amp; 1/2&amp; ... &amp; 1/2 &amp; 0\\
+1/2&amp; -x&amp; 0&amp; ... &amp; 0 &amp; 0 \\
+0&amp; 1/2&amp; -x&amp; ... &amp; 0 &amp; 0 \\
+... &amp; ... &amp; ... &amp; ... &amp; ... &amp; ...\\
+0&amp; 0&amp; 0&amp;  ... &amp; 1/2 &amp; 1-x
+\end{array}\right) 
+\]</span></p>
+<p><span class="math display">\[
+= 
+2^{-(M+1)}\det\left(\begin{array}{cccccc}
+1 - 2x&amp; 1&amp; 1&amp; ... &amp; 1 &amp; 0\\
+1&amp; -2x&amp; 0&amp; ... &amp; 0 &amp; 0 \\
+0&amp; 1&amp; -2x&amp; ... &amp; 0 &amp; 0 \\
+... &amp; ... &amp; ... &amp; ... &amp; ... &amp; ...\\
+0&amp; 0&amp; 0&amp;  ... &amp; 1 &amp; 2-2x
+\end{array}\right) 
+\]</span></p>
+<p><span class="math display">\[
+= 2^{-(M+1)} (2-2x)\times \det\left(\begin{array}{ccccc}
+1 - 2x&amp; 1&amp; 1&amp; ... &amp; 1\\
+1&amp; -2x&amp; 0&amp; ... &amp; 0  \\
+0&amp; 1&amp; -2x&amp; ... &amp; 0 \\
+... &amp; ... &amp; ... &amp; ... &amp; ...\\
+0&amp; 0&amp; 0&amp;  ...  &amp; -2x
+\end{array}\right) 
+\]</span> <span class="math display">\[
+= 2^{-(M+1)} (2-2x)\times[ (1-2x)(-2x)^{M-1} - (-2x)^{M-2} + ...  +(-1)^{1+M}\times(-2x)^{0}]  
+\]</span> <span class="math display">\[
+= 2^{-(M+1)} (2-2x)\times(-1)^{M-1}[ (1-2x)(2x)^{M-1} + (2x)^{M-2} + ...  +(-2x)^{0}]  
+\]</span> <span class="math display">\[
+= 2^{-(M+1)} (2-2x)\times(-1)^{M-1}[(2x)^{M-1} + (2x)^{M-2} + ...  +1 - (2x)^M]  
+\]</span> <span class="math display">\[
+= 2^{-(M+1)}(-1)^{M-1} \times (2-2x)\frac{-(2x)^{M+1} + 2(2x)^M -1}{2x-1}
+\]</span> <span class="math display">\[
+= (-2)^{-M} \times (1-x)\frac{(2x)^{M+1} - 2(2x)^M +1}{2x-1}
+\]</span> Then by letting the <span class="math inline">\((2x)^{M+1} - 2(2x)^M +1 = 0\)</span> we can have the eigenvalues. Suppose the <span class="math inline">\(M\)</span> roots(exclude <span class="math inline">\(x = 1/2\)</span>) for <span class="math inline">\((2x)^{M+1} - 2(2x)^M +1 = 0\)</span> are <span class="math inline">\(x_1, x_2, ..., x_M.\)</span> The final solution we want is <span class="math inline">\(c = &lt;e_{M+1}, a_N&gt;,\)</span> where <span class="math inline">\(e_{M+1} = [0, 0, ..., 1]^T.\)</span> We know that <span class="math inline">\(c\)</span> is a linear combination of the power of eigenvalues of <span class="math inline">\(A\)</span>, as <span class="math inline">\(x_1^N, x_2^N, ..., x_M^N, 1.\)</span> We have <span class="math display">\[
+c = 1 + c_1x_1^N + c_2 x_2^N+ ...+ c_M x_M^N.
+\]</span> Then we get <span class="math inline">\(b_N = 2^N(1-c) = -(c_1(2x_1)^N + ... + c_M(2x_M)^N).\)</span> <span class="math inline">\(b_N\)</span> has the characteristic polynomial as <span class="math inline">\((2x)^{M+1} - 2(2x)^M +1 = 0.\)</span> It leads to the iteration formula for <span class="math inline">\(b_N\)</span> as <span class="math inline">\(b_{N+M+1} = 2b_{N+M} -b_{N}.\)</span> <span class="math display">\[
+b_{N+M} = b_{N+M-1} + ... +b_{N}
+\]</span> Here <span class="math inline">\(b_N\)</span> is called Fibonacci k-step number, denoted as <span class="math inline">\(F_{N}^{M}.\)</span> Then we finally have <span class="math inline">\(c = 1-\frac{F_{N+2}^{M}}{2^N}.\)</span></p>
+<p>cite:</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://bbs.emath.ac.cn/thread-667-1-1.html">抛硬币出现连续正面的概率</a></p>
+<p><a target="_blank" rel="noopener" href="https://mathworld.wolfram.com/CoinTossing.html">Coin Toss</a></p>
+</blockquote>
+<h2 id="until-series">Until Series</h2>
+<p>In these problems, there will be a stubborn guy who only stops after he gets what he want. Let's call him Mr. Stub. Normally, we would like to calculate the expectation of Mr. Stub to stop.</p>
+<p>For example:</p>
+<blockquote>
+<ol type="1">
+<li>Flip a coin until Stub gets 1 head.</li>
+<li>Flip a coin until Stub gets <span class="math inline">\(m\)</span> heads.</li>
+<li>Flip a coin until Stub gets <span class="math inline">\(m\)</span> successive heads.</li>
+<li>Flip a coin until Stub gets HTH pattern.</li>
+</ol>
+</blockquote>
+<h3 id="q1-geometric-distribution">Q1 Geometric Distribution</h3>
+<p>Let <span class="math inline">\(X\)</span> denotes the number of flips. We have <span class="math inline">\(X\)</span>~<span class="math inline">\(Geo(p).\)</span> <span class="math display">\[
+P(X = k) = (1-p)^{k-1}p.
+\]</span> <span class="math display">\[
+E[X] = \sum_{k=1}^{\infty} kP(X = k) = \sum_{k=1}^{\infty} k(1-p)^{k-1}p
+\]</span> <span class="math display">\[
+= p\sum_{k=1}^{\infty} k(1-p)^{k-1} = \frac{1}{p}.
+\]</span></p>
+<h3 id="q2-negative-binomial-distribution">Q2 Negative Binomial Distribution</h3>
+<p>Let <span class="math inline">\(X\)</span> denotes the number of flips. We have <span class="math inline">\(X\)</span>~<span class="math inline">\(NB(m, p)\)</span> <span class="math display">\[
+P(X = k) = C_{k-1}^{m-1}p^{m-1}(1-p)^{k-m}p = C_{k-1}^{m-1}p^m(1-p)^{k-m}.
+\]</span> <span class="math display">\[
+E[X] = \sum_{k = m}^{\infty} kP(X = k) = m(1-p)p^{-1}.
+\]</span></p>
+<h3 id="q3-1">Q3</h3>
+<p>A naive approach to solve the expectation. Denote the expectation as <span class="math inline">\(E.\)</span> Then we have <span class="math display">\[
+E = \frac{1}{2}(E+1) + \frac{1}{4}(E+2) + ... \frac{1}{2^m}(E+m)+\frac{1}{2^m}m
+\]</span> Solve it we get <span class="math inline">\(E = 2^{m+1}-2.\)</span></p>
+<p>Generating Function Approach(for special case when <span class="math inline">\(m = 5\)</span>): Here we have the following basic cases with their probability: T -- 1/2 -- 1/2 <span class="math inline">\(x\)</span> HT -- 1/4 -- 1/4 <span class="math inline">\(x^2\)</span> HHT -- 1/8 -- 1/8 <span class="math inline">\(x^3\)</span> HHHT -- 1/16 -- 1/16 <span class="math inline">\(x^4\)</span> HHHHT -- 1/32 -- 1/32 <span class="math inline">\(x^5\)</span> HHHHH -- 1/32 -- 1/32 <span class="math inline">\(x^5\)</span></p>
+<p>Then all possible sequences that satisfy the requirements is a combination of first 4 cases end up with final case. The generating function with probability of ending after <span class="math inline">\(n\)</span> toss as the coefficient of <span class="math inline">\(n\)</span> order is <span class="math display">\[
+f(x) = \sum_{k = 0}^{\infty} (\frac{1}{2}x + \frac{1}{4}x^2 + \frac{1}{8}x^3 + \frac{1}{16}x^4 + \frac{1}{32}x^5)^k\frac{1}{32}x^5
+\]</span> <span class="math display">\[
+= \frac{\frac{1}{32} x^5}{1 - (\frac{1}{2}x + \frac{1}{4}x^2 + \frac{1}{8}x^3 + \frac{1}{16}x^4 + \frac{1}{32}x^5)} = \frac{\frac{1}{32}x^5 - \frac{1}{64}x^6}{1-x+\frac{1}{64}x^6}.
+\]</span> Then the expectation is <span class="math inline">\(f&#39;(1) = 62.\)</span></p>
+<p>cite:</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://math.stackexchange.com/questions/364038/expected-number-of-coin-tosses-to-get-five-consecutive-heads?rq=1">Expected Number of Coin Tosses to Get Five Consecutive Heads</a></p>
+</blockquote>
+<h3 id="q4">Q4:</h3>
+<p>Naive approach: Let <span class="math inline">\(E\)</span> be the expectation of having HTH. <span class="math display">\[
+E = \frac{1}{2}(E+1) + \frac{1}{2}(\frac{1}{2}(E) + \frac{1}{2}(\frac{1}{2}3 + \frac{1}{2}(E+3)))
+\]</span> Solve this we get <span class="math inline">\(E = 10.\)</span></p>
+<p>Martingale Approach: Assume we have a pattern F, then the expectation can be calculated as <span class="math display">\[
+E = \sum_{k = 1}^{n} f_k \frac{1}{p_1p_2...p_k}.
+\]</span> Here <span class="math inline">\(f_i = 1\)</span> when first <span class="math inline">\(i\)</span> characters are the same as last <span class="math inline">\(i\)</span> characters. <span class="math inline">\(p_i\)</span> is the probability of <span class="math inline">\(i\)</span>-th character happens.</p>
+<p>Take HTH for example. k = 1, first 1 character: H, last 1 character H. <span class="math inline">\(f_1 = 1\)</span> and <span class="math inline">\(p_1 = 1/2.\)</span> k = 2, first 2 characters: HT, last 2 characters: TH, <span class="math inline">\(f_2 = 0.\)</span> k = 3, first 3: HTH, last 3: HTH. <span class="math inline">\(f_3 = 1.\)</span> <span class="math inline">\(p_1 = p_2 = p_3 = 1/2.\)</span></p>
+<p>Therefore, 2+0+8 = 10.</p>
+<p>cite:</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/57196228">抛硬币问题的鞅解法</a></p>
+<p><a target="_blank" rel="noopener" href="https://uploads.cosx.org/2011/01/Different-ways-to-solve-a-tossing-problem.pdf">一道抛硬币问题的不同解法和比较</a></p>
+</blockquote>
+<h2 id="gambling-couples">Gambling Couples</h2>
+<p>In these problems, there will be a gambling couple trying to win each other by setting wining conditions. Let's call them Alice and Bob.</p>
+<p>For example:</p>
+<blockquote>
+<ol type="1">
+<li>Flip a coin infinite times. Alice wins when HTH pattern shows. Bob wins when THH shows. What is the probability of each one to win?</li>
+</ol>
+</blockquote>
+<h3 id="q1-1">Q1</h3>
+<p>Martingale Solution By constructing a martingale, we could get the following two equations. Solve them we can get <span class="math inline">\(P_1, P_2.\)</span> <span class="math display">\[
+E_1*P(Pattern1) = E_2*P(Pattern2)
+\]</span> <span class="math display">\[
+P(Pattern1) + P(Pattern2) = 1
+\]</span> Then the <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are calculated as below. <span class="math display">\[
+E_1 = \sum_{k = 1}^{n} f_k \frac{1}{p_1p_2...p_k} - \sum_{k = 1}^{n} g_k \frac{1}{p_1p_2...p_k}.
+\]</span> <span class="math display">\[
+E_2 = \sum_{k = 1}^{n} h_k \frac{1}{p_1p_2...p_k} - \sum_{k = 1}^{n} r_k \frac{1}{p_1p_2...p_k}.
+\]</span></p>
+<p><span class="math inline">\(f_i = 1\)</span> when pattern 1 first <span class="math inline">\(i\)</span> characters are the same as pattern 1 last <span class="math inline">\(i\)</span> characters.</p>
+<p><span class="math inline">\(g_k = 1\)</span> when pattern 2 first <span class="math inline">\(k\)</span> characters are the same as pattern 1 last <span class="math inline">\(k\)</span> characters.</p>
+<p><span class="math inline">\(h_i = 1\)</span> when pattern 2 first <span class="math inline">\(i\)</span> characters are the same as pattern 2 last <span class="math inline">\(i\)</span> characters.</p>
+<p><span class="math inline">\(r_i = 1\)</span> when pattern 1 first <span class="math inline">\(i\)</span> characters are the same as pattern 2 last <span class="math inline">\(i\)</span> characters.</p>
+<p><span class="math inline">\(p_i\)</span> is the probability of <span class="math inline">\(i\)</span>-th character happens.</p>
+<p>For example: Pattern 1: HTH, Pattern 2: THH</p>
+<p><span class="math inline">\(k =1,\)</span> <span class="math inline">\(f_1 = 1, g_1 = 0, h_1 = 0, r_1 = 1, E_1 = 2, E_2 = -2.\)</span></p>
+<p><span class="math inline">\(k=2, f_2 = 0, g_2 = 1, h_2 = 0, r_2 = 0, E_1 = -2, E_2 = -2.\)</span></p>
+<p><span class="math inline">\(k = 3, f_3 = 1, g_3 = 0, h_3 = 1, r_3 = 0, E_1 = 6, E_2 = 6.\)</span></p>
+<p>Therefore, we have <span class="math inline">\(P_1 = P_2 = \frac{1}{2}.\)</span></p>
+<p>Pattern 1: THH, Pattern 2: TTT</p>
+<p><span class="math inline">\(k = 1, f_1 = 0, g_1 = 0, h_1 = 1, r_1 = 1, E_1 = 0, E_2 = 0.\)</span></p>
+<p><span class="math inline">\(k = 2, f_2 = 0, g_2 = 0, h_2 = 1, r_2 = 0, E_1 = 0, E_2 = 4.\)</span></p>
+<p><span class="math inline">\(k = 3, f_3 = 1, g_3 = 0, h_3 = 1, r_3 = 0, E_1 = 8, E_2 = 12.\)</span></p>
+<p>Therefore, we have <span class="math inline">\(8P_1 = 12P_2, P_1 + P_2 = 1.\)</span> <span class="math inline">\(P_1 = \frac{2}{5}, P_2 = \frac{3}{5}.\)</span></p>
+<p>cite:</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Penney%27s_game">Penney's game</a></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Yilin Zhang
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://happylinzy.github.io/undefined/en/probability-problems-1/" title="Flip Coin Probelms">https://happylinzy.github.io/undefined/en/probability-problems-1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/probability-theory/" rel="tag"># probability theory</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/undefined/en/stochastic-process-2/" rel="prev" title="Stochastic Process 2 -- Poisson Process">
+      <i class="fa fa-chevron-left"></i> Stochastic Process 2 -- Poisson Process
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/undefined/en/probability-problems-2/" rel="next" title="Random Walk Problems">
+      Random Walk Problems <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#flip-coin-probelms"><span class="nav-number">1.</span> <span class="nav-text">Flip Coin Probelms</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#finite-trials-problems"><span class="nav-number">1.1.</span> <span class="nav-text">Finite Trials Problems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#q1"><span class="nav-number">1.1.1.</span> <span class="nav-text">Q1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q2"><span class="nav-number">1.1.2.</span> <span class="nav-text">Q2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q3"><span class="nav-number">1.1.3.</span> <span class="nav-text">Q3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#until-series"><span class="nav-number">1.2.</span> <span class="nav-text">Until Series</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#q1-geometric-distribution"><span class="nav-number">1.2.1.</span> <span class="nav-text">Q1 Geometric Distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q2-negative-binomial-distribution"><span class="nav-number">1.2.2.</span> <span class="nav-text">Q2 Negative Binomial Distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q3-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">Q3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q4"><span class="nav-number">1.2.4.</span> <span class="nav-text">Q4:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gambling-couples"><span class="nav-number">1.3.</span> <span class="nav-text">Gambling Couples</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#q1-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Q1</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yilin Zhang"
+      src="/images/ai_protrait.webp">
+  <p class="site-author-name" itemprop="name">Yilin Zhang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Happylinzy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Happylinzy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode.com/yilin7616/" title="LeetCode → https:&#x2F;&#x2F;leetcode.com&#x2F;yilin7616&#x2F;" rel="noopener" target="_blank"><i class="fa fa-code fa-fw"></i>LeetCode</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yilin7616@gmail.com" title="E-Mail → yilin7616@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/yilin-zhang-813854261/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;yilin-zhang-813854261&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.kaggle.com/ylinzh" title="Kaggle → https:&#x2F;&#x2F;www.kaggle.com&#x2F;ylinzh" rel="noopener" target="_blank"><i class="fab fa-kaggle fa-fw"></i>Kaggle</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/en" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>English</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="">
+      
+        <option value="en" data-href="/undefined/en/probability-problems-1/" selected="">
+          English
+        </option>
+      
+        <option value="zh-CN" data-href="/zh-CN/undefined/en/probability-problems-1/" selected="">
+          简体中文
+        </option>
+      
+    </select>
+  </div>
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yilin Zhang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">111k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">3:21</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/27/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "This site runs safely for "+dnum+" days ";
+        document.getElementById("times").innerHTML = hnum + " hours " + mnum + " minutes " + snum + " seconds.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

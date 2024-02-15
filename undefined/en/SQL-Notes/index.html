@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en,zh-CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"happylinzy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="This file records SQL usage I encountered(mainly from LeetCode). Notation outside of code block: keywords in SQL will be in bold, variables will be in Italic.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL Notes I">
+<meta property="og:url" content="https://happylinzy.github.io/undefined/en/SQL-Notes/index.html">
+<meta property="og:site_name" content="Yilin Blog">
+<meta property="og:description" content="This file records SQL usage I encountered(mainly from LeetCode). Notation outside of code block: keywords in SQL will be in bold, variables will be in Italic.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-30T04:36:57.000Z">
+<meta property="article:modified_time" content="2024-02-15T22:35:52.412Z">
+<meta property="article:author" content="Yilin Zhang">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://happylinzy.github.io/undefined/en/SQL-Notes/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>SQL Notes I | Yilin Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yilin Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://happylinzy.github.io/undefined/en/SQL-Notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ai_protrait.webp">
+      <meta itemprop="name" content="Yilin Zhang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yilin Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SQL Notes I
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-01-29 20:36:57" itemprop="dateCreated datePublished" datetime="2023-01-29T20:36:57-08:00">2023-01-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-02-15 14:35:52" itemprop="dateModified" datetime="2024-02-15T14:35:52-08:00">2024-02-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programing-Language/" itemprop="url" rel="index"><span itemprop="name">Programing Language</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>7 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>This file records SQL usage I encountered(mainly from LeetCode). Notation outside of code block: keywords in SQL will be in <strong>bold</strong>, variables will be in <em>Italic</em>.</p>
+<span id="more"></span>
+<h3 id="select">SELECT</h3>
+<p><strong>SELECT</strong> basic structure:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> something</span><br><span class="line"><span class="keyword">From</span> some_table</span><br><span class="line"><span class="keyword">Where</span> requirements</span><br></pre></td></tr></table></figure>
+<p>Here <em>requirements</em> support keyword in <em>sometable</em> but not specified in <em>something</em>.</p>
+<p>Example:</p>
+<p>Write an SQL query to find the ids of products that are both low fat and recyclable <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> product_id</span><br><span class="line"><span class="keyword">from</span> Products</span><br><span class="line"><span class="keyword">where</span> low_fats <span class="operator">=</span> <span class="string">&#x27;Y&#x27;</span> <span class="keyword">and</span> recyclable <span class="operator">=</span> <span class="string">&#x27;Y&#x27;</span></span><br></pre></td></tr></table></figure></p>
+<p>If we want to rename <em>something</em> in our result, we can use <strong>as</strong> keyword. <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> name <span class="keyword">as</span> Customers</span><br><span class="line"><span class="keyword">from</span> Customers</span><br><span class="line"><span class="keyword">where</span> id <span class="keyword">not</span> <span class="keyword">in</span> </span><br><span class="line">(</span><br><span class="line">    <span class="keyword">select</span> customerId</span><br><span class="line">    <span class="keyword">from</span> Orders</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<h3 id="union">Union</h3>
+<p><strong>Union</strong> will allow us to pile two tables with the same colomn together.</p>
+<p>Example:</p>
+<p>Write an SQL query to calculate the bonus of each employee. The bonus of an employee is 100% of their salary if the ID of the employee is an odd number and the employee name does not start with the character 'M'. The bonus of an employee is 0 otherwise.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">select</span> employee_id , salary <span class="keyword">as</span> bonus </span><br><span class="line"><span class="keyword">from</span> employees </span><br><span class="line"><span class="keyword">where</span> employee_id<span class="operator">%</span><span class="number">2</span> <span class="operator">&lt;&gt;</span><span class="number">0</span> <span class="keyword">and</span> name <span class="keyword">not</span> <span class="keyword">like</span> <span class="string">&#x27;M%&#x27;</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">union</span></span><br><span class="line">(</span><br><span class="line"><span class="keyword">select</span> employee_id , <span class="number">0</span> <span class="keyword">as</span> bonus</span><br><span class="line"><span class="keyword">from</span> employees</span><br><span class="line"><span class="keyword">where</span> employee_id<span class="operator">%</span><span class="number">2</span> <span class="operator">=</span> <span class="number">0</span> <span class="keyword">or</span> name <span class="keyword">like</span> <span class="string">&#x27;M%&#x27;</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> employee_id;</span><br></pre></td></tr></table></figure>
+<p>Inside this query, we use <strong>order by</strong>, which will sort the result based on <em>employee_id</em>.</p>
+<h3 id="update">Update</h3>
+<p><strong>UPDATE</strong> is used to update entities inside a table.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> salary</span><br><span class="line"><span class="keyword">SET</span></span><br><span class="line">    sex <span class="operator">=</span> <span class="keyword">CASE</span> sex</span><br><span class="line">        <span class="keyword">WHEN</span> <span class="string">&#x27;m&#x27;</span> <span class="keyword">THEN</span> <span class="string">&#x27;f&#x27;</span></span><br><span class="line">        <span class="keyword">ELSE</span> <span class="string">&#x27;m&#x27;</span></span><br><span class="line">    <span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+<p>In this example, <strong>CASE</strong> is used to update the value of <em>sex</em> bases on its original value.</p>
+<h3 id="delete">DELETE</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> p1 <span class="keyword">FROM</span> Person p1, Person p2</span><br><span class="line"><span class="keyword">WHERE</span> p1.Email <span class="operator">=</span> p2.Email <span class="keyword">AND</span> p1.Id <span class="operator">&gt;</span> p2.Id</span><br></pre></td></tr></table></figure>
+<p>This example shows how we can construct an inner comparision requirement within one query. Also it shows how to declear variable <em>p1, p2</em> inside a query.</p>
+<p>The above query can also be achieved by using <strong>GROUP BY</strong> keyword. <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> Person <span class="keyword">WHERE</span> Id <span class="keyword">NOT</span> <span class="keyword">IN</span> </span><br><span class="line">(<span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span>(<span class="keyword">SELECT</span> <span class="built_in">MIN</span>(Id) <span class="keyword">FROM</span> Person <span class="keyword">GROUP</span> <span class="keyword">BY</span> Email) <span class="keyword">as</span> p);</span><br></pre></td></tr></table></figure></p>
+<h3 id="group_concat">GROUP_CONCAT</h3>
+<p><strong>GROUP_CONCAT</strong> is an aggregate_function used to concat all items with in the same group specified in <strong>group by</strong>. <strong>DISTINCT</strong> is used to delete repeated entities given a colomn number.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sell_date, <span class="built_in">COUNT</span>( <span class="keyword">DISTINCT</span> product) <span class="keyword">as</span> num_sold, GROUP_CONCAT(<span class="keyword">DISTINCT</span> product <span class="keyword">ORDER</span> <span class="keyword">BY</span> product) <span class="keyword">as</span> products</span><br><span class="line"><span class="keyword">from</span> activities</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> sell_date</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> sell_date</span><br></pre></td></tr></table></figure>
+<h3 id="group-by-having">GROUP BY, HAVING</h3>
+<p><strong>GROUP BY</strong> is used to clasify the table based on attributes. <strong>HAVING</strong> is then used to specify the filter to <strong>GROUP BY</strong>. Usually, <strong>HAVING</strong> is used with aggregate function <strong>SUM()</strong>, <strong>COUNT</strong>, etc.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Department, <span class="built_in">sum</span>(Salary) <span class="keyword">as</span> Salary</span><br><span class="line"><span class="keyword">FROM</span> employee</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> department</span><br><span class="line"><span class="keyword">HAVING</span> <span class="built_in">SUM</span>(Salary) <span class="operator">&gt;=</span> <span class="number">50000</span>; </span><br></pre></td></tr></table></figure>
+<h3 id="like">LIKE</h3>
+<p><strong>LIKE</strong> is used to match strings. It supports '%' or '_' etc. <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> patient_id, patient_name, conditions</span><br><span class="line"><span class="keyword">from</span> Patients</span><br><span class="line"><span class="keyword">where</span> conditions <span class="keyword">like</span> <span class="string">&#x27;DIAB1%&#x27;</span> <span class="keyword">or</span> conditions <span class="keyword">like</span> <span class="string">&#x27;% DIAB1%&#x27;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="with">WITH</h3>
+<p><strong>WITH</strong> is used to decleare a subquery used later <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> xxx <span class="keyword">as</span> (subquery)</span><br></pre></td></tr></table></figure> Then in later queries one can use this xxx as reference. <strong>WITH</strong> is usually used with <strong>partition by, rank(), dense_rank(), rownumber()</strong>.</p>
+<h3 id="join-on">JOIN, ON</h3>
+<p><strong>JOIN</strong> is used to include two tabls in one query and <strong>ON</strong> is used to specify the constraints. There are several <strong>JOIN</strong> methods: LEFT JOIN, RIGHT JOIN, FULL JOIN, INNER JOIN.</p>
+<p>The example below shows useage of <strong>WITH</strong>, <strong>JOIN</strong> and <strong>ON</strong>. Write an SQL query to find the employees who are high earners in each of the departments. <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> maxsalary <span class="keyword">as</span>(</span><br><span class="line">    <span class="keyword">select</span> <span class="operator">*</span>, <span class="built_in">dense_rank</span>() <span class="keyword">over</span>(</span><br><span class="line">        <span class="keyword">partition</span> <span class="keyword">by</span> departmentId <span class="keyword">order</span> <span class="keyword">by</span> salary <span class="keyword">desc</span></span><br><span class="line">    )<span class="keyword">as</span> R <span class="keyword">from</span> Employee</span><br><span class="line">)</span><br><span class="line"><span class="keyword">select</span> D.name <span class="keyword">as</span> <span class="string">&#x27;Department&#x27;</span>, E.name <span class="keyword">as</span> <span class="string">&#x27;Employee&#x27;</span>, E.salary <span class="keyword">as</span> <span class="string">&#x27;Salary&#x27;</span></span><br><span class="line"><span class="keyword">from</span> Employee <span class="keyword">as</span> E <span class="keyword">join</span> Department <span class="keyword">as</span> D</span><br><span class="line"><span class="keyword">on</span> E.departmentId <span class="operator">=</span> D.id</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">E.id <span class="keyword">in</span> (<span class="keyword">select</span> id <span class="keyword">from</span> maxsalary <span class="keyword">as</span> M <span class="keyword">where</span> M.R <span class="operator">&lt;=</span> <span class="number">3</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="limit-offset">LIMIT, OFFSET</h3>
+<p><strong>LIMIT</strong> tells DBSM how much results you finally want. <strong>OFFSET</strong> tells DBSM where you want to start to search. This is generally used when you are trying to query a range of data within a sorted table.</p>
+<h3 id="case">CASE</h3>
+<p><strong>CASE</strong> is used to dynamic deal with cases. For example, <strong>CASE</strong> can be used to switch attributes between different rows in a table. Also, it can be used to deal with different cases.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> id, </span><br><span class="line">    <span class="keyword">case</span></span><br><span class="line">        <span class="keyword">when</span> T.p_id <span class="keyword">is</span> <span class="keyword">null</span> <span class="keyword">then</span> <span class="string">&#x27;Root&#x27;</span></span><br><span class="line">        <span class="keyword">when</span> T.id <span class="keyword">in</span> (<span class="keyword">select</span> p_id <span class="keyword">from</span> Tree) <span class="keyword">then</span> <span class="string">&#x27;Inner&#x27;</span></span><br><span class="line">        <span class="keyword">else</span> <span class="string">&#x27;Leaf&#x27;</span></span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">as</span> type</span><br><span class="line"><span class="keyword">from</span> Tree <span class="keyword">as</span> T</span><br></pre></td></tr></table></figure>
+<h2 id="execution-order">Execution Order</h2>
+<p>FROM -&gt; ON -&gt; JOIN -&gt; WHERE -&gt; GROUP BY -&gt; WITH CUBE or WITH ROLLUP -&gt; HAVING -&gt; SELECT -&gt; DISTINCT -&gt; ORDER BY -&gt; TOP</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Yilin Zhang
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://happylinzy.github.io/undefined/en/SQL-Notes/" title="SQL Notes I">https://happylinzy.github.io/undefined/en/SQL-Notes/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SQL/" rel="tag"># SQL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/categories/index/" rel="prev" title="Categories">
+      <i class="fa fa-chevron-left"></i> Categories
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/undefined/en/Rust-Notes/" rel="next" title="Rust Notes">
+      Rust Notes <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#select"><span class="nav-number">1.</span> <span class="nav-text">SELECT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#union"><span class="nav-number">2.</span> <span class="nav-text">Union</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update"><span class="nav-number">3.</span> <span class="nav-text">Update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delete"><span class="nav-number">4.</span> <span class="nav-text">DELETE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#group_concat"><span class="nav-number">5.</span> <span class="nav-text">GROUP_CONCAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#group-by-having"><span class="nav-number">6.</span> <span class="nav-text">GROUP BY, HAVING</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#like"><span class="nav-number">7.</span> <span class="nav-text">LIKE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#with"><span class="nav-number">8.</span> <span class="nav-text">WITH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join-on"><span class="nav-number">9.</span> <span class="nav-text">JOIN, ON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#limit-offset"><span class="nav-number">10.</span> <span class="nav-text">LIMIT, OFFSET</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#case"><span class="nav-number">11.</span> <span class="nav-text">CASE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#execution-order"><span class="nav-number"></span> <span class="nav-text">Execution Order</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yilin Zhang"
+      src="/images/ai_protrait.webp">
+  <p class="site-author-name" itemprop="name">Yilin Zhang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Happylinzy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Happylinzy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode.com/yilin7616/" title="LeetCode → https:&#x2F;&#x2F;leetcode.com&#x2F;yilin7616&#x2F;" rel="noopener" target="_blank"><i class="fa fa-code fa-fw"></i>LeetCode</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yilin7616@gmail.com" title="E-Mail → yilin7616@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/yilin-zhang-813854261/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;yilin-zhang-813854261&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.kaggle.com/ylinzh" title="Kaggle → https:&#x2F;&#x2F;www.kaggle.com&#x2F;ylinzh" rel="noopener" target="_blank"><i class="fab fa-kaggle fa-fw"></i>Kaggle</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/en" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>English</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="">
+      
+        <option value="en" data-href="/undefined/en/SQL-Notes/" selected="">
+          English
+        </option>
+      
+        <option value="zh-CN" data-href="/zh-CN/undefined/en/SQL-Notes/" selected="">
+          简体中文
+        </option>
+      
+    </select>
+  </div>
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yilin Zhang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">111k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">3:21</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/27/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "This site runs safely for "+dnum+" days ";
+        document.getElementById("times").innerHTML = hnum + " hours " + mnum + " minutes " + snum + " seconds.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
