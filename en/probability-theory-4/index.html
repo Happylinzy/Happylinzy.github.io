@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en,zh-CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"happylinzy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Probability 4 -- Law of Large Number and Central Limit Theorem This paper mainly comes fromProbability and Statistical Inference, Second Edition, Robert Bartoszynski, Magdalena Niewiadomska-Bugaj">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Probability 4 -- Law of Large Number and Central Limit Theorem">
+<meta property="og:url" content="https://happylinzy.github.io/en/probability-theory-4/index.html">
+<meta property="og:site_name" content="Yilin Blog">
+<meta property="og:description" content="Probability 4 -- Law of Large Number and Central Limit Theorem This paper mainly comes fromProbability and Statistical Inference, Second Edition, Robert Bartoszynski, Magdalena Niewiadomska-Bugaj">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-16T04:33:52.000Z">
+<meta property="article:modified_time" content="2024-02-15T22:27:01.862Z">
+<meta property="article:author" content="Yilin Zhang">
+<meta property="article:tag" content="probability theory">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://happylinzy.github.io/en/probability-theory-4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Probability 4 -- Law of Large Number and Central Limit Theorem | Yilin Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yilin Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-language">
+
+    <a href="/" rel="section"><i class="fas fa-language fa-fw"></i>-->简体中文</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://happylinzy.github.io/en/probability-theory-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ai_protrait.webp">
+      <meta itemprop="name" content="Yilin Zhang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yilin Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Probability 4 -- Law of Large Number and Central Limit Theorem
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-10-15 21:33:52" itemprop="dateCreated datePublished" datetime="2023-10-15T21:33:52-07:00">2023-10-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-02-15 14:27:01" itemprop="dateModified" datetime="2024-02-15T14:27:01-08:00">2024-02-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Math-Theory/" itemprop="url" rel="index"><span itemprop="name">Math Theory</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>8 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="probability-4----law-of-large-number-and-central-limit-theorem">Probability 4 -- Law of Large Number and Central Limit Theorem</h1>
+<p>This paper mainly comes from<em>Probability and Statistical Inference, Second Edition, Robert Bartoszynski, Magdalena Niewiadomska-Bugaj</em></p>
+<span id="more"></span>
+<p>In this chapter we collect two extremely import theorem in probability theorem -- Law of Large Numbers and Central Limit Theorem.</p>
+<h2 id="weak-law-of-large-numbers">Weak Law of Large Numbers</h2>
+<p>These theorems assert convergence in probability of empirical frequencies of an event. Theorem 1 to 3 form a hierarchical relationship. Theorem 1 restricts sequence of random variables to be independent identical distribution. Theorem 2 improves the identical requirement to limit for the sum of variance. Theorem 3 further improves independent requirement to boundary of covariance. Theorem 4 generalizes theorem to distributions with variance not defined.</p>
+<p><strong>Theorem 1:</strong></p>
+<p>Let <span class="math inline">\(\{X_n\}\)</span> be a sequence of i.i.d. random variables. Assume that <span class="math inline">\(E(X_i) = \mu, Var(X_i) = \sigma^2.\)</span> Then for every <span class="math inline">\(\varepsilon &gt; 0,\)</span> <span class="math display">\[
+\lim_{n \rightarrow \infty} P
+\left(\left\{|
+\frac{\sum_{i=1}^n X_i}{n} - \mu
+| \ge \varepsilon \right\}\right) 
+= 0.
+\]</span></p>
+<p><strong>Theorem 2:</strong></p>
+<p>Let <span class="math inline">\(\{X_n\}\)</span> be a sequence of independent random variables. Assume that <span class="math inline">\(E(X_i) = \mu_i, Var(X_i) = \sigma_i^2.\)</span> If <span class="math display">\[
+\lim_{n \rightarrow \infty} \frac{1}{n^2} \sum_{i=1}^n \sigma_i^2 = 0,
+\]</span>then for every <span class="math inline">\(\varepsilon &gt; 0,\)</span> <span class="math display">\[
+\lim_{n \rightarrow \infty} P
+\left(\left\{|
+\frac{\sum_{i=1}^n X_i}{n} 
+-
+\frac{\sum_{i=1}^n \mu_i}{n}
+| \ge \varepsilon\right\}\right) 
+= 0.
+\]</span></p>
+<p><strong>Theorem 3:</strong></p>
+<p>Let <span class="math inline">\(\{X_n\}\)</span> be a sequence of random variables with <span class="math inline">\(E(X_i) = \mu_i, Var(X_i) = \sigma_i^2,\)</span> and such that <span class="math inline">\(Cov(X_i, X_j) \le 0,\)</span> satisfying <span class="math display">\[
+\lim_{n \rightarrow \infty} \frac{1}{n^2} \sum_{i=1}^n \sigma_i^2 = 0.
+\]</span>Then for every <span class="math inline">\(\varepsilon &gt; 0,\)</span> <span class="math display">\[
+\lim_{n \rightarrow \infty} P
+\left(\left\{|
+\frac{\sum_{i=1}^n X_i}{n} 
+-
+\frac{\sum_{i=1}^n \mu_i}{n}
+| \ge \varepsilon\right\}\right) 
+= 0.
+\]</span></p>
+<p><strong>Theorem 4:</strong></p>
+<p>Let <span class="math inline">\(\{X_n\}\)</span> be a sequence of i.i.d. random variables. Assume that <span class="math inline">\(E(X_i) = \mu,\)</span> and such that their common moments generating function exists in some neighborhood of <span class="math inline">\(t = 0.\)</span> Then for every <span class="math inline">\(\varepsilon &gt; 0,\)</span> <span class="math display">\[
+\lim_{n \rightarrow \infty} P
+\left(\left\{|
+\frac{\sum_{i=1}^n X_i}{n} - \mu
+| \ge \varepsilon \right\}\right) 
+= 0.
+\]</span></p>
+<h2 id="strong-law-of-large-numbers">Strong Law of Large Numbers</h2>
+<p>These theorems assert almost sure convergence of sequences of random variables obtained by averaging some underlying sequences of random variables.</p>
+<p><strong>Theorem 5:</strong></p>
+<p>Let <span class="math inline">\(\{X_n\}\)</span> be a sequence of independent random variables. Assume that <span class="math inline">\(E(X_i) = \mu_i, Var(X_i) = \sigma_i^2.\)</span> If <span class="math display">\[
+\sum_{n=1}^{\infty} \frac{\sigma_n^2}{n^2} &lt; \infty,
+\]</span>then <span class="math display">\[
+\frac{1}{n}\sum_{i=1}^n\left(X_i - \mu_i\right) \overset{a.s.}{\longrightarrow} 0.
+\]</span></p>
+<p><strong>Theorem 6:</strong></p>
+<p>Let <span class="math inline">\(\{X_n\}\)</span> be a sequence of i.i.d. random variables, and let <span class="math inline">\(S_n = X_1 + X_2 + ... + X_n.\)</span> If <span class="math inline">\(\mu = E(X_i)\)</span> exists, then <span class="math display">\[
+\frac{S_n}{n} \overset{a.s.}{\longrightarrow} \mu.
+\]</span></p>
+<h2 id="central-limit-theorem">Central Limit Theorem</h2>
+<p>These theorems assert that the sums of large numbers of random variables, after standardization, have approximately standard distribution.</p>
+<p><strong>Theorem (Lindeberg and Levy):</strong></p>
+<p>Let <span class="math inline">\(\{X_n\}\)</span> be a sequence of i.i.d. random variables. Assume that <span class="math inline">\(E(X_i) = \mu, Var(X_i) = \sigma^2, \sigma^2 \in (0, \infty).\)</span> Then let <span class="math inline">\(S_n = X_1 + ... + X_n,\)</span> for every <span class="math inline">\(x\)</span> <span class="math display">\[
+\lim_{n \rightarrow \infty} P\left\{\frac{S_n - n\mu}{\sigma\sqrt{n}} \le x \right\}
+=
+\frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{\frac{-t^2}{2}} dt.
+\]</span></p>
+<p><strong>Theorem(Liapunov):</strong></p>
+<p>Let <span class="math inline">\(\{X_n\}\)</span> be a sequence of random variables. Assume that <span class="math inline">\(E(X_i) = \mu_i, Var(X_i) = \sigma_i^2,\)</span> and <span class="math inline">\(\gamma_i = E(X_i - \mu_i)^3.\)</span> Moreover, put <span class="math display">\[
+m_n = \sum_{j=1}^n \mu_j, s_n^2 = \sum_{j=1}^n \sigma_j^2, \Gamma_n = \sum_{j=1}^n \gamma_i,
+\]</span> and let <span class="math inline">\(S_n = X_1 + ... + X_n\)</span> be the corresponding sequence of partial sums. If all <span class="math inline">\(X_i\)</span> have finite third moments, then the condition <span class="math display">\[
+\lim_{n \rightarrow \infty} \frac{\Gamma_n}{s_n^3} = 0
+\]</span>is sufficient for convergence <span class="math display">\[
+\frac{S_n - m_n}{s_n} \overset{d}{\longrightarrow} \mathcal{N}(0, 1).
+\]</span></p>
+<p><strong>Theorem(Lindeberg and Feller):</strong></p>
+<p>Let <span class="math inline">\(\{X_n\}\)</span> be a sequence of independent random variables with finite second moments. Assume that <span class="math inline">\(s_n^2 \rightarrow \infty\)</span> and <span class="math display">\[
+\lim_{n \rightarrow \infty}\max_{1 \le j \le n} \frac{\sigma_j^2}{s_n^2} = 0.
+\]</span>Then <span class="math display">\[
+\frac{S_n - m_n}{s_n} \overset{d}{\longrightarrow} \mathcal{N}(0, 1)
+\]</span>iff for every <span class="math inline">\(\varepsilon &gt; 0,\)</span> <span class="math display">\[
+\lim_{n \rightarrow \infty}\frac{1}{s_n^2}\sum_{j = 1}^n\int_{|x-\mu_j| \ge \varepsilon s_n} (x-\mu_j)^2dF_j(x) = 0.
+\]</span></p>
+<p>The comparison between LLNs and CLT are always interesting. The <strong>Law of Large Numbers</strong> describes the sample mean will converge to theoretical mean, which is a scalar to another scalar. The <strong>Central Limit Theorem</strong> describes the distribution of standardized sum converge to normal distribution, which is a distribution to another distribution.</p>
+<p>cite:</p>
+<p><em>Probability and Statistical Inference, Second Edition, Robert Bartoszynski, Magdalena Niewiadomska-bugaj</em></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/probability-theory/" rel="tag"># probability theory</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/en/probability-theory-3/" rel="prev" title="Probability 3 -- Inequality and Convergence">
+      <i class="fa fa-chevron-left"></i> Probability 3 -- Inequality and Convergence
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/en/probability-theory-5/" rel="next" title="Probability 5 -- Selected Distributions">
+      Probability 5 -- Selected Distributions <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#probability-4----law-of-large-number-and-central-limit-theorem"><span class="nav-number">1.</span> <span class="nav-text">Probability 4 -- Law of Large Number and Central Limit Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#weak-law-of-large-numbers"><span class="nav-number">1.1.</span> <span class="nav-text">Weak Law of Large Numbers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strong-law-of-large-numbers"><span class="nav-number">1.2.</span> <span class="nav-text">Strong Law of Large Numbers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#central-limit-theorem"><span class="nav-number">1.3.</span> <span class="nav-text">Central Limit Theorem</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yilin Zhang"
+      src="/images/ai_protrait.webp">
+  <p class="site-author-name" itemprop="name">Yilin Zhang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Happylinzy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Happylinzy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode.com/yilin7616/" title="LeetCode → https:&#x2F;&#x2F;leetcode.com&#x2F;yilin7616&#x2F;" rel="noopener" target="_blank"><i class="fa fa-code fa-fw"></i>LeetCode</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yilin7616@gmail.com" title="E-Mail → yilin7616@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/yilin-zhang-813854261/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;yilin-zhang-813854261&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.kaggle.com/ylinzh" title="Kaggle → https:&#x2F;&#x2F;www.kaggle.com&#x2F;ylinzh" rel="noopener" target="_blank"><i class="fab fa-kaggle fa-fw"></i>Kaggle</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>English</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="">
+      
+        <option value="en" data-href="/probability-theory-4/" selected="">
+          English
+        </option>
+      
+        <option value="zh-CN" data-href="/zh-CN/probability-theory-4/" selected="">
+          简体中文
+        </option>
+      
+    </select>
+  </div>
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yilin Zhang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">108k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">3:17</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/27/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "This site runs safely for "+dnum+" days ";
+        document.getElementById("times").innerHTML = hnum + " hours " + mnum + " minutes " + snum + " seconds.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
