@@ -28,7 +28,7 @@
 <meta property="og:description" content="Perspectives on Natural Gradient Descent In our article Optimization I - Gradient Descent, we talk about how to view the gradient descent as the approximation of Riemannian gradient descent. However,">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-02-14T05:21:08.000Z">
-<meta property="article:modified_time" content="2024-02-15T22:32:08.442Z">
+<meta property="article:modified_time" content="2024-09-10T05:06:52.933Z">
 <meta property="article:author" content="Yilin Zhang">
 <meta property="article:tag" content="optimization">
 <meta name="twitter:card" content="summary">
@@ -201,7 +201,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-02-15 14:32:08" itemprop="dateModified" datetime="2024-02-15T14:32:08-08:00">2024-02-15</time>
+                <time title="Modified: 2024-09-09 22:06:52" itemprop="dateModified" datetime="2024-09-09T22:06:52-07:00">2024-09-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,7 +246,7 @@
 
       
         <h1 id="perspectives-on-natural-gradient-descent">Perspectives on Natural Gradient Descent</h1>
-<p>In our article <a href="https://happylinzy.github.io/2023/02/04/gd1/#more">Optimization I - Gradient Descent</a>, we talk about how to view the gradient descent as the approximation of Riemannian gradient descent. However, is there a descent method more loylal to the Riemannian gradient descent? Or in other word, better than gradient descent in some cases. In this artile, we will start our journey to the beautiful and attracting information geometry world. In that abstract and fancy world, the secrete equivalence between several gradient descent methods are discovered.</p>
+<p>In our article <a href="https://happylinzy.github.io/en/gd1/">Optimization I - Gradient Descent</a>, we talk about how to view the gradient descent as the approximation of Riemannian gradient descent. However, is there a descent method more loylal to the Riemannian gradient descent? Or in other word, better than gradient descent in some cases. In this artile, we will start our journey to the beautiful and attracting information geometry world. In that abstract and fancy world, the secrete equivalence between several gradient descent methods are discovered.</p>
 <span id="more"></span>
 <h2 id="kl-divergence">KL-Divergence</h2>
 <p>Given two distributions <span class="math inline">\(p( y \mid x), p(y \mid x&#39;)\)</span>, the KL divergence measures the dsitance between these two distrbutions. <span class="math display">\[\begin{align*}
@@ -381,20 +381,20 @@ x_{k+1} = x_k  - F(x_k)^{-1}f(x_k).
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -465,12 +465,12 @@ x_{k+1} = x_k  - F(x_k)^{-1}f(x_k).
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">108k</span>
+    <span title="Symbols count total">109k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">3:17</span>
+    <span title="Reading time total">3:18</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
@@ -557,6 +557,26 @@ setInterval("createtime()",250);
 
 
 
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 
