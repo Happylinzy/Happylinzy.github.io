@@ -20,15 +20,20 @@
     var CONFIG = {"hostname":"happylinzy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Yilin Blog">
-<meta property="og:url" content="https://happylinzy.github.io/tags/SQL/index.html">
+  <meta name="description" content="Stochastic Process 5 - Random Process in LTI System This note covers basic concept of random process in LTI system. Filters are discussed as an examples.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stochastic Process 5 - Wiener Filter">
+<meta property="og:url" content="https://happylinzy.github.io/en/stochastic-process-5/index.html">
 <meta property="og:site_name" content="Yilin Blog">
+<meta property="og:description" content="Stochastic Process 5 - Random Process in LTI System This note covers basic concept of random process in LTI system. Filters are discussed as an examples.">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-09T01:37:59.000Z">
+<meta property="article:modified_time" content="2024-11-09T03:57:25.669Z">
 <meta property="article:author" content="Yilin Zhang">
+<meta property="article:tag" content="stochastic process">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://happylinzy.github.io/tags/SQL/">
+<link rel="canonical" href="https://happylinzy.github.io/en/stochastic-process-5/">
 
 
 <script id="page-configurations">
@@ -36,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Tag: SQL | Yilin Blog</title>
+  <title>Stochastic Process 5 - Wiener Filter | Yilin Blog</title>
   
 
 
@@ -159,51 +164,149 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">SQL
-          <small>Tag</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://happylinzy.github.io/en/stochastic-process-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ai_protrait.webp">
+      <meta itemprop="name" content="Yilin Zhang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yilin Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Stochastic Process 5 - Wiener Filter
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-11-08 17:37:59 / Modified: 19:57:25" itemprop="dateCreated datePublished" datetime="2024-11-08T17:37:59-08:00">2024-11-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Math-Theory/" itemprop="url" rel="index"><span itemprop="name">Math Theory</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+        <h1 id="stochastic-process-5---random-process-in-lti-system">Stochastic Process 5 - Random Process in LTI System</h1>
+<p>This note covers basic concept of random process in LTI system. Filters are discussed as an examples.</p>
+<span id="more"></span>
+<p>Recall what a linear time invariant system is. Given an imput <span class="math inline">\(x(t)\)</span> and the impulse response function <span class="math inline">\(h(t)\)</span>, the output <span class="math inline">\(y(t)\)</span> can be expressed as <span class="math display">\[
+y(t) = \int_{-\infty}^\infty h(t - s)x(s) \mathrm{d}s
+\]</span></p>
+<p>which can be denoted as <span class="math inline">\(y(t) = h(t) * x(t).\)</span> Here <span class="math inline">\(*\)</span> means convolution.</p>
+<p><strong>Remark:</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+    (f*g)(t) &amp;= \int_{-\infty}^\infty f(s)g(t-s) \mathrm{d}s = \int_{-\infty}^\infty f(t-s)g(s) \mathrm{d}s
+    \\
+    (f*g)(a+b) &amp;=  \int_{-\infty}^\infty f(a+s)g(b-s) \mathrm{d}s = \int_{-\infty}^\infty f(b+s)g(a-s) \mathrm{d}s
+\end{aligned}
+\]</span></p>
+<p>What if the input is a random process?</p>
+<p>Let <span class="math inline">\(X(t)\)</span> be a 2nd random process with autocorrelation <span class="math inline">\(R_X(s, t).\)</span> Suppose that <span class="math display">\[\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} h(t-s)h(t-u)R_X(s, u) \mathrm{d}s\mathrm{d}u\]</span> exists and is finite for all <span class="math inline">\(t \in \mathbb{R}.\)</span> Then we have <span class="math display">\[
+Y(t) = \int_{-\infty}^{\infty} h(t-s)X(s) \mathrm{d} s \qquad \text{mean square integral}
+\]</span> denoted as <span class="math inline">\(Y(t) = h(t)*X(t).\)</span></p>
+<p>Directly we can derive the following properties:</p>
+<ul>
+<li><p><span class="math inline">\(\mu_Y(t) = (h*\mu_X)(t) = \int_{-\infty}^{\infty} h(t-s)\mu_X(t) \mathrm{d} s = \mu_X(t) \int_{-\infty}^{\infty}h(s) \mathrm{d} s\)</span> Here you may notice that the later part <span class="math inline">\(\int_{-\infty}^{\infty}h(s) \mathrm{d} s\)</span> is independent of time <span class="math inline">\(t.\)</span></p></li>
+<li><p><span class="math inline">\(R_{YX}(s, t) = E[Y(s)X(t)] = E[\int_{-\infty}^{\infty} h(s -v)X(v)\mathrm{d} v \cdot X(t)] = \int_{-\infty}^{\infty} h(s-v) R_X(v, t) \mathrm{d} v =\int_{-\infty}^{\infty}h(s-v)R_X(v - t) \mathrm{d} v = (h*R_X)(s-t).\)</span> Similarly, we derive that <span class="math inline">\(R_{XY}(s, t) = (h*R_X)(t-s)\)</span> and <span class="math inline">\(R_{YX}(s, t) = R_{XY}(t, s).\)</span></p></li>
+<li><p>Denote <span class="math inline">\(\hat{h}(t) = h(-t).\)</span> Then we can derive that <span class="math inline">\(R_Y(s, t)\)</span> only depends on (s-t). <span class="math display">\[
+\begin{aligned}
+R_Y(s, t) &amp;= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} h(t-u)h(s-v)R_x(v-u)\mathrm{d} v\mathrm{d} u  
+\\
+&amp;= \int_{-\infty}^{\infty}h(t-u) \int_{-\infty}^{\infty}h(s-v)R_x(v-u)\mathrm{d} v\mathrm{d} u 
+\\
+&amp;= \int_{-\infty}^{\infty}h(t-u) \cdot (h*R_X)(s-u) \mathrm{d} u
+\\
+&amp;= (\hat{h}*h*R_X)(s-t)
+\end{aligned}
+\]</span></p></li>
+</ul>
+<p><strong>Theorem:</strong></p>
+<blockquote>
+<p>Suppose <span class="math inline">\(X\)</span> is a WSS process with mean <span class="math inline">\(\mu_X\)</span> and autocorrelation <span class="math inline">\(R_x.\)</span> X is input to a LTI system with impule response <span class="math inline">\(h(t).\)</span> Then, (a) Output <span class="math inline">\(Y(t)\)</span> is a a WSS with <span class="math display">\[ \mu_Y = \mu_X(t) \int_{-\infty}^{\infty}h(s) \mathrm{d}\]</span> <span class="math display">\[ R_Y(\tau) = (\hat{h}*h*R_X)(\tau).\]</span> (b) <span class="math inline">\(X(t)\)</span> and <span class="math inline">\(Y(t)\)</span> are jointly WSS. <span class="math display">\[R_{YX}(s, t) = R_{XY}(t, s), R_{YX}(\tau) = R_{XY}(-\tau).\]</span> (c) Autocovariance <span class="math display">\[C_{YX}(\tau) = (h*C_X)(\tau), C_Y(\tau) = (\hat{h}*h*C_X)(\tau).\]</span></p>
+</blockquote>
+<p>TBD</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-01-29T20:36:57-08:00"
-              content="2023-01-29">
-          01-29
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/stochastic-process/" rel="tag"># stochastic process</a>
+          </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/en/SQL-Notes/" itemprop="url">
-            <span itemprop="name">SQL Notes I</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/en/probability-theory-7/" rel="prev" title="Probability 7 -- Likelyhood and Regression">
+      <i class="fa fa-chevron-left"></i> Probability 7 -- Likelyhood and Regression
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -256,6 +359,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#stochastic-process-5---random-process-in-lti-system"><span class="nav-number">1.</span> <span class="nav-text">Stochastic Process 5 - Random Process in LTI System</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -330,11 +434,11 @@
     </label>
     <select class="lang-select" data-canonical="">
       
-        <option value="en" data-href="/tags/SQL/index.html" selected="">
+        <option value="en" data-href="/stochastic-process-5/" selected="">
           English
         </option>
       
-        <option value="zh-CN" data-href="/zh-CN/tags/SQL/index.html" selected="">
+        <option value="zh-CN" data-href="/zh-CN/stochastic-process-5/" selected="">
           简体中文
         </option>
       
@@ -474,6 +578,59 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
